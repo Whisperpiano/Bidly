@@ -1,6 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
+import { useTestStore } from "../store/test";
 
 function Layout() {
+  // no necesariamente aqui, porque es global ya
+  // se puede acceder desde cualquier componente
+  const test = useTestStore((state) => state.tests);
+  console.log(test);
   return (
     <div>
       <nav className="bg-gray-800 p-4">
