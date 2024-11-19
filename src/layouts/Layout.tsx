@@ -1,36 +1,25 @@
-import { Link, Outlet } from "react-router-dom";
-import { useTestStore } from "../store/test";
-import { useState } from "react";
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { useThemeStore } from "../store/theme";
+import { applyThemePreference } from "../utils/applyThemePreference";
+import Header from "../components/layer/Header";
+import Footer from "../components/layer/Footer";
 
 function Layout() {
-  const [darkMode, setDarkMode] = useState(false);
+  const theme = useThemeStore((state) => state.theme);
 
-  // no necesariamente aqui, porque es global ya
-  // se puede acceder desde cualquier componente
-  const test = useTestStore((state) => state.tests);
-  console.log(test);
-
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-  };
+  useEffect(() => {
+    applyThemePreference(theme);
+  }, [theme]);
 
   return (
-    <div className={darkMode ? "dark" : ""} id="layout">
-      <nav className="bg-gray-800 p-4">
-        <Link to="/" className="text-white mx-2">
-          Home
-        </Link>
-        <Link to="/about" className="text-white mx-2">
-          About
-        </Link>
-        <button className="text-white mx-2" onClick={toggleTheme}>
-          Toggle theme
-        </button>
-      </nav>
-      <main className="p-4 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white min-h-screen">
+    <>
+      <Header />
+      <main className="p-4 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">
         <Outlet />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
 
