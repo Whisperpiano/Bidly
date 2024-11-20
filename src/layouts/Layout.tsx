@@ -15,7 +15,7 @@ function Layout() {
   return (
     <>
       <Header />
-      <main className="p-4 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">
+      <main className="max-w-screen-2xl w-full mx-auto px-2">
         <Outlet />
       </main>
       <Footer />

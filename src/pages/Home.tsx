@@ -1,19 +1,23 @@
+import ItemsGrid from "../components/grid/ItemsGrid";
+import Hero from "../components/home/Hero";
 import { useThemeStore } from "../store/theme";
 
 const Home = () => {
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
   return (
-    <div>
-      <h1>Home</h1>
+    <>
+      <Hero />
       <button
-        className="text-white mx-2"
+        className=" mx-2"
         onClick={toggleTheme}
         aria-label="Toggle dark mode"
       >
         Toggle theme
       </button>
-    </div>
+      <ItemsGrid />
+      <ItemsGrid />
+    </>
   );
 };
 
