@@ -3,6 +3,15 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      keyframes: {
+        reveal: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        reveal: "reveal 500ms ease forwards",
+      },
       fontFamily: {
         sans: ["Roboto", "ui-sans-serif", "system-ui"],
       },

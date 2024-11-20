@@ -1,6 +1,7 @@
 import Button from "../layer/Button";
-import ItemCard from "./ItemCard";
+import GridItemCard from "./GridItemCard";
 import { PiArrowRightBold } from "react-icons/pi";
+
 export default function ItemsGrid() {
   return (
     <section className="rounded-lg border dark:border-neutral-800 border-neutral-200 my-10 p-6">
@@ -10,16 +11,16 @@ export default function ItemsGrid() {
         </h2>
       </header>
       <div className="grid grid-cols-5 gap-4 pt-6">
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
+        <GridItemCard />
       </div>
       <div className="pt-6">
         <Button type="secondary" ariaLabel="test">

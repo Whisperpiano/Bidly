@@ -5,6 +5,7 @@ import Create from "../pages/Create";
 import Explore from "../pages/Explore";
 import NotFound from "../pages/NotFound";
 import ErrorPage from "../pages/Error";
+import SingleItem from "../pages/SingleItem";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/explore",
         element: <Explore />,
+      },
+      {
+        path: "/listing/:name",
+        element: <SingleItem />,
       },
       {
         path: "*",
