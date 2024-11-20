@@ -21,7 +21,7 @@ export default function ItemCard() {
       </div>
       <footer className="dark:bg-neutral-900 bg-neutral-100 rounded-lg p-3 grid grid-cols-2 gap-3">
         <div className="flex flex-col">
-          <span className="dark:text-neutral-400 text-neutral-500 font-semibold text-sm">
+          <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-sm">
             Finishing
           </span>
           <time className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 font-semibold text-sm">
@@ -33,7 +33,7 @@ export default function ItemCard() {
           </time>
         </div>
         <div className="flex flex-col">
-          <span className="dark:text-neutral-400 text-neutral-500 font-semibold text-sm">
+          <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-sm">
             Last bid
           </span>
           <span className="dark:text-neutral-50 text-neutral-900 font-semibold text-sm">

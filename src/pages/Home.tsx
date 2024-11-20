@@ -1,5 +1,7 @@
+import SubscribeBanner from "../components/banner/SubscribeBanner";
 import ItemsGrid from "../components/grid/ItemsGrid";
 import Hero from "../components/home/Hero";
+import RankingTable from "../components/table/RankingTable";
 import { useThemeStore } from "../store/theme";
 
 const Home = () => {
@@ -17,6 +19,8 @@ const Home = () => {
       </button>
       <ItemsGrid />
       <ItemsGrid />
+      <RankingTable />
+      <SubscribeBanner />
     </>
   );
 };

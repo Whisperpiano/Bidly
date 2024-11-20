@@ -1,4 +1,4 @@
-type ButtonType = "primary" | "secondary" | "outlined";
+type ButtonType = "primary" | "secondary" | "tertiary" | "outlined";
 
 interface ButtonProps {
   type: ButtonType;
@@ -20,6 +20,7 @@ export default function Button({
     primary: "px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700",
     secondary:
       "bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 hover:bg-neutral-200 dark:hover:bg-neutral-800 w-full justify-center ",
+    tertiary: "bg-neutral-50 text-neutral-900 px-4 justify-center ",
     outlined:
       "aspect-square justify-center border dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 dark:hover:text-neutral-300 dark:hover:border-neutral-500 dark:hover:bg-neutral-900 text-neutral-600 border-neutral-100 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-700 hover:border-neutral-200",
   };
