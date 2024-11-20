@@ -1,7 +1,5 @@
 import HeroItem from "./HeroItem";
 
-//TODO como en plantagen? No me gusta el disenyo
-
 export default function Hero() {
   return (
     <section>
