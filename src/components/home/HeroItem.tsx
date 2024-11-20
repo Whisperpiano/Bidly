@@ -31,13 +31,13 @@ export default function HeroItem({ isMain }: { isMain: boolean }) {
               </p>
             </div>
             <div>
-              <p className="dark:text-neutral-300 font-semibold text-base flex items-center gap-1.5">
+              <span className="dark:text-neutral-300 font-semibold text-base flex items-center gap-1.5">
                 <div
                   className="w-2 h-2 rounded-full bg-green-400"
                   aria-hidden
                 ></div>
                 6d 12h
-              </p>
+              </span>
             </div>
           </div>
         </div>
