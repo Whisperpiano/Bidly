@@ -2,11 +2,13 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import Home from "../pages/Home";
 import Create from "../pages/Create";
-import Explore from "../pages/Explore";
 import NotFound from "../pages/NotFound";
 import ErrorPage from "../pages/Error";
 import SingleItem from "../pages/SingleItem";
 import Profile from "../pages/Profile";
+import Search from "../pages/Search";
+import SearchListings from "../components/search/SearchListings";
+import SearchUsers from "../components/search/SearchUsers";
 
 export const router = createBrowserRouter([
   {
@@ -27,16 +29,39 @@ export const router = createBrowserRouter([
         element: <Create />,
       },
       {
-        path: "/explore",
-        element: <Explore />,
-      },
-      {
         path: "/listing/:name",
         element: <SingleItem />,
       },
       {
         path: "/profile/:username",
         element: <Profile />,
+      },
+
+      {
+        path: "/search",
+        element: <Search />,
+        children: [
+          {
+            path: "/search",
+            element: <Navigate to="/search/listings/all" replace />,
+          },
+          {
+            path: "listings",
+            element: <Navigate to="/search/listings/all" replace />,
+          },
+          {
+            path: "users",
+            element: <Navigate to="/search/users/all" replace />,
+          },
+          {
+            path: "listings/:query?",
+            element: <SearchListings />,
+          },
+          {
+            path: "users/:query?",
+            element: <SearchUsers />,
+          },
+        ],
       },
       {
         path: "*",
