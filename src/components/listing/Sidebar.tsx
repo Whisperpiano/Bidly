@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Badge from "../elements/Badge";
 import Button from "../layer/Button";
 import {
@@ -19,38 +20,42 @@ export default function Sidebar() {
         <Badge text={"accesory"} />
       </div>
       <div className="grid grid-cols-2 gap-2 py-6 border-y dark:border-neutral-800 border-neutral-200">
-        <div className="flex gap-3 items-center">
-          <img
-            src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="alt placeholder"
-            className="w-10 aspect-square object-cover object-center rounded-lg"
-          />
-          <div className="flex flex-col">
-            <span className="text-xs dark:text-neutral-400 text-neutral-500 font-semibold">
-              Creator
-            </span>
-            <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center">
-              username
-              <PiSealCheckFill className="text-yellow-400 " />
-            </span>
+        <Link to={`/profile/username`}>
+          <div className="flex gap-3 items-center">
+            <img
+              src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="alt placeholder"
+              className="w-10 aspect-square object-cover object-center rounded-lg"
+            />
+            <div className="flex flex-col">
+              <span className="text-xs dark:text-neutral-400 text-neutral-500 font-semibold">
+                Creator
+              </span>
+              <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center">
+                username
+                <PiSealCheckFill className="text-yellow-400 " />
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="flex gap-3 items-center">
-          <img
-            src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="alt placeholder"
-            className="w-10 aspect-square object-cover object-center rounded-lg"
-          />
-          <div className="flex flex-col">
-            <span className="text-xs dark:text-neutral-400 text-neutral-500 font-semibold">
-              Winner
-            </span>
-            <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center">
-              username
-              <PiSealCheckFill className="text-yellow-400 " />
-            </span>
+        </Link>
+        <Link to={`/profile/username`}>
+          <div className="flex gap-3 items-center">
+            <img
+              src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="alt placeholder"
+              className="w-10 aspect-square object-cover object-center rounded-lg"
+            />
+            <div className="flex flex-col">
+              <span className="text-xs dark:text-neutral-400 text-neutral-500 font-semibold">
+                Winner
+              </span>
+              <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center">
+                username
+                <PiSealCheckFill className="text-yellow-400 " />
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
       <div className="flex items-center justify-between py-6">
         <div className="flex gap-4 items-center">

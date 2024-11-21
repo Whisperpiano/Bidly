@@ -6,6 +6,7 @@ import Explore from "../pages/Explore";
 import NotFound from "../pages/NotFound";
 import ErrorPage from "../pages/Error";
 import SingleItem from "../pages/SingleItem";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/listing/:name",
         element: <SingleItem />,
+      },
+      {
+        path: "/profile/:username",
+        element: <Profile />,
       },
       {
         path: "*",
