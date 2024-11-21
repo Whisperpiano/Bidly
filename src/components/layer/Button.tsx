@@ -17,7 +17,8 @@ export default function Button({
     "rounded-lg text-sm font-semibold flex items-center gap-2 h-[42px]";
 
   const typeStyle = {
-    primary: "px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700",
+    primary:
+      "px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center",
     secondary:
       "bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 w-full justify-center ",
     tertiary:

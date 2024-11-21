@@ -2,7 +2,7 @@ import Button from "../layer/Button";
 
 export default function SubscribeBanner() {
   return (
-    <section className="rounded-lg dark:bg-primary-950 my-10 p-10 text-center">
+    <section className="rounded-lg bg-primary-950 my-10 p-10 text-center">
       <h2 className="text-2xl font-bold text-primary-50">
         Be the first to know
       </h2>
