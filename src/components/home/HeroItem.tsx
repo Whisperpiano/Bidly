@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiSealCheckFill } from "react-icons/pi";
 
 export default function HeroItem({ isMain }: { isMain: boolean }) {
   // Just put `/listing/culo-name-test?id=1&img=${img.id}` in the link, and viewTransition will work
   // Also put the style to the img
+
+  const navigate = useNavigate();
+
+  function handleClick(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
+    event.preventDefault();
+    event.stopPropagation();
+    navigate(`/profile/username`);
+  }
+
   return (
     <Link to={`/listing/culo-name-test?id=1`}>
       <article
@@ -23,12 +32,14 @@ export default function HeroItem({ isMain }: { isMain: boolean }) {
               <h1 className="dark:text-neutral-50 text-xl font-bold">
                 Title lorem ipsum
               </h1>
-              <p className="dark:text-neutral-300 text-base font-semibold flex items-center gap-1">
+
+              <span
+                className="dark:text-neutral-300 text-base font-semibold flex items-center gap-1"
+                onClick={handleClick}
+              >
                 username
-                <span>
-                  <PiSealCheckFill className="text-yellow-400" />
-                </span>
-              </p>
+                <PiSealCheckFill className="text-yellow-400" />
+              </span>
             </div>
             <div>
               <span className="dark:text-neutral-300 font-semibold text-base flex items-center gap-1.5">

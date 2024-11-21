@@ -1,8 +1,14 @@
 import { PiSealCheckFill } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 
 export default function RankedUser() {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate(`/profile/username`);
+  }
   return (
-    <tr className="cursor-pointer group text-base">
+    <tr className="cursor-pointer group text-base" onClick={handleClick}>
       <th
         scope="row"
         className="px-6 py-4 font-bold whitespace-nowrap dark:text-neutral-400 text-neutral-500 dark:group-hover:bg-neutral-900  group-hover:bg-neutral-100 rounded-tl-lg rounded-bl-lg"

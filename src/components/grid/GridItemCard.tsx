@@ -1,7 +1,15 @@
 import { PiSealCheckFill } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function GridItemCard() {
+  const navigate = useNavigate();
+
+  function handleClick(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
+    event.preventDefault();
+    event.stopPropagation();
+    navigate(`/profile/username`);
+  }
+
   return (
     <Link to="/listing/culo-name-test?id=1">
       <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
@@ -16,7 +24,11 @@ export default function GridItemCard() {
           <h3 className="text-lg font-semibold dark:text-neutral-50 text-neutral-900">
             Title lorem ipsum
           </h3>
-          <span className="text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1">
+
+          <span
+            className="text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1"
+            onClick={handleClick}
+          >
             username
             <PiSealCheckFill className="text-yellow-400 " />
           </span>
