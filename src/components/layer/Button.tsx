@@ -3,14 +3,14 @@ type ButtonType = "primary" | "secondary" | "tertiary" | "outlined" | "filter";
 interface ButtonProps {
   type: ButtonType;
   children: React.ReactNode;
-  onClick?: () => void;
+  handleClick?: () => void;
   ariaLabel?: string;
 }
 
 export default function Button({
   type,
   children,
-  onClick,
+  handleClick,
   ariaLabel,
 }: ButtonProps) {
   const baseStyle = "rounded-lg text-sm flex items-center gap-2 h-[42px]";
@@ -30,7 +30,7 @@ export default function Button({
 
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={`${baseStyle} ${typeStyle[type]}`}
       aria-label={ariaLabel}
     >
