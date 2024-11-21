@@ -3,15 +3,16 @@ import {
   PiSlidersHorizontalFill,
   PiSquaresFourFill,
 } from "react-icons/pi";
-import ItemsFilter from "../filter/ItemsFilter";
+import Filter from "../filter/Filter";
 import GridItemCard from "../grid/GridItemCard";
+import { FILTER_LISTINGS_OPTIONS } from "../../lib/constants";
 
 export default function SearchListings() {
   return (
     <section>
       <div className="border-t dark:border-neutral-800 border-neutral-200 px-2 flex justify-between items-center">
         <div className="mt-6 flex gap-2">
-          <ItemsFilter />
+          <Filter options={FILTER_LISTINGS_OPTIONS} />
           <button
             className=" flex items-center justify-center p-2 aspect-square w-[42px] rounded-lg bg-neutral-900 disabled:opacity-75 disabled:cursor-not-allowed"
             disabled
