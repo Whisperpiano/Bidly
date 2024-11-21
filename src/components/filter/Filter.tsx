@@ -4,16 +4,9 @@ import Button from "../layer/Button";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const FILTER_ITEMS_OPTIONS = [
-  "Sort by newest",
-  "Sort by oldest",
-  "Most bids",
-  "Fewest bids",
-];
-
-export default function ItemsFilter() {
+export default function Filter({ options }: { options: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [filterSelected, setFilterSelected] = useState(FILTER_ITEMS_OPTIONS[0]);
+  const [filterSelected, setFilterSelected] = useState(options[0]);
   const filterRef = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
 
@@ -22,7 +15,7 @@ export default function ItemsFilter() {
   };
 
   const handleSelection = (index: number) => {
-    setFilterSelected(FILTER_ITEMS_OPTIONS[index]);
+    setFilterSelected(options[index]);
     setIsOpen(false);
   };
 
@@ -63,10 +56,10 @@ export default function ItemsFilter() {
           }`}
         >
           <ul className="py-2 text-sm dark:text-neutral-300">
-            {FILTER_ITEMS_OPTIONS.map((option, index) => (
+            {options.map((option, index) => (
               <li key={index}>
                 <Link
-                  to={`${pathname}?listings=${option
+                  to={`${pathname}?filter=${option
                     .toLocaleLowerCase()
                     .replace(/\s+/g, "-")}`}
                   className="block px-4 py-2 dark:hover:bg-neutral-800 "

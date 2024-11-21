@@ -17,7 +17,7 @@ export default function Header() {
         <nav>
           <ul className="flex items-center text-base font-semibold gap-2.5">
             <li className="dark:text-neutral-400 dark:hover:text-neutral-300 text-neutral-500 hover:text-neutral-600">
-              <Link to="/explore">Explore</Link>
+              <Link to="/search/listings/all">Explore</Link>
             </li>
             <li className="dark:text-neutral-400 dark:hover:text-neutral-300 text-neutral-500 hover:text-neutral-600">
               <Link to="/create">Create</Link>
