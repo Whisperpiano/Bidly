@@ -11,6 +11,7 @@ export default {
       },
       animation: {
         reveal: "reveal 500ms ease forwards",
+        fastreveal: "reveal 200ms ease forwards",
       },
       fontFamily: {
         sans: ["Roboto", "ui-sans-serif", "system-ui"],
