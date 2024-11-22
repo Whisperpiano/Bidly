@@ -31,7 +31,6 @@ export default function AuthModal({ isOpen, onClose }: ModalProps) {
   }, [isOpen]);
 
   if (!isOpen) return null;
-  console.log(currentView);
 
   return (
     <section

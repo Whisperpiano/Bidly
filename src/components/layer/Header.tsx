@@ -55,7 +55,7 @@ export default function Header() {
         </aside>
       </header>
 
-      {/* Modals */}
+      {/* Modal register login */}
       <AuthModal isOpen={isLoginOpen} onClose={handleLoginClose} />
     </>
   );
