@@ -6,7 +6,7 @@ import { PiWalletFill, PiUserFill } from "react-icons/pi";
 
 export default function Header() {
   return (
-    <header className="px-2  py-4 flex justify-between items-center max-w-screen-2xl mx-auto w-full">
+    <header className="sticky top-0 z-50 px-2 py-4 flex justify-between items-center max-w-screen-2xl mx-auto w-full dark:bg-neutral-950/95   backdrop-blur-lg drop-shadow-2xl">
       <div className="flex items-center gap-5">
         <Logo />
         <div

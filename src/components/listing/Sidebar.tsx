@@ -10,7 +10,7 @@ import {
 
 export default function Sidebar() {
   return (
-    <article className="animate-reveal border dark:border-neutral-800 border-neutral-200  rounded-lg p-6 sticky top-6">
+    <article className="animate-reveal border dark:border-neutral-800 border-neutral-200  rounded-lg p-6 sticky top-[104px]">
       <h1 className="text-2xl font-semibold dark:text-neutral-50 text-neutral-900">
         Title of the item lorem ipsum
       </h1>
