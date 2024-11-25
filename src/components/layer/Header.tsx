@@ -6,10 +6,10 @@ import { PiWalletFill } from "react-icons/pi";
 import AuthModal from "../modal/AuthModal";
 import { useState } from "react";
 import AccountDropDown from "../dropdown/AccountDropDown";
+import SearchBarMobile from "./SearchBarMobile";
 
 export default function Header() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-
   function handleLoginClose() {
     setIsLoginOpen(false);
   }
@@ -51,6 +51,7 @@ export default function Header() {
             Login
           </Button>
 
+          <SearchBarMobile />
           <AccountDropDown />
         </aside>
       </header>

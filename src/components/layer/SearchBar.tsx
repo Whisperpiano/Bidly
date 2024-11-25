@@ -19,7 +19,11 @@ export default function SearchBar() {
   }
 
   return (
-    <form name="search" className="group" onSubmit={handleSubmit}>
+    <form
+      name="search"
+      className="group lg:block hidden"
+      onSubmit={handleSubmit}
+    >
       <label htmlFor="searchbar" className="sr-only">
         Search
       </label>
