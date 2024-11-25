@@ -37,7 +37,7 @@ export default function AuthModal({ isOpen, onClose }: ModalProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950 bg-opacity-75 p-5 backdrop-blur-sm animate-fastreveal"
       onClick={handleClose}
     >
-      <div className="flex overflow-hidden max-w-sm bg-neutral-900 rounded-lg">
+      <div className="flex overflow-hidden max-w-sm dark:bg-neutral-900 bg-neutral-50 rounded-lg">
         <div
           className={`min-w-full transition-all ease-out duration-200 ${
             currentView === "login"
