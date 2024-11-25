@@ -25,7 +25,7 @@ export default function Button({
     outlined:
       "aspect-square justify-center border dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 dark:hover:text-neutral-300 dark:hover:border-neutral-500 dark:hover:bg-neutral-900 text-neutral-600 border-neutral-100 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-700 hover:border-neutral-200 font-semibold ",
     filter:
-      "flex gap-2 font-medium items-center text-sm font-medium p-3 rounded-lg dark:text-neutral-300 dark:bg-neutral-900",
+      "flex gap-2 font-medium items-center text-sm font-medium p-3 rounded-lg dark:text-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800 bg-neutral-200/50 text-neutral-900",
   };
 
   return (

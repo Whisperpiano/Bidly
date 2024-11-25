@@ -54,25 +54,25 @@ export default function ProfileOptions() {
           />
 
           <div
-            className={`absolute top-[50px] right-0 z-10  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 dark:divide-neutral-700/50  transition-all duration-200 ${
+            className={`absolute top-[50px] right-0 z-20  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 bg-neutral-50 dark:divide-neutral-700/50 divide-neutral-200  transition-all duration-200 ${
               isOpen ? "opacity-100 " : "opacity-0 pointer-events-none"
             }`}
           >
             <ul className="py-2 text-sm dark:text-neutral-300">
               <li onClick={handleChangeAvatar}>
-                <span className="block px-4 py-2 dark:hover:bg-neutral-800 ">
+                <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 ">
                   Edit avatar
                 </span>
               </li>
               <li onClick={handleChangeBanner}>
-                <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-white">
+                <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900">
                   Edit banner
                 </span>
               </li>
             </ul>
-            <div className="py-2 dark:text-red-400">
+            <div className="py-2 dark:text-red-400 text-red-600 ">
               <span
-                className="block px-4 py-2 text-sm dark:hover:bg-neutral-800  "
+                className="block px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50   "
                 onClick={handleLogout}
               >
                 Logout

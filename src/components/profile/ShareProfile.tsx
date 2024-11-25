@@ -27,7 +27,7 @@ export default function ShareProfile() {
     >
       <span className="sr-only">Share profile</span>
       {isCopied ? (
-        <PiCheckBold size={16} className="text-blue-400" />
+        <PiCheckBold size={16} className="dark:text-blue-400 text-blue-600" />
       ) : (
         <PiShareNetworkFill />
       )}
