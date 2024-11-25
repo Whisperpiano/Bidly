@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import Button from "./Button";
-import { PiWalletFill, PiUserFill } from "react-icons/pi";
+import { PiWalletFill } from "react-icons/pi";
 import AuthModal from "../modal/AuthModal";
 import { useState } from "react";
+import AccountDropDown from "../dropdown/AccountDropDown";
 
 export default function Header() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -46,12 +47,11 @@ export default function Header() {
             ariaLabel="Connect wallet"
             handleClick={handleLoginOpen}
           >
-            <PiWalletFill size={20} />
-            Connect
+            <PiWalletFill size={18} />
+            Login
           </Button>
-          <Button type="outlined" ariaLabel="Account">
-            <PiUserFill size={20} />
-          </Button>
+
+          <AccountDropDown />
         </aside>
       </header>
 
