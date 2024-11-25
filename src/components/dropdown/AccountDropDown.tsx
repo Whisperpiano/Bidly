@@ -41,7 +41,10 @@ export default function AccountDropDown() {
           }`}
           aria-label="Account"
         >
-          <PiUserFill size={18} />
+          <PiUserFill
+            size={18}
+            className="dark:text-neutral-300 text-neutral-900 duration-0"
+          />
         </button>
       </div>
 
@@ -70,31 +73,43 @@ export default function AccountDropDown() {
           </div>
         </div>
 
-        <ul className="py-2 text-sm dark:text-neutral-300 text-neutral-900 select-none">
+        <ul className="py-2 text-sm select-none">
           <li>
-            <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-              <PiUserFill size={16} />
+            <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+              <PiUserFill
+                size={16}
+                className="dark:text-neutral-300 text-neutral-700 duration-0"
+              />
               My profile
             </span>
           </li>
           <li>
-            <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-              <PiTagFill size={16} />
+            <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+              <PiTagFill
+                size={16}
+                className="dark:text-neutral-300 text-neutral-700 duration-0"
+              />
               Create a list
             </span>
           </li>
         </ul>
-        <div className="py-2 text-sm dark:text-neutral-300 text-neutral-900">
+        <div className="py-2 text-sm ">
           <ul className="select-none">
             <li>
-              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-                <PiGearFill size={16} />
+              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                <PiGearFill
+                  size={16}
+                  className="dark:text-neutral-300 text-neutral-700 duration-0"
+                />
                 Settings
               </span>
             </li>
             <li>
-              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-                <PiGlobeFill size={16} />
+              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                <PiGlobeFill
+                  size={16}
+                  className="dark:text-neutral-300 text-neutral-700 duration-0"
+                />
                 Language
               </span>
             </li>
@@ -107,17 +122,25 @@ export default function AccountDropDown() {
                   onChange={() => toggleTheme()}
                 />
                 <div className="flex items-center gap-1.5">
-                  <PiMoonFill size={16} />
-                  <span className="text-sm">Dark mode</span>
+                  <PiMoonFill
+                    size={16}
+                    className="dark:text-neutral-300 text-neutral-700 duration-0"
+                  />
+                  <span className="text-sm dark:text-neutral-300 text-neutral-900">
+                    Dark mode
+                  </span>
                 </div>
                 <div className="relative w-9 h-5  peer-focus:outline-none rounded-full peer bg-neutral-400 dark:bg-neutral-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-neutral-50 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-neutral-50 after:border-neutral-50 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-500"></div>
               </label>
             </li>
           </ul>
         </div>
-        <div className="py-2 dark:text-red-400 select-none">
-          <span className="px-4 py-2 text-sm dark:hover:bg-neutral-800 flex items-center gap-1.5">
-            <PiSignOutFill size={16} />
+        <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0">
+          <span className="px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50 flex items-center gap-1.5 ">
+            <PiSignOutFill
+              size={16}
+              className="dark:text-red-400  text-red-600 duration-0"
+            />
             Sign out
           </span>
         </div>

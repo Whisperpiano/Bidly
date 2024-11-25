@@ -6,11 +6,11 @@ export default function ItemsGrid() {
   return (
     <section className="rounded-lg border dark:border-neutral-800 border-neutral-200 my-10 p-6">
       <header>
-        <h2 className="text-xl font-semibold  border-b dark:border-neutral-800 border-neutral-200 pb-6 dark:text-neutral-50">
+        <h2 className="text-xl font-semibold  border-b dark:border-neutral-800 border-neutral-200 pb-6 dark:text-neutral-50 text-neutral-900">
           Latest items
         </h2>
       </header>
-      <div className="grid grid-cols-5 gap-4 pt-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
         <GridItemCard />
         <GridItemCard />
         <GridItemCard />
@@ -25,7 +25,7 @@ export default function ItemsGrid() {
       <div className="pt-6">
         <Button type="secondary" ariaLabel="test">
           View all items
-          <PiArrowRightBold />
+          <PiArrowRightBold className="dark:text-neutral-50 text-neutral-900 duration-0" />
         </Button>
       </div>
     </section>

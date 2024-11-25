@@ -6,10 +6,10 @@ import { PiWalletFill } from "react-icons/pi";
 import AuthModal from "../modal/AuthModal";
 import { useState } from "react";
 import AccountDropDown from "../dropdown/AccountDropDown";
+import SearchBarMobile from "./SearchBarMobile";
 
 export default function Header() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-
   function handleLoginClose() {
     setIsLoginOpen(false);
   }
@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 px-2 py-4 flex justify-between items-center max-w-screen-2xl mx-auto w-full dark:bg-neutral-950/90 bg-neutral-50/90 backdrop-blur-lg">
+      <header className="sticky top-0 z-50 px-2 py-4 flex justify-between items-center max-w-screen-2xl mx-auto w-full dark:bg-neutral-950/90 bg-neutral-50/90 backdrop-blur-lg border-b dark:border-neutral-800 border-neutral-200">
         <div className="flex items-center gap-5">
           <Logo />
           <div
@@ -51,6 +51,7 @@ export default function Header() {
             Login
           </Button>
 
+          <SearchBarMobile />
           <AccountDropDown />
         </aside>
       </header>

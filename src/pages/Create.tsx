@@ -17,11 +17,6 @@ export default function Create() {
 
   return (
     <>
-      <div
-        className="border-b dark:border-neutral-800 border-neutral-200"
-        aria-hidden
-      ></div>
-
       <section className="max-w-screen-sm mx-auto border-x dark:border-neutral-800 border-neutral-200">
         <form name="create">
           <div className="flex items-center justify-between px-3 py-6 border-b dark:border-neutral-800 border-neutral-200 ">
