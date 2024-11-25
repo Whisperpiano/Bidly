@@ -19,7 +19,7 @@ export default function Duration() {
         </label>
         <select
           id="duration"
-          className="p-3 rounded-lg border outline-none text-sm max-w-[100px] w-full dark:bg-neutral-950 dark:border-neutral-800 dark:text-neutral-50"
+          className="p-3 rounded-lg border outline-none text-sm max-w-[120px] w-full dark:bg-neutral-950 dark:border-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/50 dark:hover:border-neutral-500 dark:focus:bg-neutral-800/50 bg-neutral-50 hover:bg-neutral-200/50 focus:bg-neutral-200/50 text-neutral-900 focus:outline-none"
           defaultValue="1"
           aria-label="duration"
         >
