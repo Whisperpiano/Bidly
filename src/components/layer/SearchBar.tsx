@@ -26,7 +26,7 @@ export default function SearchBar() {
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <PiMagnifyingGlassBold
-            className="size-5 text-neutral-500 group-hover:text-neutral-700 dark:text-neutral-400 dark:group-hover:text-neutral-300"
+            className="size-5 text-neutral-500 group-hover:text-neutral-700 dark:text-neutral-400 dark:group-hover:text-neutral-300 duration-0"
             aria-hidden="true"
           />
         </div>

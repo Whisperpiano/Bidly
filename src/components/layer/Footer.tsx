@@ -15,13 +15,22 @@ export default function Footer() {
       </p>
       <div className="flex items-center gap-2">
         <Button type="outlined" ariaLabel="Twitter">
-          <PiTwitterLogoFill size={20} />
+          <PiTwitterLogoFill
+            size={20}
+            className="dark:text-neutral-400 text-neutral-600 duration-0"
+          />
         </Button>
         <Button type="outlined" ariaLabel="Instagram">
-          <PiInstagramLogoFill size={20} />
+          <PiInstagramLogoFill
+            size={20}
+            className="dark:text-neutral-400 text-neutral-600 duration-0"
+          />
         </Button>
         <Button type="outlined" ariaLabel="Discord">
-          <PiDiscordLogoFill size={20} />
+          <PiDiscordLogoFill
+            size={20}
+            className="dark:text-neutral-400 text-neutral-600 duration-0"
+          />
         </Button>
       </div>
     </footer>
