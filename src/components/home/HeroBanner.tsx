@@ -8,9 +8,9 @@ export default function HeroBanner() {
           <img
             src="https://images.unsplash.com/photo-1513884923967-4b182ef167ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="alt placeholder"
-            className="w-full aspect-[16/4] object-cover object-center rounded-lg "
+            className="w-full aspect-square md:h-[380px] object-cover object-center rounded-lg "
           />
-          <div className="absolute inset-0 z-10 flex flex-col justify-center px-24 bg-neutral-900/50">
+          <div className="absolute inset-0 z-10 flex flex-col justify-center md:px-16 lg:px-20 xl:px-24 bg-neutral-900/50">
             <div className="max-w-[450px] ">
               <h1 className="text-3xl font-bold text-neutral-50 mb-3">
                 Jingle bids, jingle bids, jingle all the way!

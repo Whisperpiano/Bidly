@@ -10,7 +10,7 @@ export default function RankingTable() {
           Trending users
         </h2>
       </header>
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <table className="w-full text-left dark:text-neutral-400 text-neutral-500 ">
           <thead className="text-xs font-semibold  uppercase border-b dark:border-neutral-800 border-neutral-200">
             <tr>
@@ -48,7 +48,7 @@ export default function RankingTable() {
             <RankedUser />
           </tbody>
         </table>
-        <table className="w-full text-left dark:text-neutral-400 text-neutral-500 ">
+        <table className=" hidden lg:block w-full text-left dark:text-neutral-400 text-neutral-500 ">
           <thead className="text-xs font-semibold uppercase border-b dark:border-neutral-800 border-neutral-200">
             <tr>
               <th

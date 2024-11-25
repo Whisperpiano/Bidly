@@ -83,14 +83,14 @@ export default function SearchBarMobile() {
             onClick={handleSearchClose}
             className="rounded-full p-2 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700 bg-neutral-200/50 text-neutral-900 hover:bg-neutral-200"
           >
-            <span className="sr-only">Close auth modal</span>
+            <span className="sr-only">Close searchbar</span>
             <PiXBold size={15} />
           </button>
         </div>
       </div>
 
       <button
-        className={`rounded-lg text-sm flex items-center gap-2 h-[42px] aspect-square justify-center border  ${
+        className={`lg:hidden rounded-lg text-sm flex items-center gap-2 h-[42px] aspect-square justify-center border  ${
           isSearchOpen
             ? "dark:text-neutral-300 dark:border-neutral-500 dark:bg-neutral-900 bg-neutral-200 text-neutral-700 border-neutral-200 font-semibold"
             : "dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 text-neutral-600 border-neutral-200/50 bg-neutral-200/50 "

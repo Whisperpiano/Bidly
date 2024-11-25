@@ -10,7 +10,7 @@ export default function ItemsGrid() {
           Latest items
         </h2>
       </header>
-      <div className="grid grid-cols-5 gap-4 pt-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
         <GridItemCard />
         <GridItemCard />
         <GridItemCard />
