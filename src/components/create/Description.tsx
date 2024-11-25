@@ -11,7 +11,7 @@ export default function Description() {
       </p>
 
       <div className="flex flex-col gap-1.5 mb-3">
-        <span className="mr-auto text-xs font-medium dark:text-neutral-400">
+        <span className="mr-auto text-xs font-medium dark:text-neutral-400 text-neutral-500">
           0/500
         </span>
         <label
@@ -22,14 +22,14 @@ export default function Description() {
         </label>
         <textarea
           id="description"
-          className="p-3 rounded-lg resize-none border outline-none text-sm dark:bg-neutral-950 dark:border-neutral-800 dark:text-neutral-50 dark:placeholder:text-neutral-400"
+          className="p-3 rounded-lg resize-none border outline-none text-sm dark:bg-neutral-950 dark:hover:bg-neutral-900/50 dark:border-neutral-800 dark:hover:border-neutral-500 dark:text-neutral-50 dark:focus:bg-neutral-900/50 dark:focus:border-neutral-500 dark:placeholder:text-neutral-500 bg-neutral-50 hover:bg-neutral-100 border-neutral-200 hover:border-neutral-400 focus:bg-neutral-100 focus:border-neutral-400 text-neutral-900 placeholder:text-neutral-500 focus:outline-none"
           placeholder="Write a detailed description of your item, or let the AI draft it for you!"
           rows={8}
         />
       </div>
       <button
         type="button"
-        className="flex gap-2 items-center text-sm font-medium p-2 border rounded-lg dark:text-neutral-300 dark:bg-neutral-950 dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50"
+        className="flex gap-2 items-center text-sm font-medium py-3 pr-3 pl-2 border rounded-lg dark:text-neutral-300 dark:bg-neutral-950 dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900"
       >
         <PiStarFourFill />
         <span className="sr-only">Use AI to generate description</span>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Bidder() {
   return (
     <Link to={`/profile/username`}>
-      <div className="flex items-center justify-between p-3 dark:hover:bg-neutral-900 hover:bg-neutral-100 rounded-lg animation-reveal">
+      <div className="flex items-center justify-between p-3 dark:hover:bg-neutral-900 hover:bg-neutral-200/50 rounded-lg animation-reveal">
         <div className="flex items-center gap-4">
           <img
             src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

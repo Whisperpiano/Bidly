@@ -20,23 +20,23 @@ export default function Profile() {
             <div className="mt-6 flex gap-2">
               <Filter options={FILTER_LISTINGS_OPTIONS} />
               <button
-                className=" flex items-center justify-center p-2 aspect-square w-[42px] rounded-lg bg-neutral-900 disabled:opacity-75 disabled:cursor-not-allowed"
+                className=" flex items-center justify-center p-2 aspect-square w-[42px] rounded-lg dark:bg-neutral-900  bg-neutral-200/50 disabled:opacity-75 disabled:cursor-not-allowed"
                 disabled
               >
                 <span className="sr-only">Sort items</span>
                 <PiSlidersHorizontalFill size={20} />
               </button>
             </div>
-            <div className="mt-6 p-1.5 bg-neutral-900 rounded-lg flex gap-2">
+            <div className="mt-6 p-1.5 dark:bg-neutral-900 bg-neutral-200/50 rounded-lg flex gap-2">
               <button
-                className="p-2 rounded-lg bg-neutral-950 disabled:opacity-75 disabled:cursor-not-allowed"
+                className="p-2 rounded-lg dark:bg-neutral-950   bg-neutral-300 disabled:cursor-not-allowed"
                 disabled
               >
                 <span className="sr-only">Grid 2 columns</span>
                 <PiSquaresFourFill size={18} />
               </button>
               <button
-                className="p-2 rounded-lg disabled:opacity-75 disabled:cursor-not-allowed "
+                className="p-2 rounded-lg  disabled:cursor-not-allowed "
                 disabled
               >
                 <span className="sr-only">Grid 3 columns</span>

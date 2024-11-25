@@ -5,19 +5,19 @@ export default function ProfileNavigation() {
         Items
       </button>
       <button
-        className="ml-6 py-2 disabled:opacity-75 disabled:cursor-not-allowed"
+        className="ml-6 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled
       >
         Wins
       </button>
       <button
-        className="ml-6 py-2 disabled:opacity-75  disabled:cursor-not-allowed"
+        className="ml-6 py-2 disabled:opacity-50  disabled:cursor-not-allowed"
         disabled
       >
         About
       </button>
       <button
-        className="ml-6 py-2 disabled:opacity-75 disabled:cursor-not-allowed"
+        className="ml-6 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled
       >
         Activity

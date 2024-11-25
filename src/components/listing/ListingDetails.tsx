@@ -12,7 +12,7 @@ export default function ListingDetails() {
           Overview
         </button>
         <button
-          className="ml-6 py-2 disabled:opacity-75 disabled:pointer-events-none"
+          className="ml-6 py-2 disabled:opacity-50 disabled:pointer-events-none"
           disabled
         >
           Analytics
