@@ -6,7 +6,7 @@ export default function RankingTable() {
   return (
     <section className="rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 sm:p-6 ">
       <header>
-        <h2 className="text-xl font-semibold  border-b dark:border-neutral-800 border-neutral-200 pb-6 dark:text-neutral-50 text-neutral-900 ">
+        <h2 className="text-lg xs:text-xl font-semibold  border-b dark:border-neutral-800 border-neutral-200 pb-6 dark:text-neutral-50 text-neutral-900 ">
           Trending users
         </h2>
       </header>
@@ -22,19 +22,19 @@ export default function RankingTable() {
               </th>
               <th
                 scope="col"
-                className="px-2 sm:px-6 py-6 w-full dark:text-neutral-400 text-neutral-500 duration-0"
+                className="px-2 xs:px-6 py-6 w-full dark:text-neutral-400 text-neutral-500 duration-0"
               >
                 User
               </th>
               <th
                 scope="col"
-                className="px-2 sm:px-6 py-6 text-center dark:text-neutral-400 text-neutral-500 duration-0"
+                className="px-2 xs:px-6 py-6 text-center dark:text-neutral-400 text-neutral-500 duration-0"
               >
                 Items
               </th>
               <th
                 scope="col"
-                className="px-2 sm:px-6 py-6 text-center dark:text-neutral-400 text-neutral-500 duration-0"
+                className="px-2 xs:px-6 py-6 text-center dark:text-neutral-400 text-neutral-500 duration-0"
               >
                 Wins
               </th>
