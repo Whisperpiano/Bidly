@@ -11,10 +11,10 @@ export default function Footer() {
     <footer className="max-w-screen-2xl mx-auto flex flex-col sm:flex-row items-center justify-between w-full px-2.5 py-5 relative border-t dark:border-neutral-800 border-neutral-200">
       <Logo />
 
-      <p className="dark:text-neutral-400 text-neutral-600 text-sm  sm:absolute left-1/2 transform -translate-x-1/2 ">
+      <p className=" dark:text-neutral-400 text-neutral-600 text-xs sm:text-sm block  sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 order-3 sm:order-2 sm:py-0 py-4">
         © 2024 Bidly Inc. All rights reserved
       </p>
-      <div className="flex items-center gap-2 ">
+      <div className="flex items-center gap-2 sm:order-3 order-2 sm:py-0 py-4">
         <Button type="outlined" ariaLabel="Twitter">
           <PiTwitterLogoFill
             size={20}

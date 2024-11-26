@@ -21,24 +21,24 @@ export default function GridItemCard() {
           />
         </div>
         <div className="py-3">
-          <h3 className="text-lg font-semibold dark:text-neutral-50 text-neutral-900">
+          <h3 className="text-base xs:text-lg font-semibold dark:text-neutral-50 text-neutral-900">
             Title lorem ipsum
           </h3>
 
           <span
-            className="text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1"
+            className="text-xs xs:text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1"
             onClick={handleClick}
           >
             username
             <PiSealCheckFill className="text-yellow-400 " />
           </span>
         </div>
-        <footer className="dark:bg-neutral-900 bg-neutral-100 rounded-lg p-3 grid grid-cols-2 gap-3">
+        <footer className="dark:bg-neutral-900 bg-neutral-100 rounded-lg p-3 grid grid-cols-2 gap-1.5 xs:gap-3">
           <div className="flex flex-col">
-            <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-sm">
+            <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
               Finishing
             </span>
-            <time className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 font-semibold text-sm">
+            <time className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 font-semibold text-xs xs:text-sm">
               <div
                 className="w-2 h-2 rounded-full bg-green-400"
                 aria-hidden
@@ -47,10 +47,10 @@ export default function GridItemCard() {
             </time>
           </div>
           <div className="flex flex-col">
-            <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-sm">
+            <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
               Last bid
             </span>
-            <span className="dark:text-neutral-50 text-neutral-900 font-semibold text-sm">
+            <span className="dark:text-neutral-50 text-neutral-900 font-semibold text-xs xs:text-sm">
               50 NOFF
             </span>
           </div>
