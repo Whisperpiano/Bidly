@@ -44,10 +44,10 @@ export default function SearchBarMobile() {
   return (
     <>
       <div
-        className={`flex transition-all duration-300 fixed left-0 dark:bg-neutral-950 bg-neutral-50 px-2 h-[105px] top-0 py-4 w-full z-[60]  ${
+        className={`flex transition-all duration-300 fixed left-0 dark:bg-neutral-950 bg-neutral-50 px-2 h-[86px] sm:h-[95px] top-0 py-4 w-full z-[60]  ${
           isSearchOpen
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-full opacity-0"
+            ? "translate-y-0 opacity-100 visible"
+            : "-translate-y-full opacity-0 invisible"
         }`}
       >
         <div className="flex w-full items-center gap-3 justify-between">
@@ -90,7 +90,7 @@ export default function SearchBarMobile() {
       </div>
 
       <button
-        className={`lg:hidden rounded-lg text-sm flex items-center gap-2 h-[42px] aspect-square justify-center border  ${
+        className={`lg:hidden rounded-lg text-sm flex items-center gap-2  h-[36px] sm:h-[42px] aspect-square justify-center border  ${
           isSearchOpen
             ? "dark:text-neutral-300 dark:border-neutral-500 dark:bg-neutral-900 bg-neutral-200 text-neutral-700 border-neutral-200 font-semibold"
             : "dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 text-neutral-600 border-neutral-200/50 bg-neutral-200/50 "

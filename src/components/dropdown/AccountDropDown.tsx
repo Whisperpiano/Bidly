@@ -15,7 +15,11 @@ export default function AccountDropDown() {
   const theme = useThemeStore((state) => state.theme);
   const timeoutRef = useRef<number | null>(null);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -29,12 +33,11 @@ export default function AccountDropDown() {
     }, 200);
   };
 
-  console.log(isOpen);
   return (
-    <div className="relative">
+    <div className="relative sm:block hidden">
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button
-          className={`rounded-lg text-sm flex items-center gap-2 h-[42px] aspect-square justify-center border  ${
+          className={`rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] aspect-square justify-center border  ${
             isOpen
               ? "dark:text-neutral-300 dark:border-neutral-500 dark:bg-neutral-900 bg-neutral-200 text-neutral-700 border-neutral-200 font-semibold"
               : "dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 text-neutral-600 border-neutral-200/50 bg-neutral-200/50 "

@@ -5,9 +5,9 @@ export default function Logo() {
   const theme = useThemeStore((state) => state.theme);
 
   return (
-    <Link to="/home" aria-label="Go to home page">
+    <Link to="/home" aria-label="Go to home page" className="block">
       <svg
-        className="aspect-video w-32"
+        className="aspect-video w-24 sm:w-28 lg:w-32"
         viewBox="0 0 99 31"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
