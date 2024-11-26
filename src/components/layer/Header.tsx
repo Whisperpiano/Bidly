@@ -7,6 +7,7 @@ import AuthModal from "../modal/AuthModal";
 import { useState } from "react";
 import AccountDropDown from "../dropdown/AccountDropDown";
 import SearchBarMobile from "./SearchBarMobile";
+import HamburguerMenu from "./HamburguerMenu";
 
 export default function Header() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -25,10 +26,10 @@ export default function Header() {
           <Logo />
           <div
             aria-hidden
-            className="w-0.5 bg-neutral-400 dark:bg-neutral-500 h-6"
+            className="hidden sm:block w-0.5 bg-neutral-400 dark:bg-neutral-500 h-6"
           ></div>
 
-          <nav>
+          <nav className="hidden sm:block">
             <ul className="flex items-center text-base font-semibold gap-2.5">
               <li className="dark:text-neutral-400 dark:hover:text-neutral-300 text-neutral-500 hover:text-neutral-600">
                 <Link to="/search/listings/all">Explore</Link>
@@ -53,6 +54,7 @@ export default function Header() {
 
           <SearchBarMobile />
           <AccountDropDown />
+          <HamburguerMenu />
         </aside>
       </header>
 

@@ -11,11 +11,11 @@ export default function RankedUser() {
     <tr className="cursor-pointer group text-base" onClick={handleClick}>
       <th
         scope="row"
-        className="px-6 py-4 font-bold whitespace-nowrap dark:text-neutral-400 text-neutral-500 dark:group-hover:bg-neutral-900  group-hover:bg-neutral-200/50 rounded-tl-lg rounded-bl-lg"
+        className="hidden sm:table-cell px-2 sm:px-6 py-4 font-bold whitespace-nowrap dark:text-neutral-400 text-neutral-500 dark:group-hover:bg-neutral-900  group-hover:bg-neutral-200/50 rounded-tl-lg rounded-bl-lg"
       >
         1
       </th>
-      <td className="px-6 py-4 flex items-center gap-4 dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50 ">
+      <td className="px-2 sm:px-6 py-4 flex items-center gap-4 dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50 ">
         <img
           src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="alt placeholder"
@@ -26,10 +26,10 @@ export default function RankedUser() {
           <PiSealCheckFill className="text-yellow-400" />
         </span>
       </td>
-      <td className="px-6 py-4 text-center dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50  font-semibold dark:text-neutral-50 text-neutral-900">
+      <td className="px-2 sm:px-6py-4 text-center dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50  font-semibold dark:text-neutral-50 text-neutral-900">
         12
       </td>
-      <td className="px-6 py-4 text-center dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50 rounded-tr-lg rounded-br-lg font-semibold dark:text-neutral-50 text-neutral-900">
+      <td className="px-2 sm:px-6 py-4 text-center dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50 rounded-tr-lg rounded-br-lg font-semibold dark:text-neutral-50 text-neutral-900">
         40
       </td>
     </tr>

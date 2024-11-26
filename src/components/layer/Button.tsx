@@ -13,7 +13,8 @@ export default function Button({
   handleClick,
   ariaLabel,
 }: ButtonProps) {
-  const baseStyle = "rounded-lg text-sm flex items-center gap-2 h-[42px] ";
+  const baseStyle =
+    "rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] ";
 
   const typeStyle = {
     primary:
