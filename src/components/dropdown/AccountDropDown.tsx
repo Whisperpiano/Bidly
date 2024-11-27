@@ -34,7 +34,7 @@ export default function AccountDropDown() {
   };
 
   return (
-    <div className="relative lg:block hidden">
+    <div className="relative lg:block hidden ">
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button
           className={`rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] aspect-square justify-center border  ${
@@ -54,7 +54,7 @@ export default function AccountDropDown() {
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`absolute w-44 top-14 right-0 z-10 text-left divide-y  rounded-lg shadow dark:bg-neutral-900 dark:divide-neutral-700/50 bg-neutral-50 divide-neutral-200 transition-all duration-200 ${
+        className={`absolute w-44 top-14 right-0 z-10 text-left divide-y rounded-lg shadow dark:bg-neutral-900 dark:divide-neutral-700/50 bg-neutral-50 divide-neutral-200 transition-all duration-200 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >

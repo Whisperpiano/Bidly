@@ -19,8 +19,13 @@ export default function DragDrop() {
           className="flex flex-col items-center justify-center w-full h-64 border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiCameraPlusFill size={30} />
-            <p className="mb-2 text-sm">Click to upload or drag and drop</p>
+            <PiCameraPlusFill
+              size={30}
+              className="dark:text-neutral-200 text-neutral-700 duration-0"
+            />
+            <p className="mb-2 text-sm dark:text-neutral-200 text-neutral-700">
+              Click to upload or drag and drop
+            </p>
             <p className="text-xs  dark:text-neutral-400 text-neutral-500">
               JPG or PNG (MAX. 10mb)
             </p>
@@ -34,7 +39,10 @@ export default function DragDrop() {
           className="flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold size={15} />
+            <PiPlusBold
+              size={15}
+              className="dark:text-neutral-200 text-neutral-700 duration-0"
+            />
             <p className="sr-only">Add more pictures</p>
           </div>
           <input id="dropzone-file-2" type="file" className="hidden" />
@@ -44,7 +52,10 @@ export default function DragDrop() {
           className="flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold size={15} />
+            <PiPlusBold
+              size={15}
+              className="dark:text-neutral-200 text-neutral-700 duration-0"
+            />
             <p className="sr-only">Add more pictures</p>
           </div>
           <input id="dropzone-file-3" type="file" className="hidden" />
@@ -54,7 +65,10 @@ export default function DragDrop() {
           className="flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold size={15} />
+            <PiPlusBold
+              size={15}
+              className="dark:text-neutral-200 text-neutral-700 duration-0"
+            />
             <p className="sr-only">Add more pictures</p>
           </div>
           <input id="dropzone-file-4" type="file" className="hidden" />
@@ -64,7 +78,10 @@ export default function DragDrop() {
           className="flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold size={15} />
+            <PiPlusBold
+              size={15}
+              className="dark:text-neutral-200 text-neutral-700 duration-0"
+            />
             <p className="sr-only">Add more pictures</p>
           </div>
           <input id="dropzone-file-5" type="file" className="hidden" />

@@ -29,7 +29,7 @@ export default function ShareProfile() {
       {isCopied ? (
         <PiCheckBold size={16} className="dark:text-blue-400 text-blue-600" />
       ) : (
-        <PiShareNetworkFill />
+        <PiShareNetworkFill className="dark:text-neutral-400 text-neutral-600 duration-0" />
       )}
     </Button>
   );

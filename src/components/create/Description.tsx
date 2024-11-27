@@ -14,10 +14,7 @@ export default function Description() {
         <span className="mr-auto text-xs font-medium dark:text-neutral-400 text-neutral-500">
           0/500
         </span>
-        <label
-          htmlFor="description"
-          className="text-xs font-medium dark:text-neutral-400 sr-only"
-        >
+        <label htmlFor="description" className="text-xs font-medium sr-only">
           Item description
         </label>
         <textarea
@@ -29,11 +26,11 @@ export default function Description() {
       </div>
       <button
         type="button"
-        className="flex gap-2 items-center text-sm font-medium py-3 pr-3 pl-2 border rounded-lg dark:text-neutral-300 dark:bg-neutral-950 dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900"
+        className="flex gap-2 items-center text-sm font-medium py-3 pr-3 pl-2 border rounded-lg dark:text-neutral-300 bg-transparent dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900"
       >
-        <PiStarFourFill />
+        <PiStarFourFill className="dark:text-neutral-300 text-neutral-800 duration-0" />
         <span className="sr-only">Use AI to generate description</span>
-        <span>Use AI description</span>
+        Use AI description
       </button>
     </>
   );

@@ -28,8 +28,8 @@ export default function Create() {
               className="flex font-medium items-center gap-1.5 text-sm py-2 px-3 rounded-lg group dark:text-neutral-400 dark:hover:text-neutral-300 text-neutral-600 hover:text-neutral-900"
               onClick={handleBack}
             >
-              <PiArrowLeftBold />
-              <span>Back</span>
+              <PiArrowLeftBold className="dark:text-neutral-400 text-neutral-600 duration-0" />
+              Back
             </button>
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-3 pb-8 pt-6">

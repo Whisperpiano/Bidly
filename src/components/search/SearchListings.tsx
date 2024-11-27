@@ -14,11 +14,14 @@ export default function SearchListings() {
         <div className="mt-6 flex gap-2">
           <Filter options={FILTER_LISTINGS_OPTIONS} />
           <button
-            className=" flex items-center justify-center p-2 aspect-square w-[42px] rounded-lg dark:bg-neutral-900  bg-neutral-200/50 disabled:opacity-75 disabled:cursor-not-allowed"
+            className=" flex items-center justify-center p-2 aspect-square w-[42px] rounded-lg dark:bg-neutral-900 bg-neutral-200/50 disabled:cursor-not-allowed  "
             disabled
           >
             <span className="sr-only">Sort items</span>
-            <PiSlidersHorizontalFill size={20} />
+            <PiSlidersHorizontalFill
+              size={20}
+              className="dark:text-neutral-200 text-neutral-700 duration-0"
+            />
           </button>
         </div>
         <div className="mt-6 p-1.5 dark:bg-neutral-900 bg-neutral-200/50 rounded-lg flex gap-2">
@@ -27,14 +30,20 @@ export default function SearchListings() {
             disabled
           >
             <span className="sr-only">Grid 2 columns</span>
-            <PiSquaresFourFill size={18} />
+            <PiSquaresFourFill
+              size={18}
+              className="dark:text-neutral-200 text-neutral-800 duration-0"
+            />
           </button>
           <button
             className="p-2 rounded-lg  disabled:cursor-not-allowed "
             disabled
           >
             <span className="sr-only">Grid 3 columns</span>
-            <PiDotsNineBold size={18} />
+            <PiDotsNineBold
+              size={18}
+              className="dark:text-neutral-200 text-neutral-800 duration-0"
+            />
           </button>
         </div>
       </div>

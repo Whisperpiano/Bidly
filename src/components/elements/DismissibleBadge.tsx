@@ -10,7 +10,7 @@ export default function DismissibleBadge({ text }: { text: string }) {
         aria-label="Remove tag"
       >
         <span className="sr-only">Remove tag</span>
-        <PiXBold />
+        <PiXBold className="dark:text-neutral-300 text-neutral-800 duration-0" />
       </button>
     </span>
   );

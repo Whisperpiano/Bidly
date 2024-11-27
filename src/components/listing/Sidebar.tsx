@@ -71,17 +71,20 @@ export default function Sidebar() {
         <div className="flex items-center justify-between py-6">
           <div className="flex gap-4 items-center">
             <button className="flex gap-1 items-center text-sm dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 font-medium">
-              <PiShareFatFill />
+              <PiShareFatFill className="dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 duration-0" />
               Share
             </button>
             <button className="flex gap-1 items-center text-sm dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 font-medium">
-              <PiArrowClockwiseBold />
+              <PiArrowClockwiseBold className="dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 duration-0" />
               Refresh
             </button>
           </div>
           <button className="dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700">
             <span className="sr-only">Options</span>
-            <PiDotsThreeBold size={20} />
+            <PiDotsThreeBold
+              size={20}
+              className="dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 duration-0"
+            />
           </button>
         </div>
         <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
@@ -89,13 +92,15 @@ export default function Sidebar() {
             <span className="dark:text-neutral-400 text-neutral-600">
               Price
             </span>
-            <span>100 NOFF</span>
+            <span className="dark:text-neutral-50 text-neutral-900">
+              100 NOFF
+            </span>
           </div>
           <div className="flex flex-col gap-1.5 border rounded-lg p-5 dark:bg-neutral-900 bg-neutral-100 dark:border-neutral-800 border-neutral-200/50">
             <span className="dark:text-neutral-400 text-neutral-600">
               Sale ends
             </span>
-            <time className="flex gap-1 items-center ">
+            <time className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 ">
               <div
                 className="w-2 h-2 rounded-full bg-green-400"
                 aria-hidden

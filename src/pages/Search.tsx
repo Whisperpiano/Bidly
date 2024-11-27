@@ -5,14 +5,14 @@ export default function Search() {
   const { query } = useParams();
 
   const activeStyles =
-    "border-b-2 dark:border-neutral-50 border-neutral-950 py-2 font-semibold";
+    "block border-b-2 dark:border-neutral-50 border-neutral-950 text-neutral-900 dark:text-neutral-50 py-2 font-semibold m-0";
   const inactiveStyles =
-    "dark:text-neutral-300  dark:hover:text-neutral-100 py-2";
+    "block dark:text-neutral-300 dark:hover:text-neutral-100 text-neutral-700 hover:text-neutral-900 py-2 m-0";
 
   return (
     <>
       <nav className="border-b dark:border-neutral-800 border-neutral-200">
-        <ul className="flex items-center gap-6 text-base py-2">
+        <ul className="flex items-center gap-6 text-base ">
           <li>
             <NavLink
               to={`/search/listings/${query || "all"}`}
@@ -36,7 +36,7 @@ export default function Search() {
           <li>
             <NavLink
               to={`/search/collections/${query || "all"}`}
-              className="opacity-50 cursor-not-allowed"
+              className="text-neutral-500/90 dark:text-neutral-400/90 cursor-not-allowed"
               onClick={(e) => e.preventDefault()}
             >
               Collections
