@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Badge from "../elements/Badge";
-import Button from "../layer/Button";
+import Button from "../elements/Button";
 import {
   PiSealCheckFill,
   PiShareFatFill,

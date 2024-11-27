@@ -1,5 +1,5 @@
 import { PiShareNetworkFill, PiCheckBold } from "react-icons/pi";
-import Button from "../layer/Button";
+import Button from "../elements/Button";
 import { useRef, useState } from "react";
 
 export default function ShareProfile() {

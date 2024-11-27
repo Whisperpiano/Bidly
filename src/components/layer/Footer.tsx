@@ -3,7 +3,7 @@ import {
   PiInstagramLogoFill,
   PiDiscordLogoFill,
 } from "react-icons/pi";
-import Logo from "./Logo";
+import Logo from "../logo/Logo";
 
 export default function Footer() {
   return (

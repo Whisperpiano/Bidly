@@ -8,6 +8,7 @@ import {
   PiUserFill,
 } from "react-icons/pi";
 import { useThemeStore } from "../../store/theme";
+import { Link } from "react-router-dom";
 
 export default function HamburguerMenu() {
   const theme = useThemeStore((state) => state.theme);
@@ -33,6 +34,10 @@ export default function HamburguerMenu() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleClick = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -64,6 +69,7 @@ export default function HamburguerMenu() {
           ></span>
         </div>
       </button>
+
       <section>
         <div
           className={`fixed top-[87px] sm:top-[96px] left-0 w-full h-screen bg-neutral-950/25  backdrop-blur-sm transition-all duration-800 overflow-hidden ${
@@ -96,40 +102,52 @@ export default function HamburguerMenu() {
 
             <ul className="py-2 border-b border-neutral-200 dark:border-neutral-800 text-sm select-none">
               <li>
-                <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-                  <PiUserFill
-                    size={16}
-                    className="dark:text-neutral-300 text-neutral-700 duration-0"
-                  />
-                  My profile
-                </span>
+                <Link
+                  to={`/profile/username`}
+                  aria-label="My profile"
+                  onClick={handleClick}
+                >
+                  <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                    <PiUserFill
+                      size={16}
+                      className="dark:text-neutral-300 text-neutral-700 duration-0"
+                    />
+                    My profile
+                  </span>
+                </Link>
               </li>
               <li>
-                <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-                  <PiTagFill
-                    size={16}
-                    className="dark:text-neutral-300 text-neutral-700 duration-0"
-                  />
-                  Create a list
-                </span>
+                <Link
+                  to={`/create`}
+                  aria-label="Create a list"
+                  onClick={handleClick}
+                >
+                  <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                    <PiTagFill
+                      size={16}
+                      className="dark:text-neutral-300 text-neutral-700 duration-0"
+                    />
+                    Create a list
+                  </span>
+                </Link>
               </li>
             </ul>
             <div className="py-2 text-sm border-b border-neutral-200 dark:border-neutral-800">
               <ul className="select-none">
-                <li>
-                  <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                <li className="cursor-normal">
+                  <span className="p-3 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
                     <PiGearFill
                       size={16}
-                      className="dark:text-neutral-300 text-neutral-700 duration-0"
+                      className="text-neutral-500 dark:text-neutral-400 duration-0"
                     />
                     Settings
                   </span>
                 </li>
-                <li>
-                  <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                <li className="cursor-normal">
+                  <span className="p-3 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
                     <PiGlobeFill
                       size={16}
-                      className="dark:text-neutral-300 text-neutral-700 duration-0"
+                      className="text-neutral-500 dark:text-neutral-400 duration-0"
                     />
                     Language
                   </span>
@@ -156,7 +174,7 @@ export default function HamburguerMenu() {
                 </li>
               </ul>
             </div>
-            <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0">
+            <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0 cursor-pointer">
               <span className="p-3 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50 flex items-center gap-1.5 ">
                 <PiSignOutFill
                   size={16}
