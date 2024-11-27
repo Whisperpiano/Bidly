@@ -18,6 +18,7 @@ export default function ListingDetails() {
           Analytics
         </button>
       </header>
+
       <div className="border-t dark:border-neutral-800 border-neutral-200 px-2">
         <div>
           <h2 className="pt-6 text-sm md:text-base font-semibold dark:text-neutral-50 text-neutral-900">
