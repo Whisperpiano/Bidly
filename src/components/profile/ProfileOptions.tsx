@@ -48,7 +48,7 @@ export default function ProfileOptions() {
           <span className="sr-only">Profile options</span>
           <PiDotsThreeBold
             size={20}
-            className={`transition-transform duration-200 ${
+            className={`transition-transform duration-200 dark:text-neutral-400 text-neutral-600 ${
               isOpen ? "rotate-90" : ""
             }`}
           />

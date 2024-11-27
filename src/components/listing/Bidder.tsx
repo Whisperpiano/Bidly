@@ -17,7 +17,9 @@ export default function Bidder() {
           </span>
         </div>
         <div>
-          <span className="dark:text-neutral-50 font-semibold">100 NOFF</span>
+          <span className="dark:text-neutral-50 text-neutral-900 font-semibold">
+            100 NOFF
+          </span>
         </div>
       </div>
     </Link>

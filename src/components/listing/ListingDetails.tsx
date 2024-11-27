@@ -8,11 +8,11 @@ export default function ListingDetails() {
   return (
     <article className="animate-reveal">
       <header className="pt-6">
-        <button className="border-b-2 dark:border-neutral-50 border-neutral-950 py-2 font-semibold">
+        <button className="border-b-2 dark:border-neutral-50 border-neutral-950 dark:text-neutral-50 text-neutral-900 py-2 font-semibold">
           Overview
         </button>
         <button
-          className="ml-6 py-2 disabled:opacity-50 disabled:pointer-events-none"
+          className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:pointer-events-none"
           disabled
         >
           Analytics
@@ -23,7 +23,7 @@ export default function ListingDetails() {
           <h2 className="pt-6 text-base font-semibold dark:text-neutral-50 text-neutral-900">
             Description
           </h2>
-          <p className="pt-2">
+          <p className="pt-2 dark:text-neutral-50 text-neutral-900">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
             in ex est. Quisque dui turpis, luctus et libero vitae, dignissim
             convallis neque. Nulla rhoncus ac erat ut faucibus. Integer lorem
@@ -34,7 +34,9 @@ export default function ListingDetails() {
           </p>
         </div>
         <div className="py-6">
-          <h2 className="text-base font-semibold dark:text-neutral-50">Bids</h2>
+          <h2 className="text-base font-semibold dark:text-neutral-50 text-neutral-900">
+            Bids
+          </h2>
           <section className="aspect-[16/4] border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
             {isBids ? (
               <div className="cursor-pointer group text-base p-3 ">

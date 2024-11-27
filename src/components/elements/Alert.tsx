@@ -20,7 +20,7 @@ export default function Alert({ text, type }: AlertProps) {
 
   return (
     <div className={`${baseStyle} ${typeStyle[type]}`}>
-      <PiInfoFill />
+      <PiInfoFill className="duration-0" />
       <span className="sr-only">{type} box</span>
       <p>{text}</p>
     </div>

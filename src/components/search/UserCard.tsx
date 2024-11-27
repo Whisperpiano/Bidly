@@ -19,7 +19,7 @@ export default function UserCard() {
       </header>
       <div className="flex items-center justify-between mt-8">
         <div>
-          <span className="  pl-3 flex items-center gap-1 text-sm font-semibold dark:text-neutral-50 text-neutral-900 ">
+          <span className="pl-3 flex items-center gap-1 text-sm font-semibold dark:text-neutral-50 text-neutral-900 ">
             username
             <PiSealCheckFill className="text-yellow-400 " />
           </span>
@@ -27,7 +27,7 @@ export default function UserCard() {
             17 listings
           </span>
         </div>
-        <button className="p-2 rounded-lg text-sm font-semibold dark:bg-neutral-50 dark:text-neutral-800 dark:hover:bg-neutral-300 ">
+        <button className="p-2 border rounded-lg text-sm font-medium dark:text-neutral-300 bg-transparent dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900 ">
           View profile
         </button>
       </div>

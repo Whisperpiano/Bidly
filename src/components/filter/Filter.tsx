@@ -46,9 +46,11 @@ export default function Filter({ options }: { options: string[] }) {
           onClick={handleOpenClick}
         >
           <span className="sr-only">Sort items</span>
-          <span>{filterSelected}</span>
+          <span className="dark:text-neutral-200 text-neutral-700">
+            {filterSelected}
+          </span>
           <PiCaretDownBold
-            className={`transition-transform duration-200 ${
+            className={`transition-transform duration-200 dark:text-neutral-200 text-neutral-700 ${
               isOpen ? "rotate-180" : ""
             }`}
           />
@@ -61,7 +63,7 @@ export default function Filter({ options }: { options: string[] }) {
             isOpen ? "opacity-100  " : "opacity-0 pointer-events-none"
           }`}
         >
-          <ul className="py-2 text-sm dark:text-neutral-300">
+          <ul className="py-2 text-sm dark:text-neutral-300 text-neutral-700">
             {options.map((option, index) => (
               <li key={index}>
                 <Link

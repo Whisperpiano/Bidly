@@ -23,7 +23,9 @@ export default function ProfileBanner() {
             className="aspect-square w-28 object-cover object-center rounded-lg border dar:border-neutral-950 dark:border-neutral-950 border-neutral-50"
           />
           <div className="flex gap-1 items-center mb-2">
-            <h1 className="text-xl font-semibold">username</h1>
+            <h1 className="text-xl font-semibold dark:text-neutral-50 text-neutral-900">
+              username
+            </h1>
             <PiSealCheckFill size={16} className="text-yellow-400" />
           </div>
         </div>

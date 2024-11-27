@@ -12,10 +12,7 @@ export default function Tags() {
       </p>
 
       <div className="flex flex-col gap-1.5">
-        <label
-          htmlFor="tags"
-          className="text-xs font-medium dark:text-neutral-400 sr-only"
-        >
+        <label htmlFor="tags" className="text-xs font-medium sr-only">
           Item tags
         </label>
         <div className="flex items-center gap-2">
@@ -27,10 +24,10 @@ export default function Tags() {
           />
           <button
             type="button"
-            className="p-2 w-[46px] rounded-lg border aspect-square grid place-items-center dark:text-neutral-300 dark:bg-neutral-950 dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900 hover:border-neutral-400"
+            className="p-2 w-[46px] rounded-lg border aspect-square grid place-items-center dark:text-neutral-300 bg-transparent dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900"
           >
             <span className="sr-only">Add tag</span>
-            <PiPlusBold />
+            <PiPlusBold className="dark:text-neutral-300 text-neutral-800 duration-0" />
           </button>
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
