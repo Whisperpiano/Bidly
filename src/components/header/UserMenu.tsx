@@ -8,8 +8,9 @@ import {
 } from "react-icons/pi";
 import { useThemeStore } from "../../store/theme";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function AccountDropDown() {
+export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const theme = useThemeStore((state) => state.theme);
@@ -31,6 +32,10 @@ export default function AccountDropDown() {
     timeoutRef.current = window.setTimeout(() => {
       setIsOpen(false);
     }, 200);
+  };
+
+  const handleClick = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -58,7 +63,10 @@ export default function AccountDropDown() {
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="p-3 flex items-center gap-3 select-none">
+        <div
+          className="p-3 flex items-center gap-3 select-none"
+          onClick={handleClick}
+        >
           <div>
             <img
               src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -78,37 +86,49 @@ export default function AccountDropDown() {
 
         <ul className="py-2 text-sm select-none">
           <li>
-            <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-              <PiUserFill
-                size={16}
-                className="dark:text-neutral-300 text-neutral-700 duration-0"
-              />
-              My profile
-            </span>
+            <Link
+              to={`/profile/username`}
+              aria-label="My profile"
+              onClick={handleClick}
+            >
+              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                <PiUserFill
+                  size={16}
+                  className="dark:text-neutral-300 text-neutral-700 duration-0"
+                />
+                My profile
+              </span>
+            </Link>
           </li>
           <li>
-            <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-              <PiTagFill
-                size={16}
-                className="dark:text-neutral-300 text-neutral-700 duration-0"
-              />
-              Create a list
-            </span>
+            <Link
+              to={`/create`}
+              aria-label="Create a list"
+              onClick={handleClick}
+            >
+              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                <PiTagFill
+                  size={16}
+                  className="dark:text-neutral-300 text-neutral-700 duration-0"
+                />
+                Create a list
+              </span>
+            </Link>
           </li>
         </ul>
         <div className="py-2 text-sm ">
           <ul className="select-none">
-            <li>
-              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+            <li className="cursor-normal">
+              <span className="px-4 py-2 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
                 <PiGearFill
                   size={16}
-                  className="dark:text-neutral-300 text-neutral-700 duration-0"
+                  className="text-neutral-500 dark:text-neutral-400 duration-0"
                 />
                 Settings
               </span>
             </li>
-            <li>
-              <span className="px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+            <li className="cursor-normal">
+              <span className="px-4 py-2 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
                 <PiGlobeFill
                   size={16}
                   className="dark:text-neutral-300 text-neutral-700 duration-0"
@@ -138,7 +158,7 @@ export default function AccountDropDown() {
             </li>
           </ul>
         </div>
-        <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0">
+        <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0 cursor-pointer">
           <span className="px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50 flex items-center gap-1.5 ">
             <PiSignOutFill
               size={16}

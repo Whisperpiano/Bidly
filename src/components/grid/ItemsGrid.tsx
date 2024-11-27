@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import GridItemCard from "./GridItemCard";
 import { PiArrowRightBold } from "react-icons/pi";
+import GridItemCard from "./GridItemCard";
+import { Link } from "react-router-dom";
+import SectionHeader from "../home/SectionHeader";
 
 export default function ItemsGrid() {
   const [numberOfItems, setNumberOfItems] = useState(10);
@@ -23,24 +25,21 @@ export default function ItemsGrid() {
 
   return (
     <section className="rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6">
-      <header>
-        <h2 className="text-lg xs:text-xl font-semibold  border-b dark:border-neutral-800 border-neutral-200 pb-6 dark:text-neutral-50 text-neutral-900">
-          Latest items
-        </h2>
-      </header>
+      <SectionHeader title="Latest items" />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
         {Array.from({ length: numberOfItems }, (_, index) => (
           <GridItemCard key={index} />
         ))}
       </div>
       <div className="pt-6">
-        <button
+        <Link
+          to="/search/listings/all"
           className="rounded-lg text-sm flex items-center gap-2 h-[42px] bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 w-full justify-center font-semibold "
-          aria-label="test"
+          aria-label="View the latest items"
         >
           View all items
           <PiArrowRightBold className="dark:text-neutral-50 text-neutral-900 duration-0" />
-        </button>
+        </Link>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import BigLogo from "../layer/BigLogo";
+import BigLogo from "../logo/BigLogo";
 import { PiXBold, PiLockFill } from "react-icons/pi";
 import { MdEmail } from "react-icons/md";
 

@@ -9,7 +9,7 @@ export default function SubscribeBanner() {
       </h3>
       <form name="subscribe" className="flex mx-auto gap-2 max-w-[500px] py-6">
         <label htmlFor="subscribe" className="sr-only">
-          Subscribe
+          Subscribe to our newsletter
         </label>
         <input
           type="email"
@@ -18,6 +18,7 @@ export default function SubscribeBanner() {
           className="w-full h-[36px] md:h-[42px] dark:bg-primary-900 text-sm bg-primary-200 dark:text-neutral-50 text-neutral-900 dark:placeholder:text-primary-200 placeholder:text-neutral-600/50 px-4 rounded-lg outline-none border dark:border-primary-900  border-primary-200 dark:focus:border-neutral-200 focus:border-primary-400/50 dark:hover:bg-primary-800  dark:focus:bg-primary-800 focus:bg-primary-100 hover:border-primary-400/50"
         />
         <button
+          type="submit"
           className="rounded-lg text-sm flex items-center gap-2 h-[36px] md:h-[42px]  px-4 justify-center dark:hover:bg-neutral-300 dark:bg-neutral-50 dark:text-neutral-900 bg-neutral-800 text-neutral-50 hover:bg-neutral-600 font-medium"
           aria-label="Subscribe to our newsletter"
         >
