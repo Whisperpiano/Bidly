@@ -34,7 +34,7 @@ export default function AccountDropDown() {
   };
 
   return (
-    <div className="relative sm:block hidden">
+    <div className="relative lg:block hidden">
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button
           className={`rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] aspect-square justify-center border  ${
