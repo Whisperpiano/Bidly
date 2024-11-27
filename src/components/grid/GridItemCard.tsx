@@ -10,13 +10,19 @@ export default function GridItemCard() {
     navigate(`/profile/username`);
   }
 
+  // TODO: replace with real data
+  const title = "Title lorem ipsum";
+
   return (
-    <Link to="/listing/culo-name-test?id=1">
+    <Link
+      to="/listing/culo-name-test?id=1"
+      aria-label={`View details for the ${title}`}
+    >
       <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
         <div>
           <img
             src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="alt placeholder"
+            alt={`Image of the ${title}`}
             className="w-full h-full object-cover object-center rounded-lg"
           />
         </div>
@@ -38,7 +44,10 @@ export default function GridItemCard() {
             <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
               Finishing
             </span>
-            <time className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 font-semibold text-xs xs:text-sm">
+            <time
+              className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 font-semibold text-xs xs:text-sm"
+              dateTime="2023-01-01T00:00:00.000Z"
+            >
               <div
                 className="w-2 h-2 rounded-full bg-green-400"
                 aria-hidden

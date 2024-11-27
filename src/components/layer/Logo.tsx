@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 import { useThemeStore } from "../../store/theme";
+import { scrollToTop } from "../../utils/ScrollTop";
 
 export default function Logo() {
   const theme = useThemeStore((state) => state.theme);
 
+  const handleClick = () => {
+    scrollToTop();
+  };
+
   return (
-    <Link to="/home" aria-label="Go to home page" className="block">
+    <Link
+      to="/home"
+      aria-label="Go to home page"
+      className="block"
+      onClick={handleClick}
+    >
       <svg
         className="aspect-video w-24 sm:w-28 lg:w-32"
         viewBox="0 0 99 31"

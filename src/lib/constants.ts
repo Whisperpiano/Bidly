@@ -17,3 +17,13 @@ export const FILTER_LISTINGS_OPTIONS = [
   "Most bids",
   "Fewest bids",
 ];
+
+// Here you can personalize the hero banner for different seasons
+export const HERO_BANNER = {
+  account: "bidlychristmas",
+  img: "https://images.unsplash.com/photo-1513884923967-4b182ef167ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  title: "Jingle bids, jingle bids, jingle all the way!",
+  subtitle: "Unwrap the joy of Christmas with our exclusive festive offers.",
+  buttonText: "Shop deals",
+  season: "Christmas",
+};
