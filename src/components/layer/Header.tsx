@@ -26,10 +26,10 @@ export default function Header() {
           <Logo />
           <div
             aria-hidden
-            className="hidden sm:block w-0.5 bg-neutral-400 dark:bg-neutral-500 h-6"
+            className="hidden lg:block w-0.5 bg-neutral-400 dark:bg-neutral-500 h-6"
           ></div>
 
-          <nav className="hidden sm:block">
+          <nav className="hidden lg:block">
             <ul className="flex items-center text-base font-semibold gap-2.5">
               <li className="dark:text-neutral-400 dark:hover:text-neutral-300 text-neutral-500 hover:text-neutral-600">
                 <Link to="/search/listings/all">Explore</Link>
