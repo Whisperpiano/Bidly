@@ -21,8 +21,8 @@ export default function Sidebar() {
   }
   return (
     <>
-      <article className="animate-reveal border dark:border-neutral-800 border-neutral-200  rounded-lg p-6 sticky top-[104px]">
-        <h1 className="text-2xl font-semibold dark:text-neutral-50 text-neutral-900">
+      <article className="animate-reveal xs:border dark:border-neutral-800 border-neutral-200 rounded-lg px-0 py-3 xs:px-3 xs:py-3 lg:px-6 lg:py-6 block lg:sticky lg:top-[141px]">
+        <h1 className="text-xl lg:text-2xl font-semibold dark:text-neutral-50 text-neutral-900">
           Title of the item lorem ipsum
         </h1>
         <div className="flex gap-2 items-center pt-2 pb-4">

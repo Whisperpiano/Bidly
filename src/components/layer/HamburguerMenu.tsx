@@ -46,7 +46,7 @@ export default function HamburguerMenu() {
         onClick={() => setIsOpen(!isOpen)}
         ref={buttonRef}
       >
-        <div className="block absolute top-1/2 left-[9px]">
+        <div className="block absolute top-1/2 left-[9px] sm:left-[12px]">
           <span
             className={`block absolute h-0.5 w-4 dark:bg-neutral-300 bg-neutral-900 transform transition duration-200 ease-in-out ${
               isOpen ? "rotate-45" : "-translate-y-1.5"

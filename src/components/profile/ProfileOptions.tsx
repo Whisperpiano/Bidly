@@ -40,7 +40,7 @@ export default function ProfileOptions() {
     <>
       <div className="relative" ref={dropdownRef}>
         <button
-          className={`flex items-center justify-center rounded-lg aspect-square w-[42px] border dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 dark:hover:text-neutral-300 dark:hover:border-neutral-500 dark:hover:bg-neutral-900 text-neutral-600 border-neutral-100 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-700 hover:border-neutral-200 ${
+          className={`flex items-center justify-center rounded-lg aspect-square w-[36px] sm:w-[42px] border dark:bg-neutral-950 dark:text-neutral-400 dark:border-neutral-800 dark:hover:text-neutral-300 dark:hover:border-neutral-500 dark:hover:bg-neutral-900 text-neutral-600 border-neutral-100 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-700 hover:border-neutral-200 ${
             isOpen ? "dark:border-neutral-500 border-neutral-200" : ""
           }`}
           onClick={handleClick}

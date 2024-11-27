@@ -38,7 +38,7 @@ export default function Filter({ options }: { options: string[] }) {
     <>
       <div className="relative" ref={filterRef}>
         <button
-          className={`flex gap-2  items-center text-sm font-medium p-3 rounded-lg dark:text-neutral-300 dark:hover:bg-neutral-800 ${
+          className={`flex gap-2  items-center text-xs sm:text-sm font-medium p-3 rounded-lg dark:text-neutral-300 dark:hover:bg-neutral-800 ${
             isOpen
               ? "dark:bg-neutral-800 bg-neutral-200"
               : "dark:bg-neutral-900 bg-neutral-200/50 "
@@ -63,7 +63,7 @@ export default function Filter({ options }: { options: string[] }) {
             isOpen ? "opacity-100  " : "opacity-0 pointer-events-none"
           }`}
         >
-          <ul className="py-2 text-sm dark:text-neutral-300 text-neutral-700">
+          <ul className="py-2 text-xs sm:text-sm dark:text-neutral-300 text-neutral-700">
             {options.map((option, index) => (
               <li key={index}>
                 <Link

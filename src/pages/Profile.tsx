@@ -12,15 +12,15 @@ import { FILTER_LISTINGS_OPTIONS } from "../lib/constants";
 export default function Profile() {
   return (
     <>
-      <section>
+      <section className="mt-6">
         <ProfileBanner />
-        <div className="px-6 -mt-20 ">
+        <div className="px-2 md:px-4 lg:px-6 -mt-8 sm:-mt-12  md:-mt-16 lg:-mt-20 ">
           <ProfileNavigation />
-          <div className="border-t dark:border-neutral-800 border-neutral-200 px-2 flex justify-between items-center">
+          <div className="border-t dark:border-neutral-800 border-neutral-200 px-0 md:px-2 flex justify-between items-center">
             <div className="mt-6 flex gap-2">
               <Filter options={FILTER_LISTINGS_OPTIONS} />
               <button
-                className=" flex items-center justify-center p-2 aspect-square w-[42px] rounded-lg dark:bg-neutral-900 bg-neutral-200/50 disabled:cursor-not-allowed  "
+                className="flex items-center justify-center p-2 aspect-square w-[36px] sm:w-[42px] rounded-lg dark:bg-neutral-900 bg-neutral-200/50 disabled:cursor-not-allowed  "
                 disabled
               >
                 <span className="sr-only">Sort items</span>
@@ -30,9 +30,9 @@ export default function Profile() {
                 />
               </button>
             </div>
-            <div className="mt-6 p-1.5 dark:bg-neutral-900 bg-neutral-200/50 rounded-lg flex gap-2">
+            <div className="mt-6  p-1 sm:p-1.5 h-[36px] sm:h-[42px] dark:bg-neutral-900 bg-neutral-200/50 rounded-lg flex gap-2">
               <button
-                className="p-2 rounded-lg dark:bg-neutral-950   bg-neutral-300 disabled:cursor-not-allowed"
+                className="p-1 sm:p-1.5 rounded-lg dark:bg-neutral-950 bg-neutral-300 disabled:cursor-not-allowed"
                 disabled
               >
                 <span className="sr-only">Grid 2 columns</span>
@@ -42,7 +42,7 @@ export default function Profile() {
                 />
               </button>
               <button
-                className="p-2 rounded-lg  disabled:cursor-not-allowed "
+                className="p-1 sm:p-1.5 rounded-lg  disabled:cursor-not-allowed "
                 disabled
               >
                 <span className="sr-only">Grid 3 columns</span>
@@ -53,7 +53,7 @@ export default function Profile() {
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-5 gap-4 py-6 px-2">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2">
             <GridItemCard />
             <GridItemCard />
             <GridItemCard />

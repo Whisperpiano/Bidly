@@ -7,8 +7,8 @@ export default function ListingDetails() {
 
   return (
     <article className="animate-reveal">
-      <header className="pt-6">
-        <button className="border-b-2 dark:border-neutral-50 border-neutral-950 dark:text-neutral-50 text-neutral-900 py-2 font-semibold">
+      <header className="text-sm md:text-base pt-6">
+        <button className="border-b-2 dark:border-neutral-50 border-neutral-950 dark:text-neutral-50 text-neutral-900 py-2 font-semibold ">
           Overview
         </button>
         <button
@@ -20,10 +20,10 @@ export default function ListingDetails() {
       </header>
       <div className="border-t dark:border-neutral-800 border-neutral-200 px-2">
         <div>
-          <h2 className="pt-6 text-base font-semibold dark:text-neutral-50 text-neutral-900">
+          <h2 className="pt-6 text-sm md:text-base font-semibold dark:text-neutral-50 text-neutral-900">
             Description
           </h2>
-          <p className="pt-2 dark:text-neutral-50 text-neutral-900">
+          <p className="text-sm md:text-base pt-2 dark:text-neutral-50 text-neutral-900">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
             in ex est. Quisque dui turpis, luctus et libero vitae, dignissim
             convallis neque. Nulla rhoncus ac erat ut faucibus. Integer lorem
@@ -33,19 +33,19 @@ export default function ListingDetails() {
             enim est.
           </p>
         </div>
-        <div className="py-6">
-          <h2 className="text-base font-semibold dark:text-neutral-50 text-neutral-900">
+        <div className="pt-6">
+          <h2 className="text-sm md:text-base font-semibold dark:text-neutral-50 text-neutral-900">
             Bids
           </h2>
           <section className="aspect-[16/4] border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
             {isBids ? (
-              <div className="cursor-pointer group text-base p-3 ">
+              <div className="cursor-pointer group text-sm md:text-base  p-1.5 md:p-3 ">
                 <Bidder />
                 <Bidder />
                 <Bidder />
               </div>
             ) : (
-              <p className="grid place-items-center h-full text-lg dark:text-neutral-400 text-neutral-500">
+              <p className="grid place-items-center h-full text-base md:text-lg dark:text-neutral-400 text-neutral-500">
                 No active bids yet. Be the first to make a bid!
               </p>
             )}

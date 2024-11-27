@@ -1,6 +1,6 @@
 export default function ProfileNavigation() {
   return (
-    <header>
+    <header className="text-sm md:text-base">
       <button className="border-b-2 dark:text-neutral-50 text-neutral-900 dark:border-neutral-50 border-neutral-950 py-2 font-semibold">
         Items
       </button>

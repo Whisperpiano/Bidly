@@ -11,8 +11,11 @@ export default function Search() {
 
   return (
     <>
+      <h1 className=" mt-10 mb-6 text-base sm:text-lg font-medium dark:text-neutral-400 text-neutral-600">
+        Results for: "{query}"
+      </h1>
       <nav className="border-b dark:border-neutral-800 border-neutral-200">
-        <ul className="flex items-center gap-6 text-base ">
+        <ul className="flex items-center gap-6 text-sm md:text-base ">
           <li>
             <NavLink
               to={`/search/listings/${query || "all"}`}
