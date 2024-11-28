@@ -18,6 +18,19 @@ export const FILTER_LISTINGS_OPTIONS = [
   "Fewest bids",
 ];
 
+const NOROFF_API_URL_BASE = "https://v2.api.noroff.dev";
+
+export const NOROFF_API = {
+  auth: {
+    login: `${NOROFF_API_URL_BASE}/auth/login`,
+    register: `${NOROFF_API_URL_BASE}/auth/register`,
+  },
+  auctions: {
+    profiles: `${NOROFF_API_URL_BASE}/profiles`,
+    listings: `${NOROFF_API_URL_BASE}/listings`,
+  },
+};
+
 // Here you can personalize the hero banner for different seasons
 export const HERO_BANNER = {
   account: "bidlychristmas",

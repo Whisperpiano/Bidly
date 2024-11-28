@@ -1,10 +1,9 @@
+import { useRegister } from "../../../hooks/auth/useRegister";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PiLockFill, PiUserFill } from "react-icons/pi";
-
+import { MdEmail } from "react-icons/md";
 import Alert from "../../elements/Alert";
 import RegisterHeader from "./RegisterHeader";
-import { useState } from "react";
-import { MdEmail } from "react-icons/md";
 import RegisterFooter from "./RegisterFooter";
 
 interface RegisterProps {
@@ -25,15 +24,21 @@ export default function Register({ handleViewChange }: RegisterProps) {
     reset,
   } = useForm<RegisterInputs>();
 
-  const [isError, setIsError] = useState<boolean>(false);
+  const { isLoading, isSuccess, isError, errorMessage, registerUser } =
+    useRegister();
 
-  const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
-    console.log(data);
-    setIsError(true);
-    reset();
+  const onSubmit: SubmitHandler<RegisterInputs> = async ({
+    username,
+    email,
+    password,
+  }) => {
+    const user = await registerUser(username, email, password);
 
-    if (document.activeElement instanceof HTMLInputElement) {
-      document.activeElement.blur();
+    if (user?.data?.name) {
+      reset();
+      if (document.activeElement instanceof HTMLInputElement) {
+        document.activeElement.blur();
+      }
     }
   };
 
@@ -45,13 +50,15 @@ export default function Register({ handleViewChange }: RegisterProps) {
     >
       <RegisterHeader handleViewChange={handleViewChange} />
 
-      {isError ? (
-        <Alert text="Error message from API" type="error" />
-      ) : (
+      {!isError && !isSuccess && (
         <Alert
           text="Only stud.noroff.no accounts are supported"
           type="information"
         />
+      )}
+      {isError && <Alert text={errorMessage} type="error" />}
+      {isSuccess && (
+        <Alert text={`User registered successfully!`} type="success" />
       )}
 
       <form name="register" onSubmit={handleSubmit(onSubmit)}>
@@ -197,7 +204,7 @@ export default function Register({ handleViewChange }: RegisterProps) {
           />
         </div>
         {/* Submit Button */}
-        <RegisterFooter />
+        <RegisterFooter isLoading={isLoading} />
       </form>
     </article>
   );

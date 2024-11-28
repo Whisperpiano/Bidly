@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useLogin } from "../../../hooks/auth/useLogin";
+import { useAuthStore } from "../../../store/user";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MdEmail } from "react-icons/md";
 import { PiLockFill } from "react-icons/pi";
@@ -17,6 +18,8 @@ export type LoginInputs = {
 };
 
 export default function Login({ onClose, handleViewChange }: LoginProps) {
+  const setAuth = useAuthStore((state) => state.setAuth);
+
   const {
     register,
     handleSubmit,
@@ -24,15 +27,15 @@ export default function Login({ onClose, handleViewChange }: LoginProps) {
     reset,
   } = useForm<LoginInputs>();
 
-  const [isError, setIsError] = useState<boolean>(false);
+  const { isLoading, isSuccess, isError, errorMessage, loginUser } = useLogin();
 
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    console.log(data);
-    setIsError(true);
-    reset();
+  const onSubmit: SubmitHandler<LoginInputs> = async ({ email, password }) => {
+    const user = await loginUser(email, password);
 
-    if (document.activeElement instanceof HTMLInputElement) {
-      document.activeElement.blur();
+    if (user?.data?.name && user?.data?.accessToken) {
+      reset();
+      setAuth(user.data.name, user.data.accessToken);
+      onClose();
     }
   };
 
@@ -43,14 +46,14 @@ export default function Login({ onClose, handleViewChange }: LoginProps) {
     >
       <LoginHeader onClose={onClose} />
 
-      {isError ? (
-        <Alert text="Error message from API" type="error" />
-      ) : (
+      {!isError && !isSuccess && (
         <Alert
           text="Only stud.noroff.no accounts are supported"
           type="information"
         />
       )}
+      {isError && <Alert text={errorMessage} type="error" />}
+      {isSuccess && <Alert text="Login successful!" type="success" />}
 
       <form name="login" onSubmit={handleSubmit(onSubmit)}>
         {/* Email Input */}
@@ -140,7 +143,10 @@ export default function Login({ onClose, handleViewChange }: LoginProps) {
           />
         </div>
         {/* Submit Button */}
-        <LoginFooter handleViewChange={handleViewChange} />
+        <LoginFooter
+          handleViewChange={handleViewChange}
+          isLoading={isLoading}
+        />
       </form>
     </article>
   );
