@@ -5,9 +5,12 @@ import Creator from "./Creator";
 import Winner from "./Winner";
 import PricingAndTiming from "./PricingAndTiming";
 import ListingOptions from "./ListingOptions";
+import { AuthGuard } from "../../utils/AuthGuard";
+import Alert from "../elements/Alert";
 
 export default function Sidebar() {
   const [isPlaceBidModalOpen, setIsPlaceBidModalOpen] = useState(false);
+  const isLoggedIn = AuthGuard();
 
   function handlePlaceBidModalOpen() {
     setIsPlaceBidModalOpen(true);
@@ -41,15 +44,24 @@ export default function Sidebar() {
           <PricingAndTiming />
         </div>
 
-        <div className="flex flex-col gap-3 pt-6">
-          <button
-            className="rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
-            aria-label="Buy now"
-            onClick={handlePlaceBidModalOpen}
-          >
-            Place a bid
-          </button>
-        </div>
+        {isLoggedIn ? (
+          <div className="flex flex-col gap-3 pt-6">
+            <button
+              className="rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
+              aria-label="Buy now"
+              onClick={handlePlaceBidModalOpen}
+            >
+              Place a bid
+            </button>
+          </div>
+        ) : (
+          <div className="pt-6">
+            <Alert
+              text="You must be logged in to place a bid"
+              type="information"
+            />
+          </div>
+        )}
       </article>
 
       {/* Place a bid modal */}
