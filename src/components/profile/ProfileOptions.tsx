@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
+import { useAuthStore } from "../../store/user";
 
 export default function ProfileOptions() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const logout = useAuthStore((state) => state.clearAuth);
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -33,7 +35,11 @@ export default function ProfileOptions() {
   }
 
   function handleLogout() {
-    console.log("click logout");
+    setIsOpen(false);
+    const confirm = window.confirm("Are you sure you want to log out?");
+    if (confirm) {
+      logout();
+    }
   }
 
   return (
@@ -75,7 +81,7 @@ export default function ProfileOptions() {
                 className="block px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50   "
                 onClick={handleLogout}
               >
-                Logout
+                Sign out
               </span>
             </div>
           </div>

@@ -25,17 +25,17 @@ export default function Header() {
         <div className="flex items-center gap-5">
           <Logo />
           <Separator />
-          <Navigation />
+          <Navigation handleLoginOpen={handleLoginOpen} />
         </div>
 
         <aside className="flex items-center gap-2.5">
           {/* Desktop */}
           <SearchBar />
           <WalletBtn onLoginOpen={handleLoginOpen} />
-          <UserMenu />
+          <UserMenu onLoginOpen={handleLoginOpen} />
           {/* Mobile */}
           <SearchBarMobile />
-          <HamburguerMenu />
+          <HamburguerMenu onLoginOpen={handleLoginOpen} />
         </aside>
       </header>
 

@@ -6,16 +6,25 @@ import {
   PiSignOutFill,
   PiTagFill,
   PiUserFill,
+  PiUserPlusFill,
 } from "react-icons/pi";
 import { useThemeStore } from "../../store/theme";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../store/user";
+import { AuthGuard } from "../../utils/AuthGuard";
 
-export default function HamburguerMenu() {
+export default function HamburguerMenu({
+  onLoginOpen,
+}: {
+  onLoginOpen: () => void;
+}) {
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const [isOpen, setIsOpen] = useState(false);
+  const logout = useAuthStore((state) => state.clearAuth);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const isLoggedIn = AuthGuard();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -37,6 +46,19 @@ export default function HamburguerMenu() {
 
   const handleClick = () => {
     setIsOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    setIsOpen(false);
+    onLoginOpen();
+  };
+
+  const handleLogoutClick = () => {
+    setIsOpen(false);
+    const confirm = window.confirm("Are you sure you want to log out?");
+    if (confirm) {
+      logout();
+    }
   };
 
   return (
@@ -82,56 +104,74 @@ export default function HamburguerMenu() {
             }`}
             ref={menuRef}
           >
-            <div className="px-3 py-6 border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-3 select-none">
-              <div>
-                <img
-                  src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="alt placeholder"
-                  className="aspect-square w-10 object-cover object-center rounded-lg"
-                />
+            {isLoggedIn ? (
+              <div className="px-3 py-6 border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-3 select-none">
+                <div>
+                  <img
+                    src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="alt placeholder"
+                    className="aspect-square w-10 object-cover object-center rounded-lg"
+                  />
+                </div>
+                <div className="text-sm">
+                  <p className="dark:text-neutral-400 text-neutral-600">
+                    Welcome back,
+                  </p>
+                  <span className="dark:text-neutral-50 text-neutral-900 font-medium">
+                    username!
+                  </span>
+                </div>
               </div>
-              <div className="text-sm">
-                <p className="dark:text-neutral-400 text-neutral-600">
-                  Welcome back,
-                </p>
-                <span className="dark:text-neutral-50 text-neutral-900 font-medium">
-                  username!
+            ) : (
+              <div className="py-2 border-b border-neutral-200 dark:border-neutral-800 duration-0 cursor-pointer">
+                <span
+                  className="p-3 text-sm dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5"
+                  onClick={handleLoginClick}
+                >
+                  <PiUserPlusFill
+                    size={16}
+                    className="dark:text-neutral-300 text-neutral-700 duration-0"
+                  />
+                  Login/Register
                 </span>
               </div>
-            </div>
+            )}
 
-            <ul className="py-2 border-b border-neutral-200 dark:border-neutral-800 text-sm select-none">
-              <li>
-                <Link
-                  to={`/profile/username`}
-                  aria-label="My profile"
-                  onClick={handleClick}
-                >
-                  <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-                    <PiUserFill
-                      size={16}
-                      className="dark:text-neutral-300 text-neutral-700 duration-0"
-                    />
-                    My profile
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={`/create`}
-                  aria-label="Create a list"
-                  onClick={handleClick}
-                >
-                  <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
-                    <PiTagFill
-                      size={16}
-                      className="dark:text-neutral-300 text-neutral-700 duration-0"
-                    />
-                    Create a list
-                  </span>
-                </Link>
-              </li>
-            </ul>
+            {isLoggedIn && (
+              <ul className="py-2 border-b border-neutral-200 dark:border-neutral-800 text-sm select-none">
+                <li>
+                  <Link
+                    to={`/profile/username`}
+                    aria-label="My profile"
+                    onClick={handleClick}
+                  >
+                    <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                      <PiUserFill
+                        size={16}
+                        className="dark:text-neutral-300 text-neutral-700 duration-0"
+                      />
+                      My profile
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={`/create`}
+                    aria-label="Create a list"
+                    onClick={handleClick}
+                  >
+                    <span className="p-3 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 text-neutral-900 dark:text-neutral-300 hover:bg-neutral-200/50 hover:text-neutral-900 flex items-center gap-1.5">
+                      <PiTagFill
+                        size={16}
+                        className="dark:text-neutral-300 text-neutral-700 duration-0"
+                      />
+                      Create a list
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            )}
+
             <div className="py-2 text-sm border-b border-neutral-200 dark:border-neutral-800">
               <ul className="select-none">
                 <li className="cursor-normal">
@@ -174,15 +214,20 @@ export default function HamburguerMenu() {
                 </li>
               </ul>
             </div>
-            <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0 cursor-pointer">
-              <span className="p-3 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50 flex items-center gap-1.5 ">
-                <PiSignOutFill
-                  size={16}
-                  className="dark:text-red-400  text-red-600 duration-0"
-                />
-                Sign out
-              </span>
-            </div>
+            {isLoggedIn && (
+              <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0 cursor-pointer">
+                <span
+                  className="p-3 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50 flex items-center gap-1.5 "
+                  onClick={handleLogoutClick}
+                >
+                  <PiSignOutFill
+                    size={16}
+                    className="dark:text-red-400  text-red-600 duration-0"
+                  />
+                  Sign out
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </section>
