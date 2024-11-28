@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Login from "../auth/Login";
-import Register from "../auth/Register";
+import Login from "../auth/login/Login";
+import Register from "../auth/register/Register";
 
 interface ModalProps {
   isOpen: boolean;
