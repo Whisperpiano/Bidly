@@ -2,8 +2,10 @@ import { PiSealCheckFill } from "react-icons/pi";
 import ProfileStats from "./ProfileStats";
 import ProfileOptions from "./ProfileOptions";
 import ShareProfile from "./ShareProfile";
+import { AuthGuard } from "../../utils/AuthGuard";
 
 export default function ProfileBanner() {
+  const isLoggedIn = AuthGuard();
   return (
     <>
       <div className="relative">
@@ -31,7 +33,7 @@ export default function ProfileBanner() {
         </div>
         <div className="flex gap-2 items-end">
           <ShareProfile />
-          <ProfileOptions />
+          {isLoggedIn && <ProfileOptions />}
         </div>
       </div>
     </>

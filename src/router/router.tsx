@@ -9,6 +9,7 @@ import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import SearchListings from "../components/search/SearchListings";
 import SearchUsers from "../components/search/SearchUsers";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/create",
-        element: <Create />,
+        element: <ProtectedRoute element={<Create />} redirectTo="/home" />,
       },
       {
         path: "/listing/:name",
