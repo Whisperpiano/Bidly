@@ -1,5 +1,4 @@
 import Filter from "../filter/Filter";
-import GridItemCard from "../grid/GridItemCard";
 import { FILTER_LISTINGS_OPTIONS } from "../../lib/constants";
 import SortButton from "../elements/SortButton";
 import GridLayoutSwitcher from "../elements/GridLayoutSwitcher";
@@ -15,6 +14,7 @@ export default function SearchListings() {
         <GridLayoutSwitcher />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2">
+        {/* <GridItemCard />
         <GridItemCard />
         <GridItemCard />
         <GridItemCard />
@@ -28,8 +28,7 @@ export default function SearchListings() {
         <GridItemCard />
         <GridItemCard />
         <GridItemCard />
-        <GridItemCard />
-        <GridItemCard />
+        <GridItemCard /> */}
       </div>
     </section>
   );

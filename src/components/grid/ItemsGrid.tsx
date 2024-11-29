@@ -3,32 +3,45 @@ import { PiArrowRightBold } from "react-icons/pi";
 import GridItemCard from "./GridItemCard";
 import { Link } from "react-router-dom";
 import SectionHeader from "../home/SectionHeader";
+import { Listing } from "../../types/types";
 
-export default function ItemsGrid() {
-  const [numberOfItems, setNumberOfItems] = useState(10);
+interface ItemsGridProps {
+  title: string;
+  items: Listing[];
+}
+
+export default function ItemsGrid({ title, items }: ItemsGridProps) {
+  const [itemsToShow, setItemsToShow] = useState(items);
 
   useEffect(() => {
     const updateNumberOfItems = () => {
       const width = window.innerWidth;
 
-      if (width >= 1280) setNumberOfItems(10);
-      else if (width >= 1024) setNumberOfItems(8);
-      else if (width >= 768) setNumberOfItems(6);
-      else setNumberOfItems(4);
+      if (width >= 1280) {
+        setItemsToShow(items.slice(0, 10));
+      } else if (width >= 1024) {
+        setItemsToShow(items.slice(0, 8));
+      } else if (width >= 768) {
+        setItemsToShow(items.slice(0, 6));
+      } else {
+        setItemsToShow(items.slice(0, 4));
+      }
     };
     updateNumberOfItems();
     window.addEventListener("resize", updateNumberOfItems);
     return () => {
       window.removeEventListener("resize", updateNumberOfItems);
     };
-  }, []);
+  }, [items]);
+
+  console.log(itemsToShow);
 
   return (
     <section className="rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6">
-      <SectionHeader title="Latest items" />
+      <SectionHeader title={title} />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
-        {Array.from({ length: numberOfItems }, (_, index) => (
-          <GridItemCard key={index} />
+        {itemsToShow.map((item) => (
+          <GridItemCard key={item.id} item={item} />
         ))}
       </div>
       <div className="pt-6">

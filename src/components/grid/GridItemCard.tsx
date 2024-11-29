@@ -2,11 +2,21 @@ import { PiSealCheckFill } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthGuard } from "../../utils/AuthGuard";
 import { useModalStore } from "../../store/modal";
+import { Listing } from "../../types/types";
 
-export default function GridItemCard() {
+import { useMemo } from "react";
+import TimeLeft from "../elements/TimeLeft";
+
+export default function GridItemCard({ item }: { item: Listing }) {
+  const { id, title, media, seller, endsAt, bids } = item;
   const isLoggedIn = AuthGuard();
   const handleOpenLogin = useModalStore((state) => state.handleLoginOpen);
   const navigate = useNavigate();
+
+  const price = useMemo(() => {
+    const lastBid = bids.length > 0 ? bids[bids.length - 1] : null;
+    return lastBid ? lastBid.amount : 0;
+  }, [bids]);
 
   function handleClick(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
     event.preventDefault();
@@ -14,36 +24,35 @@ export default function GridItemCard() {
     if (!isLoggedIn) {
       handleOpenLogin();
     } else {
-      navigate(`/profile/username`);
+      navigate(`/profile/${seller.name}`);
     }
   }
 
-  // TODO: replace with real data
-  const title = "Title lorem ipsum";
-
   return (
     <Link
-      to="/listing/culo-name-test?id=1"
-      aria-label={`View details for the ${title}`}
+      to={`/listing/${title.toLocaleLowerCase().split(" ").join("-")}?id=${id}`}
+      aria-label={`View details for the ${title} item`}
     >
       <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
         <div>
           <img
-            src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={
+              media.length > 0 ? media[0].url : "https://placehold.co/260x160"
+            }
             alt={`Image of the ${title}`}
-            className="w-full h-full object-cover object-center rounded-lg"
+            className="aspect-[16/10] w-full h-full object-cover object-center rounded-lg "
           />
         </div>
         <div className="py-3">
           <h3 className="text-base xs:text-lg font-semibold dark:text-neutral-50 text-neutral-900">
-            Title lorem ipsum
+            {title}
           </h3>
 
           <span
             className="text-xs xs:text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1"
             onClick={handleClick}
           >
-            username
+            {seller.name}
             <PiSealCheckFill className="text-yellow-400 " />
           </span>
         </div>
@@ -52,23 +61,14 @@ export default function GridItemCard() {
             <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
               Finishing
             </span>
-            <time
-              className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 font-semibold text-xs xs:text-sm"
-              dateTime="2023-01-01T00:00:00.000Z"
-            >
-              <div
-                className="w-2 h-2 rounded-full bg-green-400"
-                aria-hidden
-              ></div>
-              6d 12h
-            </time>
+            <TimeLeft endsAt={endsAt} />
           </div>
           <div className="flex flex-col">
             <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
               Last bid
             </span>
             <span className="dark:text-neutral-50 text-neutral-900 font-semibold text-xs xs:text-sm">
-              50 NOFF
+              {price} NOFF
             </span>
           </div>
         </footer>
