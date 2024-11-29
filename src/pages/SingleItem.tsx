@@ -1,8 +1,28 @@
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Gallery from "../components/listing/Gallery";
 import ListingDetails from "../components/listing/ListingDetails";
 import Sidebar from "../components/listing/Sidebar";
+import { useSingleListing } from "../hooks/listings/useSingleListing";
 
 export default function SingleItem() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const id = searchParams.get("id");
+
+  const { listing } = useSingleListing({
+    id: id || "",
+  });
+
+  if (!listing) {
+    navigate("/not-found");
+    return null;
+  }
+
+  // console.log(isLoading);
+  // console.log(isError);
+  // console.log(errorMessage);
+
   // For the view transitions
   // import { useSearchParams } from "react-router-dom";
   // const [searchParams] = useSearchParams();
@@ -12,15 +32,15 @@ export default function SingleItem() {
     <>
       <section className=" mx-auto max-w-[600px] lg:max-w-full grid grid-cols-1 lg:grid-cols-5 xl:grid-cols-3 gap-6 my-9 ">
         <div className="lg:col-span-3 xl:col-span-2 ">
-          <Gallery />
+          <Gallery media={listing?.media} />
           <div className="lg:block hidden">
-            <ListingDetails />
+            <ListingDetails listing={listing} />
           </div>
         </div>
         <div className=" lg:col-span-2 xl:col-span-1">
           <Sidebar />
           <div className="mt-0 xs:mt-3 lg:mt-0 lg:hidden block">
-            <ListingDetails />
+            <ListingDetails listing={listing} />
           </div>
         </div>
       </section>

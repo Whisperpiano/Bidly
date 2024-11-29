@@ -1,10 +1,9 @@
+import { Listing } from "../../types/types";
 import Bidder from "./Bidder";
 
 //TODO: maybe accordion on bids
 
-export default function ListingDetails() {
-  const isBids = true;
-
+export default function ListingDetails({ listing }: { listing: Listing }) {
   return (
     <article className="animate-reveal">
       <header className="text-sm md:text-base pt-6">
@@ -25,32 +24,28 @@ export default function ListingDetails() {
             Description
           </h2>
           <p className="text-sm md:text-base pt-2 dark:text-neutral-50 text-neutral-900">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            in ex est. Quisque dui turpis, luctus et libero vitae, dignissim
-            convallis neque. Nulla rhoncus ac erat ut faucibus. Integer lorem
-            metus, lacinia non risus nec, mattis egestas quam. Maecenas et
-            rhoncus sem. In molestie mi vel interdum suscipit. Vivamus
-            ullamcorper sagittis dui, vel cursus enim lobortis id. Vestibulum a
-            enim est.
+            {listing.description}
           </p>
         </div>
         <div className="pt-6">
           <h2 className="text-sm md:text-base font-semibold dark:text-neutral-50 text-neutral-900">
-            Bids
+            Latest bids
           </h2>
-          <section className="aspect-[16/4] border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
-            {isBids ? (
+          {listing.bids.length > 0 ? (
+            <section className="border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
               <div className="cursor-pointer group text-sm md:text-base  p-1.5 md:p-3 ">
-                <Bidder />
-                <Bidder />
-                <Bidder />
+                {listing.bids.map((bid) => (
+                  <Bidder key={bid.id} bid={bid} />
+                ))}
               </div>
-            ) : (
+            </section>
+          ) : (
+            <section className="aspect-[16/4] border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
               <p className="grid place-items-center h-full text-base md:text-lg dark:text-neutral-400 text-neutral-500">
                 No active bids yet. Be the first to make a bid!
               </p>
-            )}
-          </section>
+            </section>
+          )}
         </div>
       </div>
     </article>

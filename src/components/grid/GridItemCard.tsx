@@ -44,12 +44,12 @@ export default function GridItemCard({ item }: { item: Listing }) {
           />
         </div>
         <div className="py-3">
-          <h3 className="text-base xs:text-lg font-semibold dark:text-neutral-50 text-neutral-900">
+          <h3 className="text-base xs:text-lg font-semibold dark:text-neutral-50 text-neutral-900 truncate">
             {title}
           </h3>
 
           <span
-            className="text-xs xs:text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1"
+            className="text-xs xs:text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1 "
             onClick={handleClick}
           >
             {seller.name}

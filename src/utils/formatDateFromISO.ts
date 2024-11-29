@@ -35,9 +35,9 @@ export function formatDateFromISO(isoDate: string): string {
     return `${days}d ${hours}h`;
   } else if (diffInSeconds < secondsInYear) {
     const months = Math.floor(diffInSeconds / secondsInMonth);
-    return `${months} months`;
+    return `${months} ${months > 1 ? "mo's" : "mo"}`;
   } else {
     const years = Math.floor(diffInSeconds / secondsInYear);
-    return `${years} years`;
+    return `${years} year`;
   }
 }
