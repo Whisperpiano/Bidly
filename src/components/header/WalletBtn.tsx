@@ -22,7 +22,7 @@ export default function WalletBtn({ onLoginOpen }: WalletBtnProps) {
           }`}
           aria-label="Account wallet"
         >
-          {userCoins?.credits}
+          {userCoins?.credits || 0}
 
           <DotLottieReact
             src="https://lottie.host/6df71a0d-a08f-4772-8950-45db38d3c1fe/9ZAAh6eQuk.lottie"
