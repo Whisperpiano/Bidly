@@ -1,10 +1,18 @@
-import GridItemCard from "../components/grid/GridItemCard";
 import FilterAndSort from "../components/profile/FilterAndSort";
 import ProfileBanner from "../components/profile/ProfileBanner";
-
 import ProfileNavigationHeader from "../components/profile/ProfileNavigationHeader";
 
 export default function Profile() {
+  // const [profile, setProfile] = useState<UserProfile | null>(null);
+  // const { username } = useParams();
+  // // const [searchParams] = useSearchParams();
+  // // const filter = searchParams.get("filter");
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+
+  // console.log(profile);
   return (
     <>
       <section className="mt-6">
@@ -14,6 +22,7 @@ export default function Profile() {
           <FilterAndSort />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2">
+            {/* <GridItemCard />
             <GridItemCard />
             <GridItemCard />
             <GridItemCard />
@@ -27,8 +36,7 @@ export default function Profile() {
             <GridItemCard />
             <GridItemCard />
             <GridItemCard />
-            <GridItemCard />
-            <GridItemCard />
+            <GridItemCard /> */}
           </div>
         </div>
       </section>

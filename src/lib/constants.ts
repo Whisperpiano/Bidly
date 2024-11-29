@@ -26,8 +26,8 @@ export const NOROFF_API = {
     register: `${NOROFF_API_URL_BASE}/auth/register`,
   },
   auctions: {
-    profiles: `${NOROFF_API_URL_BASE}/profiles`,
-    listings: `${NOROFF_API_URL_BASE}/listings`,
+    profiles: `${NOROFF_API_URL_BASE}/auction/profiles`,
+    listings: `${NOROFF_API_URL_BASE}/auction/listings`,
   },
 };
 
