@@ -6,6 +6,7 @@ import { AuthGuard } from "../../utils/AuthGuard";
 
 export default function ProfileBanner() {
   const isLoggedIn = AuthGuard();
+
   return (
     <>
       <div className="relative">

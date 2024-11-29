@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileOptions() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const logout = useAuthStore((state) => state.clearAuth);
+  const navigate = useNavigate();
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -39,6 +41,7 @@ export default function ProfileOptions() {
     const confirm = window.confirm("Are you sure you want to log out?");
     if (confirm) {
       logout();
+      navigate("/");
     }
   }
 

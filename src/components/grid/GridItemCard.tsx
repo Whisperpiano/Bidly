@@ -1,13 +1,21 @@
 import { PiSealCheckFill } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthGuard } from "../../utils/AuthGuard";
+import { useModalStore } from "../../store/modal";
 
 export default function GridItemCard() {
+  const isLoggedIn = AuthGuard();
+  const handleOpenLogin = useModalStore((state) => state.handleLoginOpen);
   const navigate = useNavigate();
 
   function handleClick(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
     event.preventDefault();
     event.stopPropagation();
-    navigate(`/profile/username`);
+    if (!isLoggedIn) {
+      handleOpenLogin();
+    } else {
+      navigate(`/profile/username`);
+    }
   }
 
   // TODO: replace with real data

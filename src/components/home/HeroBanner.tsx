@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
 import { HERO_BANNER } from "../../lib/constants";
+import AuthGuardLink from "../auth/AuthGuardLink";
 
 export default function HeroBanner() {
   const { account, img, title, subtitle, buttonText, season } = HERO_BANNER;
+
   return (
     <section className="mt-9 rounded-lg overflow-hidden">
-      <Link
+      <AuthGuardLink
         to={`/profile/${account}`}
         aria-label={`Go to the ${season} collection`}
       >
@@ -32,7 +33,7 @@ export default function HeroBanner() {
             </div>
           </div>
         </div>
-      </Link>
+      </AuthGuardLink>
     </section>
   );
 }

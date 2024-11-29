@@ -9,7 +9,7 @@ import {
   PiUserPlusFill,
 } from "react-icons/pi";
 import { useThemeStore } from "../../store/theme";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/user";
 import { AuthGuard } from "../../utils/AuthGuard";
 
@@ -25,6 +25,9 @@ export default function HamburguerMenu({
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const isLoggedIn = AuthGuard();
+  const userName = useAuthStore((state) => state.profile?.name);
+  const userPicture = useAuthStore((state) => state.profile?.avatar.url);
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -58,6 +61,7 @@ export default function HamburguerMenu({
     const confirm = window.confirm("Are you sure you want to log out?");
     if (confirm) {
       logout();
+      navigate("/");
     }
   };
 
@@ -108,8 +112,8 @@ export default function HamburguerMenu({
               <div className="px-3 py-6 border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-3 select-none">
                 <div>
                   <img
-                    src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="alt placeholder"
+                    src={userPicture}
+                    alt={`Profile picture of ${userName}`}
                     className="aspect-square w-10 object-cover object-center rounded-lg"
                   />
                 </div>
@@ -118,7 +122,7 @@ export default function HamburguerMenu({
                     Welcome back,
                   </p>
                   <span className="dark:text-neutral-50 text-neutral-900 font-medium">
-                    username!
+                    {userName}!
                   </span>
                 </div>
               </div>
@@ -141,7 +145,7 @@ export default function HamburguerMenu({
               <ul className="py-2 border-b border-neutral-200 dark:border-neutral-800 text-sm select-none">
                 <li>
                   <Link
-                    to={`/profile/username`}
+                    to={`/profile/${userName}`}
                     aria-label="My profile"
                     onClick={handleClick}
                   >

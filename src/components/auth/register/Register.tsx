@@ -42,7 +42,6 @@ export default function Register({ handleViewChange }: RegisterProps) {
     }
   };
 
-  console.log(errors);
   return (
     <article
       className="relative min-w-full rounded-lg p-6 text-sm text-tertiary-200"

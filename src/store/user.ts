@@ -1,9 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { UserProfile } from "../types/types";
+import getSingleProfile from "../api/profiles/getSingleProfile";
 
 interface AuthState {
   username: string | null;
   accessToken: string | null;
+  profile: UserProfile | null;
   setAuth: (username: string, accessToken: string) => void;
   clearAuth: () => void;
 }
@@ -13,15 +16,28 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       username: null,
       accessToken: null,
-      setAuth: (username, accessToken) =>
-        set({
-          username,
-          accessToken,
-        }),
+      profile: null,
+      setAuth: async (username, accessToken) => {
+        try {
+          set({ username, accessToken });
+
+          const profile = await getSingleProfile(username);
+
+          if (profile?.data) {
+            set({ profile: profile.data });
+          } else {
+            set({ profile: null });
+          }
+        } catch (error) {
+          console.error("Error getting profile:", error);
+          set({ username: null, accessToken: null, profile: null });
+        }
+      },
       clearAuth: () =>
         set({
           username: null,
           accessToken: null,
+          profile: null,
         }),
     }),
     {

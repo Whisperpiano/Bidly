@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile/:username",
-        element: <Profile />,
+        element: <ProtectedRoute element={<Profile />} redirectTo="/home" />,
       },
 
       {
