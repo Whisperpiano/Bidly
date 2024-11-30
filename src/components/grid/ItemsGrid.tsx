@@ -34,8 +34,6 @@ export default function ItemsGrid({ title, items }: ItemsGridProps) {
     };
   }, [items]);
 
-  console.log(itemsToShow);
-
   return (
     <section className="rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6">
       <SectionHeader title={title} />
