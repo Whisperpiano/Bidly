@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { Media } from "../../types/types";
-import { useSearchParams } from "react-router-dom";
 
 export default function Gallery({ media }: { media: Media[] }) {
-  const [searchParams] = useSearchParams();
-  const id = searchParams.get("id");
-
   const [selectedPicture, setSelectedPicture] = useState<string>("");
 
   function handleChangePicture(
@@ -22,7 +18,6 @@ export default function Gallery({ media }: { media: Media[] }) {
           src={media[0]?.url}
           alt={`Image view`}
           className="w-full aspect-video object-cover object-center rounded-lg"
-          style={{ viewTransitionName: `image${id}` }}
         />
       </div>
 
