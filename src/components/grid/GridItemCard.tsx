@@ -42,9 +42,6 @@ export default function GridItemCard({ item }: { item: Listing }) {
             }
             alt={`Image view`}
             className="aspect-[16/10] w-full h-full object-cover object-center rounded-lg "
-            style={{
-              viewTransitionName: `image${id}`,
-            }}
           />
         </div>
         <div className="py-3">
