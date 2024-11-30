@@ -5,7 +5,7 @@ import Bidder from "./Bidder";
 
 export default function ListingDetails({ listing }: { listing: Listing }) {
   return (
-    <article className="animate-reveal">
+    <article className="">
       <header className="text-sm md:text-base pt-6">
         <button className="border-b-2 dark:border-neutral-50 border-neutral-950 dark:text-neutral-50 text-neutral-900 py-2 font-semibold ">
           Overview

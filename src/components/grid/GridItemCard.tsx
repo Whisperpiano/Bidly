@@ -32,6 +32,7 @@ export default function GridItemCard({ item }: { item: Listing }) {
     <Link
       to={`/listing/${title.toLocaleLowerCase().split(" ").join("-")}?id=${id}`}
       aria-label={`View details for the ${title} item`}
+      viewTransition
     >
       <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
         <div>
@@ -39,8 +40,11 @@ export default function GridItemCard({ item }: { item: Listing }) {
             src={
               media.length > 0 ? media[0].url : "https://placehold.co/260x160"
             }
-            alt={`Image of the ${title}`}
+            alt={`Image view`}
             className="aspect-[16/10] w-full h-full object-cover object-center rounded-lg "
+            style={{
+              viewTransitionName: `image${id}`,
+            }}
           />
         </div>
         <div className="py-3">

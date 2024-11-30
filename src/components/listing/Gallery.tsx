@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Media } from "../../types/types";
 import { useSearchParams } from "react-router-dom";
 
 export default function Gallery({ media }: { media: Media[] }) {
-  const [selectedPicture, setSelectedPicture] = useState<string>("");
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+
+  const [selectedPicture, setSelectedPicture] = useState<string>("");
 
   function handleChangePicture(
     event: React.MouseEvent<HTMLImageElement, MouseEvent>
@@ -14,23 +15,19 @@ export default function Gallery({ media }: { media: Media[] }) {
     setSelectedPicture(event.currentTarget.src);
   }
 
-  useEffect(() => {
-    setSelectedPicture(media[0]?.url || "https://placehold.co/1000x565");
-  }, [media]);
-
   return (
     <article>
       <div>
         <img
-          src={selectedPicture || media[0]?.url}
-          alt="alt placeholder"
+          src={media[0]?.url}
+          alt={`Image view`}
           className="w-full aspect-video object-cover object-center rounded-lg"
           style={{ viewTransitionName: `image${id}` }}
         />
       </div>
 
       {media.length > 1 && (
-        <div className="grid grid-cols-5 gap-2 mt-2 animate-reveal">
+        <div className="grid grid-cols-5 gap-2 mt-2 ">
           {media.map((picture, index) => (
             <div key={index}>
               <img
