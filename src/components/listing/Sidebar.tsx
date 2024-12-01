@@ -10,7 +10,13 @@ import Alert from "../elements/Alert";
 import LastBidder from "./LastBidder";
 import { useModalStore } from "../../store/modal";
 
-export default function Sidebar({ listing }: { listing: Listing }) {
+export default function Sidebar({
+  listing,
+  id,
+}: {
+  listing: Listing;
+  id: string;
+}) {
   const [isPlaceBidModalOpen, setIsPlaceBidModalOpen] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [lastBidder, setLastBidder] = useState<Bidder | null>(null);
@@ -83,13 +89,19 @@ export default function Sidebar({ listing }: { listing: Listing }) {
         )}
 
         <div className="flex flex-col gap-3 pt-6">
-          <button
-            className="rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
-            aria-label="Buy now"
-            onClick={isLoggedIn ? handlePlaceBidModalOpen : handleLoginOpen}
-          >
-            Place a bid
-          </button>
+          {isFinished ? (
+            <div>
+              <Alert text="This listing is finished" type="error" />
+            </div>
+          ) : (
+            <button
+              className="rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
+              aria-label="Buy now"
+              onClick={isLoggedIn ? handlePlaceBidModalOpen : handleLoginOpen}
+            >
+              Place a bid
+            </button>
+          )}
         </div>
       </article>
 
@@ -98,6 +110,7 @@ export default function Sidebar({ listing }: { listing: Listing }) {
         isOpen={isPlaceBidModalOpen}
         onClose={handlePlaceBidModalClose}
         price={lastBidder?.amount || 0}
+        id={id}
       />
     </>
   );

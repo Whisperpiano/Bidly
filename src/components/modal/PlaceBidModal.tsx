@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { PiXBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import Alert from "../elements/Alert";
+import setBid from "../../api/listings/setBid";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   price: number;
+  id: string;
 }
 
 interface BidSelectionObj {
@@ -22,13 +24,21 @@ const selectedStyle =
 const notSelectedStyle =
   "dark:bg-neutral-900 bg-neutral-200/50 dark:border-neutral-800 border-neutral-200/50 dark:text-neutral-400 text-neutral-500";
 
-export default function PlaceBidModal({ isOpen, onClose, price }: ModalProps) {
+export default function PlaceBidModal({
+  isOpen,
+  onClose,
+  price,
+  id,
+}: ModalProps) {
   const user = useAuthStore((state) => state.profile);
   const [selectedBid, setSelectedBid] = useState<BidSelectionObj>({
     name: "tiny",
     value: 1,
   });
   const [hasEnoughCoins, setHasEnoughCoins] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     if (isOpen) {
@@ -56,6 +66,37 @@ export default function PlaceBidModal({ isOpen, onClose, price }: ModalProps) {
       value: type === "tiny" ? 1 : 50,
     });
   };
+
+  const handleMakeBid = async (id: string, amount: number) => {
+    setIsLoading(true);
+
+    try {
+      const confirm = window.confirm("Are you sure you want to make this bid?");
+      if (!confirm) return;
+      const bid = await setBid({ id, amount });
+
+      if (!bid) {
+        return;
+      }
+      if ("data" in bid) {
+        setIsError(false);
+        setErrorMessage("");
+        onClose();
+      }
+      if ("errors" in bid) {
+        setIsError(true);
+        setErrorMessage(bid.errors[0]?.message || "Unknown error");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  console.log(isLoading);
+  console.log(isError);
+  console.log(errorMessage);
 
   return (
     <section
@@ -155,6 +196,7 @@ export default function PlaceBidModal({ isOpen, onClose, price }: ModalProps) {
           <button
             className=" mt-6 w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-75"
             disabled={!hasEnoughCoins}
+            onClick={() => handleMakeBid(id, selectedBid.value + price)}
           >
             Confirm bid
           </button>
