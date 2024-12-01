@@ -5,46 +5,37 @@ import HeroBanner from "../components/home/HeroBanner";
 import { useListings } from "../hooks/listings/useListings";
 
 export default function Home() {
-  const {
-    listings: latestListings,
-    isLoading: isLatestListingsLoading,
-    // isError: isLatestListingsError,
-    // errorMessage: latestListingsErrorMessage,
-  } = useListings({
-    limit: 10,
-    page: 1,
-    sort: "created",
-    sortOrder: "desc",
-  });
+  const { listings: latestListings, isLoading: isLatestListingsLoading } =
+    useListings({
+      limit: 10,
+      page: 1,
+      sort: "created",
+      sortOrder: "desc",
+    });
 
-  const {
-    listings: finishingListings,
-    isLoading: isFinishingListingsLoading,
-    // isError: isFinishingListingsError,
-    // errorMessage: finishingListingsErrorMessage,
-  } = useListings({
-    limit: 10,
-    page: 1,
-    sort: "endsAt",
-    sortOrder: "asc",
-  });
-
-  //todo: hacerlo mejor, pasarselo a los hijos para poner skeletons
+  const { listings: finishingListings, isLoading: isFinishingListingsLoading } =
+    useListings({
+      limit: 10,
+      page: 1,
+      sort: "endsAt",
+      sortOrder: "asc",
+    });
 
   return (
     <>
       <HeroBanner />
-      {isLatestListingsLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <ItemsGrid title="Latest items" items={latestListings} />
-      )}
 
-      {isFinishingListingsLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <ItemsGrid title="Finishing soon" items={finishingListings} />
-      )}
+      <ItemsGrid
+        title="Latest items"
+        items={latestListings}
+        isLoading={isLatestListingsLoading}
+      />
+
+      <ItemsGrid
+        title="Finishing soon"
+        items={finishingListings}
+        isLoading={isFinishingListingsLoading}
+      />
 
       <RankingTable />
       <SubscribeBanner />

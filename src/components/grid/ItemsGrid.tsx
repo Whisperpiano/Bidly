@@ -4,13 +4,15 @@ import GridItemCard from "./GridItemCard";
 import { Link } from "react-router-dom";
 import SectionHeader from "../home/SectionHeader";
 import { Listing } from "../../types/types";
+import GridItemSkeleton from "../skeletons/GridItemSkeleton";
 
 interface ItemsGridProps {
   title: string;
   items: Listing[];
+  isLoading: boolean;
 }
 
-export default function ItemsGrid({ title, items }: ItemsGridProps) {
+export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
   const [itemsToShow, setItemsToShow] = useState(items);
 
   useEffect(() => {
@@ -35,12 +37,20 @@ export default function ItemsGrid({ title, items }: ItemsGridProps) {
   }, [items]);
 
   return (
-    <section className="rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6">
+    <section
+      className={`rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6 ${
+        isLoading ? "animate-pulse" : ""
+      }`}
+    >
       <SectionHeader title={title} />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
-        {itemsToShow.map((item) => (
-          <GridItemCard key={item.id} item={item} />
-        ))}
+        {isLoading
+          ? Array.from({ length: itemsToShow.length }, (_, index) => (
+              <GridItemSkeleton key={index} />
+            ))
+          : itemsToShow.map((item) => (
+              <GridItemCard key={item.id} item={item} />
+            ))}
       </div>
       <div className="pt-6">
         <Link
