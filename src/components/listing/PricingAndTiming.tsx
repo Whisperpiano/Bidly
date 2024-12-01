@@ -1,18 +1,25 @@
-export default function PricingAndTiming() {
+import TimeLeft from "../elements/TimeLeft";
+
+export default function PricingAndTiming({
+  endsAt,
+  price,
+}: {
+  endsAt: string;
+  price: number;
+}) {
   return (
     <>
-      <div className="flex flex-col gap-1.5 border rounded-lg p-5 dark:bg-neutral-900 bg-neutral-100 dark:border-neutral-800 border-neutral-200/50">
+      <div className="flex flex-col gap-1.5 border rounded-lg p-5 dark:bg-neutral-900 bg-neutral-100 dark:border-neutral-800 border-neutral-200/50 text-xs xs:text-sm">
         <span className="dark:text-neutral-400 text-neutral-600">Price</span>
-        <span className="dark:text-neutral-50 text-neutral-900">100 NOFF</span>
+        <span className="dark:text-neutral-50 text-neutral-900">
+          {price} NOFF
+        </span>
       </div>
-      <div className="flex flex-col gap-1.5 border rounded-lg p-5 dark:bg-neutral-900 bg-neutral-100 dark:border-neutral-800 border-neutral-200/50">
+      <div className="flex flex-col gap-1.5 border rounded-lg p-5 dark:bg-neutral-900 bg-neutral-100 dark:border-neutral-800 border-neutral-200/50 text-xs xs:text-sm">
         <span className="dark:text-neutral-400 text-neutral-600">
           Sale ends
         </span>
-        <time className="flex gap-1 items-center dark:text-neutral-50 text-neutral-900 ">
-          <div className="w-2 h-2 rounded-full bg-green-400" aria-hidden></div>
-          6d 12h
-        </time>
+        <TimeLeft endsAt={endsAt} />
       </div>
     </>
   );

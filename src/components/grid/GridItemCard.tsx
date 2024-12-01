@@ -40,7 +40,7 @@ export default function GridItemCard({ item }: { item: Listing }) {
             src={
               media.length > 0 ? media[0].url : "https://placehold.co/260x160"
             }
-            alt={`Image view`}
+            alt={`Image of the ${title} listing`}
             className="aspect-[16/10] w-full h-full object-cover object-center rounded-lg "
           />
         </div>

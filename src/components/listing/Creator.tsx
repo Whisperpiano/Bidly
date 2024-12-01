@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import { PiSealCheckFill } from "react-icons/pi";
+import { Media } from "../../types/types";
 
-export default function Creator() {
+interface Seller {
+  name: string;
+  email: string;
+  bio: string | null;
+  avatar: Media;
+  banner: Media;
+}
+
+export default function Creator({ creator }: { creator: Seller }) {
   return (
-    <Link to={`/profile/username`} className="group">
+    <Link to={`/profile/${creator.name}`} className="group">
       <div className="flex gap-3 items-center py-3 px-2 rounded-lg dark:hover:bg-neutral-900 hover:bg-neutral-200/50">
         <img
-          src="https://images.unsplash.com/photo-1514207994142-98522b5a2b23?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="alt placeholder"
+          src={creator.avatar.url}
+          alt={`Avatar of ${creator.name}`}
           className="w-10 aspect-square object-cover object-center rounded-lg"
         />
         <div className="flex flex-col">
@@ -15,7 +24,7 @@ export default function Creator() {
             Creator
           </span>
           <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center group-hover:underline">
-            username
+            {creator.name}
             <PiSealCheckFill className="text-yellow-400 " />
           </span>
         </div>

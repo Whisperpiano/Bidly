@@ -97,3 +97,44 @@ export interface ListingSeller {
   avatar: Media;
   banner: Media;
 }
+
+// Bids
+export interface Bidder {
+  amount: number;
+  created: string;
+  id: string;
+  bidder: {
+    name: string;
+    email: string;
+    bio: string | null;
+    avatar: Media;
+    banner: Media;
+  };
+}
+
+export interface SuccessResponseBid {
+  data: Bidder;
+  meta: Record<string, unknown>;
+}
+
+export interface ErrorResponseBid {
+  errors: {
+    message: string;
+  }[];
+  status: string;
+  statusCode: number;
+}
+
+export interface Bid {
+  id: string;
+  title: string;
+  description: string;
+  media: Media[];
+  tags: string[];
+  created: string;
+  updated: string;
+  endsAt: string;
+  _count: {
+    bids: number;
+  };
+}

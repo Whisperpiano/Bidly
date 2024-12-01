@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Media } from "../../types/types";
 
 export default function Gallery({ media }: { media: Media[] }) {
@@ -11,12 +11,20 @@ export default function Gallery({ media }: { media: Media[] }) {
     setSelectedPicture(event.currentTarget.src);
   }
 
+  useEffect(() => {
+    if (media.length > 0) {
+      setSelectedPicture(media[0].url);
+    } else {
+      setSelectedPicture("https://placehold.co/1000x550");
+    }
+  }, [media]);
+
   return (
     <article>
       <div>
         <img
-          src={media[0]?.url}
-          alt={`Image view`}
+          src={selectedPicture}
+          alt={"Main image placeholder"}
           className="w-full aspect-video object-cover object-center rounded-lg"
         />
       </div>
@@ -27,7 +35,7 @@ export default function Gallery({ media }: { media: Media[] }) {
             <div key={index}>
               <img
                 src={picture.url}
-                alt="alt placeholder"
+                alt={`Picture ${index + 1} of ${media.length}`}
                 className="w-full aspect-[16/12] object-cover object-center rounded-lg cursor-pointer"
                 onClick={handleChangePicture}
               />
