@@ -97,3 +97,16 @@ export interface ListingSeller {
   avatar: Media;
   banner: Media;
 }
+
+export interface Bidder {
+  amount: number;
+  created: string;
+  id: string;
+  bidder: {
+    name: string;
+    email: string;
+    bio: string | null;
+    avatar: Media;
+    banner: Media;
+  };
+}

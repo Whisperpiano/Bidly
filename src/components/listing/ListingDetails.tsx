@@ -1,7 +1,7 @@
 import { Listing } from "../../types/types";
 import Bidder from "./Bidder";
 
-//TODO: maybe accordion on bids
+//TODO maybe accordion on bids
 
 export default function ListingDetails({ listing }: { listing: Listing }) {
   return (
@@ -34,9 +34,16 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
           {listing.bids.length > 0 ? (
             <section className="border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
               <div className="cursor-pointer group text-sm md:text-base  p-1.5 md:p-3 ">
-                {listing.bids.map((bid) => (
-                  <Bidder key={bid.id} bid={bid} />
-                ))}
+                {listing.bids
+                  .slice()
+                  .sort(
+                    (a, b) =>
+                      new Date(a.created).getTime() -
+                      new Date(b.created).getTime()
+                  )
+                  .map((bid) => (
+                    <Bidder key={bid.id} bid={bid} />
+                  ))}
               </div>
             </section>
           ) : (
