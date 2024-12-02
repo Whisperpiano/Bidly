@@ -28,7 +28,7 @@ export default function ProfileOptions() {
   ) => {
     const file = event.target.files?.[0];
 
-    if (file && file.type === "image/jpeg") {
+    if (file) {
       const picture = await uploadPicture(file);
       console.log(picture);
     }
