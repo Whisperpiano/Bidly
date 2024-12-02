@@ -43,7 +43,7 @@ export default function ProfileItemCard({
           </h3>
 
           <span className="block text-xs xs:text-sm font-normal dark:text-neutral-400 text-neutral-500 gap-1 truncate ">
-            {description}
+            {description || "No description provided"}
           </span>
         </div>
 

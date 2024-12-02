@@ -14,6 +14,7 @@ interface ItemsGridProps {
 
 export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
   const [itemsToShow, setItemsToShow] = useState(items);
+  const [skeletonsToShow, setSkeletonsToShow] = useState(10);
 
   useEffect(() => {
     const updateNumberOfItems = () => {
@@ -21,12 +22,16 @@ export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
 
       if (width >= 1280) {
         setItemsToShow(items.slice(0, 10));
+        setSkeletonsToShow(10);
       } else if (width >= 1024) {
         setItemsToShow(items.slice(0, 8));
+        setSkeletonsToShow(8);
       } else if (width >= 768) {
         setItemsToShow(items.slice(0, 6));
+        setSkeletonsToShow(6);
       } else {
         setItemsToShow(items.slice(0, 4));
+        setSkeletonsToShow(4);
       }
     };
     updateNumberOfItems();
@@ -44,8 +49,8 @@ export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
     >
       <SectionHeader title={title} />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
-        {isLoading
-          ? Array.from({ length: itemsToShow.length }, (_, index) => (
+        {!isLoading
+          ? Array.from({ length: skeletonsToShow }, (_, index) => (
               <GridItemSkeleton key={index} />
             ))
           : itemsToShow.map((item) => (
