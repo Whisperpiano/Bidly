@@ -2,13 +2,19 @@ import Filter from "../filter/Filter";
 import { FILTER_LISTINGS_OPTIONS } from "../../lib/constants";
 import SortButton from "../elements/SortButton";
 import GridLayoutSwitcher from "../elements/GridLayoutSwitcher";
+import { useState } from "react";
 
 export default function SearchListings() {
+  const [selectedFilter, setSelectedFilter] = useState<string | null>("");
   return (
     <section>
       <div className="border-t dark:border-neutral-800 border-neutral-200 px-0 md:px-2 flex justify-between items-center">
         <div className="mt-6 flex gap-2">
-          <Filter options={FILTER_LISTINGS_OPTIONS} />
+          <Filter
+            options={FILTER_LISTINGS_OPTIONS}
+            selected={selectedFilter}
+            setSelected={setSelectedFilter}
+          />
           <SortButton />
         </div>
         <GridLayoutSwitcher />
