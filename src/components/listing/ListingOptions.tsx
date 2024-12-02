@@ -67,7 +67,7 @@ export default function ListingOptions({ refetch }: { refetch: () => void }) {
           onClick={handleRefresh}
         >
           {isRefreshing ? (
-            <Spinner size={3}>
+            <Spinner>
               <span className="ml-1.5">Updating...</span>
             </Spinner>
           ) : (

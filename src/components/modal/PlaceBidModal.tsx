@@ -174,7 +174,7 @@ export default function PlaceBidModal({
             disabled={!hasEnoughCoins || isLoading}
             onClick={handleMakeBid}
           >
-            {isLoading ? <Spinner size={3} /> : "Confirm bid"}
+            {isLoading ? <Spinner /> : "Confirm bid"}
           </button>
         </div>
       </article>

@@ -1,15 +1,9 @@
-export default function Spinner({
-  size = 3,
-  children,
-}: {
-  size?: number;
-  children?: React.ReactNode;
-}) {
+export default function Spinner({ children }: { children?: React.ReactNode }) {
   return (
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`inline size-${size} text-neutral-200 animate-spin dark:text-neutral-600 fill-neutral-600 dark:fill-neutral-300`}
+        className={`inline size-3 text-neutral-200 animate-spin dark:text-neutral-600 fill-neutral-600 dark:fill-neutral-300`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
