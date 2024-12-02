@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import { PiXBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import Alert from "../elements/Alert";
-import setBid from "../../api/listings/setBid";
+import Spinner from "../elements/Spinner";
+import { useMakeBid } from "../../hooks/listings/useMakeBid";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   price: number;
   id: string;
+  refetch: () => void;
 }
 
 interface BidSelectionObj {
-  name: string;
-  value: number;
+  name: "tiny" | "power";
+  value: 1 | 50;
 }
 
 type BidSelection = "tiny" | "power";
@@ -29,16 +31,20 @@ export default function PlaceBidModal({
   onClose,
   price,
   id,
+  refetch,
 }: ModalProps) {
   const user = useAuthStore((state) => state.profile);
   const [selectedBid, setSelectedBid] = useState<BidSelectionObj>({
     name: "tiny",
     value: 1,
   });
-  const [hasEnoughCoins, setHasEnoughCoins] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const { isLoading, hasEnoughCoins, makeBid } = useMakeBid({
+    price,
+    selectedBid,
+    user,
+    refetch,
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -51,52 +57,21 @@ export default function PlaceBidModal({
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    if (user) {
-      const requiredAmount = price + selectedBid.value;
-      setHasEnoughCoins(user?.credits >= requiredAmount);
-    }
-  }, [selectedBid, user, price]);
-
-  if (!isOpen) return null;
-
   const handleBidTypeChange = (type: BidSelection) => {
+    if (selectedBid.name === type) return;
     setSelectedBid({
       name: type,
       value: type === "tiny" ? 1 : 50,
     });
   };
 
-  const handleMakeBid = async (id: string, amount: number) => {
-    setIsLoading(true);
-
-    try {
-      const confirm = window.confirm("Are you sure you want to make this bid?");
-      if (!confirm) return;
-      const bid = await setBid({ id, amount });
-
-      if (!bid) {
-        return;
-      }
-      if ("data" in bid) {
-        setIsError(false);
-        setErrorMessage("");
-        onClose();
-      }
-      if ("errors" in bid) {
-        setIsError(true);
-        setErrorMessage(bid.errors[0]?.message || "Unknown error");
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleMakeBid = async () => {
+    if (!hasEnoughCoins) return;
+    await makeBid(id, selectedBid.value + price);
+    onClose();
   };
 
-  console.log(isLoading);
-  console.log(isError);
-  console.log(errorMessage);
+  if (!isOpen) return null;
 
   return (
     <section
@@ -122,9 +97,10 @@ export default function PlaceBidModal({
           <p className="pb-3 text-sm dark:text-neutral-50 text-neutral-900 ">
             Feeling cautious or going big? The choice is yours!
           </p>
+
           {!hasEnoughCoins && (
             <div className="mb-6">
-              <Alert text="You don't have enough coins!" type="error" />
+              <Alert text={"You don't have enough coins!"} type="error" />
             </div>
           )}
 
@@ -171,7 +147,7 @@ export default function PlaceBidModal({
                 You pay
               </span>
               <span className="dark:text-red-400 text-red-600">
-                -{selectedBid.value} NOFF
+                -{selectedBid.value + price} NOFF
               </span>
             </div>
             <div className="h-0.5 bg-neutral-200 dark:bg-neutral-800"></div>
@@ -188,17 +164,17 @@ export default function PlaceBidModal({
               >
                 {user &&
                   hasEnoughCoins &&
-                  `${user?.credits - selectedBid.value} NOFF`}
+                  `${user?.credits - (selectedBid.value + price)} NOFF`}
                 {!hasEnoughCoins && "Not enough coins"}
               </span>
             </div>
           </div>
           <button
             className=" mt-6 w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-75"
-            disabled={!hasEnoughCoins}
-            onClick={() => handleMakeBid(id, selectedBid.value + price)}
+            disabled={!hasEnoughCoins || isLoading}
+            onClick={handleMakeBid}
           >
-            Confirm bid
+            {isLoading ? <Spinner size={3} /> : "Confirm bid"}
           </button>
         </div>
       </article>

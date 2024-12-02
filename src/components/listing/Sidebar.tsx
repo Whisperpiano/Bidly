@@ -13,9 +13,11 @@ import { useModalStore } from "../../store/modal";
 export default function Sidebar({
   listing,
   id,
+  refetch,
 }: {
   listing: Listing;
   id: string;
+  refetch: () => void;
 }) {
   const [isPlaceBidModalOpen, setIsPlaceBidModalOpen] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -69,7 +71,7 @@ export default function Sidebar({
         </div>
 
         <div className="flex items-center justify-between py-6">
-          <ListingOptions />
+          <ListingOptions refetch={refetch} />
         </div>
 
         <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
@@ -111,6 +113,7 @@ export default function Sidebar({
         onClose={handlePlaceBidModalClose}
         price={lastBidder?.amount || 0}
         id={id}
+        refetch={refetch}
       />
     </>
   );

@@ -9,6 +9,7 @@ interface AuthState {
   profile: UserProfile | null;
   setAuth: (username: string, accessToken: string) => void;
   clearAuth: () => void;
+  updateCredits: (amount: number) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -39,6 +40,15 @@ export const useAuthStore = create<AuthState>()(
           accessToken: null,
           profile: null,
         }),
+      updateCredits: (amount: number) =>
+        set((state) => ({
+          profile: state.profile
+            ? {
+                ...state.profile,
+                credits: state.profile.credits - amount,
+              }
+            : null,
+        })),
     }),
     {
       name: "auth",
