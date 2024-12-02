@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { PiSealCheckFill } from "react-icons/pi";
 import { Media } from "../../types/types";
+import AuthGuardLink from "../auth/AuthGuardLink";
 
 interface Seller {
   name: string;
@@ -12,8 +12,8 @@ interface Seller {
 
 export default function Creator({ creator }: { creator: Seller }) {
   return (
-    <Link to={`/profile/${creator.name}`} className="group">
-      <div className="flex gap-3 items-center py-3 px-2 rounded-lg dark:hover:bg-neutral-900 hover:bg-neutral-200/50">
+    <AuthGuardLink to={`/profile/${creator.name}`}>
+      <div className=" group flex gap-3 items-center py-3 px-2 rounded-lg dark:hover:bg-neutral-900 hover:bg-neutral-200/50">
         <img
           src={creator.avatar.url}
           alt={`Avatar of ${creator.name}`}
@@ -23,12 +23,12 @@ export default function Creator({ creator }: { creator: Seller }) {
           <span className="text-xs dark:text-neutral-400 text-neutral-500 font-semibold">
             Creator
           </span>
-          <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center group-hover:underline">
+          <span className="text-sm dark:text-neutral-50 text-neutral-900 font-semibold flex gap-1 items-center group-hover:underline ">
             {creator.name}
             <PiSealCheckFill className="text-yellow-400 " />
           </span>
         </div>
       </div>
-    </Link>
+    </AuthGuardLink>
   );
 }

@@ -1,13 +1,17 @@
-import { ErrorResponse } from "react-router-dom";
 import { NOROFF_API } from "../../lib/constants";
 import { useAuthStore } from "../../store/user";
-import { SuccessResponse } from "../../types/types";
+import { SuccessResponse, ErrorResponse } from "../../types/types";
 
-export default async function getSingleProfile(username: string) {
+export default async function getSingleProfile({
+  username,
+}: {
+  username: string;
+}): Promise<SuccessResponse | ErrorResponse | undefined> {
   const accessToken = useAuthStore.getState().accessToken;
+
   try {
     const response = await fetch(
-      `${NOROFF_API.auctions.profiles}/${username}?_listings=true&_wins=true`,
+      `${NOROFF_API.auctions.profiles}/${username}?_listings=true&_wins=true&_bids=true`,
       {
         method: "GET",
         headers: {

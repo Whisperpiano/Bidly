@@ -18,6 +18,8 @@ export const FILTER_LISTINGS_OPTIONS = [
   "Fewest bids",
 ];
 
+export const FILTER_PROFILE_OPTIONS = ["Sort by newest", "Sort by oldest"];
+
 const NOROFF_API_URL_BASE = "https://v2.api.noroff.dev";
 
 export const NOROFF_API = {
