@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
+import { uploadPicture } from "../../api/imgur/uploadPicture";
 
 export default function ProfileOptions() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -12,6 +13,26 @@ export default function ProfileOptions() {
   function handleClick() {
     setIsOpen(!isOpen);
   }
+
+  function handleLogout() {
+    setIsOpen(false);
+    const confirm = window.confirm("Are you sure you want to log out?");
+    if (confirm) {
+      logout();
+      navigate("/");
+    }
+  }
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (file && file.type === "image/jpeg") {
+      const picture = await uploadPicture(file);
+      console.log(picture);
+    }
+  };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -27,23 +48,6 @@ export default function ProfileOptions() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  function handleChangeAvatar() {
-    console.log("click edit avatar");
-  }
-
-  function handleChangeBanner() {
-    console.log("click edit banner");
-  }
-
-  function handleLogout() {
-    setIsOpen(false);
-    const confirm = window.confirm("Are you sure you want to log out?");
-    if (confirm) {
-      logout();
-      navigate("/");
-    }
-  }
 
   return (
     <>
@@ -61,34 +65,42 @@ export default function ProfileOptions() {
               isOpen ? "rotate-90" : ""
             }`}
           />
-
-          <div
-            className={`absolute top-[50px] right-0 z-20  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 bg-neutral-50 dark:divide-neutral-700/50 divide-neutral-200  transition-all duration-200 ${
-              isOpen ? "opacity-100 " : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <ul className="py-2 text-sm dark:text-neutral-300">
-              <li onClick={handleChangeAvatar}>
-                <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 ">
-                  Edit avatar
-                </span>
-              </li>
-              <li onClick={handleChangeBanner}>
-                <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900">
-                  Edit banner
-                </span>
-              </li>
-            </ul>
-            <div className="py-2 dark:text-red-400 text-red-600 ">
-              <span
-                className="block px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50   "
-                onClick={handleLogout}
-              >
-                Sign out
-              </span>
-            </div>
-          </div>
         </button>
+
+        <div
+          className={`absolute top-[50px] right-0 z-20  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 bg-neutral-50 dark:divide-neutral-700/50 divide-neutral-200  transition-all duration-200 ${
+            isOpen ? "opacity-100 " : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <form name="profile" className="py-2 text-sm dark:text-neutral-300">
+            <label htmlFor="avatar" className="cursor-pointer">
+              <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900 ">
+                Edit avatar
+              </span>
+              <input
+                name="avatar"
+                id="avatar"
+                type="file"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+            </label>
+            <label htmlFor="banner" className="cursor-pointer">
+              <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900">
+                Edit banner
+              </span>
+              <input name="banner" id="banner" type="file" className="hidden" />
+            </label>
+          </form>
+          <div className="py-2 dark:text-red-400 text-red-600 cursor-pointer">
+            <span
+              className="block px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50   "
+              onClick={handleLogout}
+            >
+              Sign out
+            </span>
+          </div>
+        </div>
       </div>
     </>
   );
