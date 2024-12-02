@@ -22,9 +22,13 @@ export const useAuthStore = create<AuthState>()(
         try {
           set({ username, accessToken });
 
-          const profile = await getSingleProfile(username);
+          const profile = await getSingleProfile({ username });
 
-          if (profile?.data) {
+          if (!profile) {
+            set({ profile: null });
+            return;
+          }
+          if ("data" in profile) {
             set({ profile: profile.data });
           } else {
             set({ profile: null });

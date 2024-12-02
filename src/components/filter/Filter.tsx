@@ -1,22 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import { PiCaretDownBold } from "react-icons/pi";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-export default function Filter({ options }: { options: string[] }) {
+interface FilterProps {
+  options: string[];
+  selected: string | null;
+  setSelected: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export default function Filter({
+  options,
+  selected,
+  setSelected,
+}: FilterProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [filterSelected, setFilterSelected] = useState(options[0]);
   const filterRef = useRef<HTMLDivElement>(null);
-  const { pathname } = useLocation();
 
   const handleOpenClick = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSelection = (index: number) => {
-    setFilterSelected(options[index]);
+    setSelected(options[index]);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    setSelected(options[0]);
+  }, [options, setSelected]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,7 +57,7 @@ export default function Filter({ options }: { options: string[] }) {
         >
           <span className="sr-only">Sort items</span>
           <span className="dark:text-neutral-200 text-neutral-700">
-            {filterSelected}
+            {selected}
           </span>
           <PiCaretDownBold
             className={`transition-transform duration-200 dark:text-neutral-200 text-neutral-700 ${
@@ -56,7 +66,7 @@ export default function Filter({ options }: { options: string[] }) {
           />
         </button>
 
-        <span className="sr-only">Profile options</span>
+        <span className="sr-only">Options to sort</span>
 
         <div
           className={` absolute top-[50px] left-0 z-10  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 dark:divide-neutral-700/50 bg-neutral-50 divide-neutral-200/50  transition-all duration-200 ${
@@ -65,16 +75,12 @@ export default function Filter({ options }: { options: string[] }) {
         >
           <ul className="py-2 text-xs sm:text-sm dark:text-neutral-300 text-neutral-700">
             {options.map((option, index) => (
-              <li key={index}>
-                <Link
-                  to={`${pathname}?filter=${option
-                    .toLocaleLowerCase()
-                    .replace(/\s+/g, "-")}`}
-                  className="block px-4 py-2 dark:hover:bg-neutral-800 hover:bg-neutral-200/50 "
-                  onClick={() => handleSelection(index)}
-                >
-                  {option}
-                </Link>
+              <li
+                key={index}
+                className="block px-4 py-2 dark:hover:bg-neutral-800 hover:bg-neutral-200/50 cursor-pointer"
+                onClick={() => handleSelection(index)}
+              >
+                {option}
               </li>
             ))}
           </ul>

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { Bidder } from "../../types/types";
 import { PiSealCheckFill } from "react-icons/pi";
+import AuthGuardLink from "../auth/AuthGuardLink";
 
 export default function LastBidder({
   bidder,
@@ -10,8 +10,8 @@ export default function LastBidder({
   isFinished: boolean;
 }) {
   return (
-    <Link to={`/profile/${bidder.bidder.name}`} className="group">
-      <div className="flex gap-3 items-center py-3 px-2 rounded-lg dark:hover:bg-neutral-900 hover:bg-neutral-200/50">
+    <AuthGuardLink to={`/profile/${bidder.bidder.name}`}>
+      <div className="group flex gap-3 items-center py-3 px-2 rounded-lg dark:hover:bg-neutral-900 hover:bg-neutral-200/50">
         <img
           src={bidder.bidder.avatar.url}
           alt={`Avatar of ${bidder.bidder.name}`}
@@ -27,6 +27,6 @@ export default function LastBidder({
           </span>
         </div>
       </div>
-    </Link>
+    </AuthGuardLink>
   );
 }
