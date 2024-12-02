@@ -13,7 +13,7 @@ export default function SingleItem() {
 
   const id = searchParams.get("id");
 
-  const { listing } = useSingleListing({
+  const { listing, refetch } = useSingleListing({
     id: id || "",
   });
 
@@ -39,7 +39,7 @@ export default function SingleItem() {
           {!item || !id ? (
             <div>Loading...</div>
           ) : (
-            <Sidebar listing={item} id={id} />
+            <Sidebar listing={item} id={id} refetch={refetch} />
           )}
           <div className="mt-0 xs:mt-3 lg:mt-0 lg:hidden block">
             {!item ? <div>Loading...</div> : <ListingDetails listing={item} />}
