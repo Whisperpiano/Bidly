@@ -49,7 +49,7 @@ export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
     >
       <SectionHeader title={title} />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pt-6">
-        {!isLoading
+        {isLoading
           ? Array.from({ length: skeletonsToShow }, (_, index) => (
               <GridItemSkeleton key={index} />
             ))
