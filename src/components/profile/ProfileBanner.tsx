@@ -55,7 +55,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
             />
             {avatarUploading && (
               <div
-                className={`absolute inset-0 z-[5] flex items-center justify-center animate-reveal bg-neutral-900/50 transition-opacity duration-300 ${
+                className={`absolute inset-0 z-[5] flex items-center justify-center rounded-lg animate-reveal bg-neutral-900/50 transition-opacity duration-300 ${
                   !avatarUploading ? "opacity-0" : "opacity-100"
                 }`}
               >
