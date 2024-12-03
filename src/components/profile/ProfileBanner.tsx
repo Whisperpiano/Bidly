@@ -5,7 +5,7 @@ import ShareProfile from "./ShareProfile";
 import { UserProfile } from "../../types/types";
 import { useAuthStore } from "../../store/user";
 import { useEffect, useState } from "react";
-import { useImgur } from "../../hooks/imgur/useImgur";
+import { useUpdateProfile } from "../../hooks/imgur/useUpdateProfile";
 import Spinner from "../elements/Spinner";
 
 export default function ProfileBanner({ profile }: { profile: UserProfile }) {
@@ -15,11 +15,11 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
   const {
     handleFileChangeAndUpload: handleAvatarChangeAndUpload,
     isUploading: avatarUploading,
-  } = useImgur();
+  } = useUpdateProfile();
   const {
     handleFileChangeAndUpload: handleBannerChangeAndUpload,
     isUploading: bannerUploading,
-  } = useImgur();
+  } = useUpdateProfile();
 
   useEffect(() => {
     setAvatar(profile.avatar.url ?? "https://placehold.co/260x160");

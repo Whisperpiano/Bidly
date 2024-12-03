@@ -3,7 +3,7 @@ import { uploadPicture } from "../../api/imgur/uploadPicture";
 import updateProfile from "../../api/profiles/updateProfile";
 import { useAuthStore } from "../../store/user";
 
-export function useImgur() {
+export function useUpdateProfile() {
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [imgurError, setImgurError] = useState<string | null>(null);
   const [noroffApiError, setNoroffApiError] = useState<string | null>(null);
