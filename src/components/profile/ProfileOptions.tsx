@@ -2,9 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
-import { uploadPicture } from "../../api/imgur/uploadPicture";
 
-export default function ProfileOptions() {
+export default function ProfileOptions({
+  setAvatar,
+  setBanner,
+}: {
+  setAvatar: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setBanner: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const logout = useAuthStore((state) => state.clearAuth);
@@ -23,16 +28,16 @@ export default function ProfileOptions() {
     }
   }
 
-  const handleFileChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
+  // const handleFileChange = async (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   const file = event.target.files?.[0];
 
-    if (file) {
-      const picture = await uploadPicture(file);
-      console.log(picture);
-    }
-  };
+  //   if (file) {
+  //     const picture = await uploadPicture(file);
+  //     console.log(picture);
+  //   }
+  // };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -82,14 +87,20 @@ export default function ProfileOptions() {
                 id="avatar"
                 type="file"
                 className="hidden"
-                onChange={handleFileChange}
+                onChange={setAvatar}
               />
             </label>
             <label htmlFor="banner" className="cursor-pointer">
               <span className="block px-4 py-2 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 hover:bg-neutral-200/50 hover:text-neutral-900">
                 Edit banner
               </span>
-              <input name="banner" id="banner" type="file" className="hidden" />
+              <input
+                name="banner"
+                id="banner"
+                type="file"
+                className="hidden"
+                onChange={setBanner}
+              />
             </label>
           </form>
           <div className="py-2 dark:text-red-400 text-red-600 cursor-pointer">
