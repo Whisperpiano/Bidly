@@ -6,6 +6,7 @@ import { UserProfile } from "../../types/types";
 import { useAuthStore } from "../../store/user";
 import { useEffect, useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
+import updateProfile from "../../api/profiles/updateProfile";
 
 export default function ProfileBanner({ profile }: { profile: UserProfile }) {
   const userName = useAuthStore((state) => state.username);
@@ -19,6 +20,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
 
     if (file) {
       const picture = await uploadPicture(file);
+      await updateProfile({ avatar: picture });
       console.log(picture);
       setAvatar(picture);
     }
@@ -31,6 +33,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
 
     if (file) {
       const picture = await uploadPicture(file);
+      await updateProfile({ banner: picture });
       console.log(picture);
       setBanner(picture);
     }
@@ -51,6 +54,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
         />
         <ProfileStats count={profile._count} credits={profile.credits} />
       </div>
+
       {/* Profile */}
       <div className="flex justify-between p-2 md:p-4 lg:p-6 -translate-y-1/2">
         <div className="flex items-end gap-2 md:gap-3 lg:gap-4">

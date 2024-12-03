@@ -138,3 +138,27 @@ export interface Bid {
     bids: number;
   };
 }
+
+// ProfileUpdate
+
+export interface ProfileUpdateSuccessResponse {
+  data: ProfileUpdate;
+  meta: Record<string, unknown>;
+}
+
+export interface ProfileUpdateErrorResponse {
+  errors: {
+    message: string;
+  }[];
+  status: string;
+  statusCode: number;
+}
+
+export interface ProfileUpdate {
+  name: string;
+  email: string;
+  bio: string | null;
+  avatar: Media;
+  banner: Media;
+  credits: number;
+}
