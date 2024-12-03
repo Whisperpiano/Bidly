@@ -20,6 +20,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
     if (file) {
       const picture = await uploadPicture(file);
       console.log(picture);
+      setAvatar(picture);
     }
   };
 
@@ -31,6 +32,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
     if (file) {
       const picture = await uploadPicture(file);
       console.log(picture);
+      setBanner(picture);
     }
   };
 
