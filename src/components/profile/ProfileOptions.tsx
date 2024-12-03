@@ -6,7 +6,12 @@ import { useNavigate } from "react-router-dom";
 interface ProfileOptionsProps {
   setAvatar: (picture: string) => void;
   setBanner: (picture: string) => void;
-  onFileChange: (
+  onAvatarChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    profileField: "avatar" | "banner",
+    updateCallback: (picture: string) => void
+  ) => void;
+  onBannerChange: (
     event: React.ChangeEvent<HTMLInputElement>,
     profileField: "avatar" | "banner",
     updateCallback: (picture: string) => void
@@ -16,7 +21,8 @@ interface ProfileOptionsProps {
 export default function ProfileOptions({
   setAvatar,
   setBanner,
-  onFileChange,
+  onAvatarChange,
+  onBannerChange,
 }: ProfileOptionsProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -84,7 +90,7 @@ export default function ProfileOptions({
                 id="avatar"
                 type="file"
                 className="hidden"
-                onChange={(event) => onFileChange(event, "avatar", setAvatar)}
+                onChange={(event) => onAvatarChange(event, "avatar", setAvatar)}
               />
             </label>
             <label htmlFor="banner" className="cursor-pointer">
@@ -96,7 +102,7 @@ export default function ProfileOptions({
                 id="banner"
                 type="file"
                 className="hidden"
-                onChange={(event) => onFileChange(event, "banner", setBanner)}
+                onChange={(event) => onBannerChange(event, "banner", setBanner)}
               />
             </label>
           </form>

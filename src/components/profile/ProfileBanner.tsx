@@ -13,8 +13,11 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
   const [avatar, setAvatar] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
   const {
-    handleFileChangeAndUpload,
+    handleFileChangeAndUpload: handleAvatarChangeAndUpload,
     isUploading: avatarUploading,
+  } = useImgur();
+  const {
+    handleFileChangeAndUpload: handleBannerChangeAndUpload,
     isUploading: bannerUploading,
   } = useImgur();
 
@@ -69,7 +72,8 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
             <ProfileOptions
               setAvatar={setAvatar}
               setBanner={setBanner}
-              onFileChange={handleFileChangeAndUpload}
+              onAvatarChange={handleAvatarChangeAndUpload}
+              onBannerChange={handleBannerChangeAndUpload}
             />
           )}
         </div>
