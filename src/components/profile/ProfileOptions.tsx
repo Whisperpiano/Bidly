@@ -91,6 +91,7 @@ export default function ProfileOptions({
                 type="file"
                 className="hidden"
                 onChange={(event) => onAvatarChange(event, "avatar", setAvatar)}
+                onClick={handleClick}
               />
             </label>
             <label htmlFor="banner" className="cursor-pointer">
@@ -103,6 +104,7 @@ export default function ProfileOptions({
                 type="file"
                 className="hidden"
                 onChange={(event) => onBannerChange(event, "banner", setBanner)}
+                onClick={handleClick}
               />
             </label>
           </form>
