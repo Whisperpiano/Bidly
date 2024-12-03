@@ -89,6 +89,7 @@ export default function ProfileOptions({
                 name="avatar"
                 id="avatar"
                 type="file"
+                accept="image/png, image/jpeg"
                 className="hidden"
                 onChange={(event) => onAvatarChange(event, "avatar", setAvatar)}
                 onClick={handleClick}
@@ -102,6 +103,7 @@ export default function ProfileOptions({
                 name="banner"
                 id="banner"
                 type="file"
+                accept="image/png, image/jpeg"
                 className="hidden"
                 onChange={(event) => onBannerChange(event, "banner", setBanner)}
                 onClick={handleClick}

@@ -21,6 +21,11 @@ export function useUpdateProfile() {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      alert("Please upload a JPEG or PNG image");
+      return;
+    }
+
     setIsUploading(true);
 
     try {
