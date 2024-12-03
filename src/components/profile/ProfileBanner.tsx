@@ -54,7 +54,11 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
               className={`aspect-square w-20 sm:w-24 md:w-28 object-cover object-center rounded-lg border dar:border-neutral-950 dark:border-neutral-950 border-neutral-50`}
             />
             {avatarUploading && (
-              <div className="absolute inset-0 z-[5] flex items-center justify-center animate-reveal bg-neutral-900/50">
+              <div
+                className={`absolute inset-0 z-[5] flex items-center justify-center animate-reveal bg-neutral-900/50 transition-opacity duration-300 ${
+                  !avatarUploading ? "opacity-0" : "opacity-100"
+                }`}
+              >
                 <Spinner />
               </div>
             )}
