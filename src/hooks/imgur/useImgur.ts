@@ -33,7 +33,7 @@ export function useImgur() {
       }
 
       if ("data" in update) {
-        updateCallback(picture);
+        updateCallback(picture.link);
       } else if ("errors" in update) {
         setNoroffApiError(update.errors[0].message);
         throw new Error(update.errors[0].message);
