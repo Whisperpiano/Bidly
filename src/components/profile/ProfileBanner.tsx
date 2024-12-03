@@ -5,39 +5,44 @@ import ShareProfile from "./ShareProfile";
 import { UserProfile } from "../../types/types";
 import { useAuthStore } from "../../store/user";
 import { useEffect, useState } from "react";
-import { uploadPicture } from "../../api/imgur/uploadPicture";
-import updateProfile from "../../api/profiles/updateProfile";
+import { useImgur } from "../../hooks/imgur/useImgur";
+// import { uploadPicture } from "../../api/imgur/uploadPicture";
+// import updateProfile from "../../api/profiles/updateProfile";
 
 export default function ProfileBanner({ profile }: { profile: UserProfile }) {
   const userName = useAuthStore((state) => state.username);
   const [avatar, setAvatar] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
+  const { handleFileChangeAndUpload, isUploading, noroffApiError, imgurError } =
+    useImgur();
 
-  const handleAvatarChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
+  // const handleAvatarChange = async (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   const file = event.target.files?.[0];
 
-    if (file) {
-      const picture = await uploadPicture(file);
-      await updateProfile({ avatar: picture });
-      console.log(picture);
-      setAvatar(picture);
-    }
-  };
+  //   if (file) {
+  //     const picture = await uploadPicture(file);
+  //     await updateProfile({ avatar: picture });
+  //     console.log(picture);
+  //     setAvatar(picture);
+  //   }
+  // };
 
-  const handleBannerChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
+  // const handleBannerChange = async (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   const file = event.target.files?.[0];
 
-    if (file) {
-      const picture = await uploadPicture(file);
-      await updateProfile({ banner: picture });
-      console.log(picture);
-      setBanner(picture);
-    }
-  };
+  //   if (file) {
+  //     const picture = await uploadPicture(file);
+  //     await updateProfile({ banner: picture });
+  //     console.log(picture);
+  //     setBanner(picture);
+  //   }
+  // };
+
+  console.log(isUploading, noroffApiError, imgurError);
 
   useEffect(() => {
     setAvatar(profile.avatar.url ?? "https://placehold.co/260x160");
@@ -48,7 +53,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
     <>
       <div className="relative">
         <img
-          src={avatar}
+          src={banner}
           alt={`Banner of ${profile.name}`}
           className="h-[200px] md:h-[220px] lg:h-[300px] w-full object-cover object-center rounded-lg"
         />
@@ -59,7 +64,7 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
       <div className="flex justify-between p-2 md:p-4 lg:p-6 -translate-y-1/2">
         <div className="flex items-end gap-2 md:gap-3 lg:gap-4">
           <img
-            src={banner}
+            src={avatar}
             alt={`Avatar of ${profile.name}`}
             className="aspect-square w-20 sm:w-24 md:w-28 object-cover object-center rounded-lg border dar:border-neutral-950 dark:border-neutral-950 border-neutral-50"
           />
@@ -74,8 +79,9 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
           <ShareProfile />
           {userName === profile.name && (
             <ProfileOptions
-              setAvatar={handleAvatarChange}
-              setBanner={handleBannerChange}
+              setAvatar={setAvatar}
+              setBanner={setBanner}
+              onFileChange={handleFileChangeAndUpload}
             />
           )}
         </div>

@@ -17,7 +17,7 @@ export async function uploadPicture(image: File) {
       throw new Error("Error uploading image");
     }
     const data = await response.json();
-    return data.data.link;
+    return data.data;
   } catch (error) {
     console.error("Failed to upload image:", error);
   }

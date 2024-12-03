@@ -3,13 +3,21 @@ import { PiDotsThreeBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
 
+interface ProfileOptionsProps {
+  setAvatar: (picture: string) => void;
+  setBanner: (picture: string) => void;
+  onFileChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    profileField: "avatar" | "banner",
+    updateCallback: (picture: string) => void
+  ) => void;
+}
+
 export default function ProfileOptions({
   setAvatar,
   setBanner,
-}: {
-  setAvatar: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  setBanner: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
+  onFileChange,
+}: ProfileOptionsProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const logout = useAuthStore((state) => state.clearAuth);
@@ -27,17 +35,6 @@ export default function ProfileOptions({
       navigate("/");
     }
   }
-
-  // const handleFileChange = async (
-  //   event: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   const file = event.target.files?.[0];
-
-  //   if (file) {
-  //     const picture = await uploadPicture(file);
-  //     console.log(picture);
-  //   }
-  // };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -87,7 +84,7 @@ export default function ProfileOptions({
                 id="avatar"
                 type="file"
                 className="hidden"
-                onChange={setAvatar}
+                onChange={(event) => onFileChange(event, "avatar", setAvatar)}
               />
             </label>
             <label htmlFor="banner" className="cursor-pointer">
@@ -99,7 +96,7 @@ export default function ProfileOptions({
                 id="banner"
                 type="file"
                 className="hidden"
-                onChange={setBanner}
+                onChange={(event) => onFileChange(event, "banner", setBanner)}
               />
             </label>
           </form>
