@@ -8,6 +8,7 @@ export function useImgur() {
   const [imgurError, setImgurError] = useState<string | null>(null);
   const [noroffApiError, setNoroffApiError] = useState<string | null>(null);
 
+  // To update the profile in the localstorage
   const setAuth = useAuthStore((state) => state.setAuth);
   const username = useAuthStore((state) => state.username);
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -23,13 +24,14 @@ export function useImgur() {
     setIsUploading(true);
 
     try {
+      // Upload the image to imgur
       const picture = await uploadPicture(file);
 
       if (!picture.link) {
         setImgurError("Something went wrong uploading the image");
         throw new Error("Something went wrong uploading the image");
       }
-
+      // Update the profile in NOROFF API
       const update = await updateProfile({ [profileField]: picture.link });
 
       if (!update) {
@@ -43,7 +45,7 @@ export function useImgur() {
         setNoroffApiError(update.errors[0].message);
         throw new Error(update.errors[0].message);
       }
-
+      // Update the profile in the localstorage
       if (username && accessToken) {
         setAuth(username, accessToken);
       }
