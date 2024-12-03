@@ -11,30 +11,15 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
   const userName = useAuthStore((state) => state.username);
   const [avatar, setAvatar] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
-  const [isAvatarUploading, setIsAvatarUploading] = useState<boolean>(false);
-  const [avatarError, setAvatarError] = useState<string | null>(null);
-  const [isBannerUploading, setIsBannerUploading] = useState<boolean>(false);
-  const [bannerError, setBannerError] = useState<string | null>(null);
 
   const handleAvatarChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-    setIsAvatarUploading(true);
-    try {
-      const picture = await uploadPicture(file);
 
-      if (!picture || !picture.url) {
-        setAvatarError("Something went wrong uploading the image");
-        setIsAvatarUploading(false);
-        return;
-      }
-      setAvatar(picture.url);
-    } catch (error) {
-      setAvatarError(`Uknown error uploading image: ${error}`);
-    } finally {
-      setIsAvatarUploading(false);
+    if (file) {
+      const picture = await uploadPicture(file);
+      console.log(picture);
     }
   };
 
@@ -42,25 +27,12 @@ export default function ProfileBanner({ profile }: { profile: UserProfile }) {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-    setIsBannerUploading(true);
-    try {
-      const picture = await uploadPicture(file);
 
-      if (!picture || !picture.url) {
-        setBannerError("Something went wrong uploading the image");
-        setIsBannerUploading(false);
-        return;
-      }
-      setBanner(picture.url);
-    } catch (error) {
-      setBannerError(`Uknown error uploading image: ${error}`);
-    } finally {
-      setIsBannerUploading(false);
+    if (file) {
+      const picture = await uploadPicture(file);
+      console.log(picture);
     }
   };
-
-  console.log(isAvatarUploading, avatarError, isBannerUploading, bannerError);
 
   useEffect(() => {
     setAvatar(profile.avatar.url ?? "https://placehold.co/260x160");
