@@ -4,96 +4,29 @@ import SortButton from "../elements/SortButton";
 import GridLayoutSwitcher from "../elements/GridLayoutSwitcher";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import searchListings from "../../api/listings/searchListings";
-import { Listing, Meta } from "../../types/types";
 import GridItemCard from "../grid/GridItemCard";
 import GridItemSkeleton from "../skeletons/GridItemSkeleton";
 import Pagination from "../elements/Pagination";
-
-// TODO: hacer custom hook
-// devolver los listings si hay
-// devolver meta si hay, para paginacion y cuantos items hay
-// devovler errores
-// devolver loading (para poner los skeletons)
-
-export type SortOption = {
-  sort: "created" | "endsAt" | "title";
-  sortOrder: "asc" | "desc";
-};
+import { useFetchListings } from "../../hooks/listings/useSearchListings";
 
 export default function SearchListings() {
   const { query } = useParams();
 
   const [page, setPage] = useState(1);
-  const [meta, setMeta] = useState<Meta | null>(null);
-  const [listings, setListings] = useState<Listing[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string | null>("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [skeletonsToShow, setSkeletonsToShow] = useState(15);
+  const { listings, meta, isLoading } = useFetchListings({
+    query,
+    page,
+    selectedFilter,
+  });
 
-  console.log(error);
-
-  const sortListingOptions = (selectedFilter: string): SortOption => {
-    switch (selectedFilter) {
-      case "Sort by newest":
-        return { sort: "created", sortOrder: "desc" };
-      case "Sort by oldest":
-        return { sort: "created", sortOrder: "asc" };
-      case "Sort by title A-Z":
-        return { sort: "title", sortOrder: "asc" };
-      case "Sort by title Z-A":
-        return { sort: "title", sortOrder: "desc" };
-      default:
-        return { sort: "created", sortOrder: "desc" };
-    }
-  };
-
-  useEffect(() => {
-    async function fetchListings() {
-      if (!query || !selectedFilter) return;
-      setIsLoading(true);
-      try {
-        const queryToSearch = query === "all" ? "a" : query;
-
-        const { sort, sortOrder } = sortListingOptions(selectedFilter);
-        const response = await searchListings({
-          query: queryToSearch,
-          limit: 20,
-          page,
-          sort,
-          sortOrder,
-        });
-
-        if (!response) {
-          return;
-        }
-
-        if ("data" in response) {
-          setListings(
-            Array.isArray(response.data) ? response.data : [response.data]
-          );
-        }
-        if ("errors" in response) {
-          setError(response.errors[0].message);
-        }
-        if ("meta" in response) {
-          setMeta(response.meta);
-        }
-      } catch (error) {
-        setError(`Something went wrong searching for listings: ${error}`);
-        setListings([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchListings();
-  }, [query, selectedFilter, page]);
-
+  // Reset page to 1 when query or selectedFilter changes
   useEffect(() => {
     setPage(1);
   }, [query, selectedFilter]);
 
+  // Update the number of skeletons to show based on the screen width
   useEffect(() => {
     const updateNumberOfItems = () => {
       const width = window.innerWidth;
