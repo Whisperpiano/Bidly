@@ -1,8 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { AuthGuard } from "../utils/AuthGuard";
+import { useModalStore } from "../store/modal";
 
 export default function Search() {
   const { query } = useParams();
+  const isLoggedIn = AuthGuard();
+  const handleOpenLogin = useModalStore((state) => state.handleLoginOpen);
 
   const activeStyles =
     "block border-b-2 dark:border-neutral-50 border-neutral-950 text-neutral-900 dark:text-neutral-50 py-2 font-semibold m-0";
@@ -27,14 +31,20 @@ export default function Search() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to={`/search/users/${query || "all"}`}
-              className={({ isActive }) =>
-                isActive ? activeStyles : inactiveStyles
-              }
-            >
-              Users
-            </NavLink>
+            {isLoggedIn ? (
+              <NavLink
+                to={`/search/users/${query || "all"}`}
+                className={({ isActive }) =>
+                  isActive ? activeStyles : inactiveStyles
+                }
+              >
+                Users
+              </NavLink>
+            ) : (
+              <button className={inactiveStyles} onClick={handleOpenLogin}>
+                Users
+              </button>
+            )}
           </li>
           <li>
             <NavLink

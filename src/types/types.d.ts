@@ -12,7 +12,7 @@ export interface Meta {
 
 export interface SuccessResponse {
   data: UserProfile;
-  meta: Record<string, unknown>;
+  meta: Meta;
 }
 
 export interface ErrorResponse {

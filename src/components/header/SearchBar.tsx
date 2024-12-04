@@ -1,19 +1,29 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setQuery(event.target.value);
   }
 
+  const isUserSearch = location.pathname.startsWith("/search/users");
+  const isListingSearch = location.pathname.startsWith("/search/listings");
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    navigate(`/search/listings/${query.toLocaleLowerCase()}`);
+    if (isUserSearch) {
+      navigate(`/search/users/${query.toLocaleLowerCase()}`);
+    } else if (isListingSearch) {
+      navigate(`/search/listings/${query.toLocaleLowerCase()}`);
+    } else {
+      navigate(`/search/listings/${query.toLocaleLowerCase()}`);
+    }
     setQuery("");
     inputRef.current?.blur();
   }
