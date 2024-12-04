@@ -14,8 +14,8 @@ export const FILTER_USER_OPTIONS = [
 export const FILTER_LISTINGS_OPTIONS = [
   "Sort by newest",
   "Sort by oldest",
-  "Most bids",
-  "Fewest bids",
+  "Sort by title A-Z",
+  "Sort by title Z-A",
 ];
 
 export const FILTER_PROFILE_OPTIONS = ["Sort by newest", "Sort by oldest"];
