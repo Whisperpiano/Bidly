@@ -44,15 +44,15 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/search",
-            element: <Navigate to="/search/listings/all?page=1" replace />,
+            element: <Navigate to="/search/listings/all" replace />,
           },
           {
             path: "listings",
-            element: <Navigate to="/search/listings/all?page=1" replace />,
+            element: <Navigate to="/search/listings/all" replace />,
           },
           {
             path: "users",
-            element: <Navigate to="/search/users/all?page=1" replace />,
+            element: <Navigate to="/search/users/all" replace />,
           },
           {
             path: "listings/:query?",
