@@ -128,7 +128,7 @@ export default function SearchListings() {
         </div>
         <GridLayoutSwitcher />
       </div>
-      {listings.length === 0 && (
+      {listings.length === 0 && !isLoading && (
         <div className="relative">
           <p className="absolute z-10 w-full h-full max-h-screen text-center flex flex-col items-center justify-center -translate-y-10 text-xl font-semibold dark:text-neutral-50 text-neutral-900">
             No listings found
