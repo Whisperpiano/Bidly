@@ -1,5 +1,15 @@
 // Profile types
 
+export interface Meta {
+  currentPage: number;
+  isFirstPage: boolean;
+  isLastPage: boolean;
+  nextPage: number | null;
+  pageCount: number;
+  previousPage: number | null;
+  totalCount: number;
+}
+
 export interface SuccessResponse {
   data: UserProfile;
   meta: Record<string, unknown>;
@@ -50,7 +60,7 @@ export type SingleProfileResponse = SuccessResponse | ErrorResponse;
 
 export interface SuccessResponseListing {
   data: Listing;
-  meta: Record<string, unknown>;
+  meta: Meta;
 }
 
 export interface ErrorResponseListing {
