@@ -33,13 +33,13 @@ export default function Duration({
               ? "border-red-500"
               : "dark:bg-neutral-950 dark:border-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/50 dark:hover:border-neutral-500 dark:focus:bg-neutral-800/50 bg-neutral-50 hover:bg-neutral-200/50 focus:bg-neutral-200/50 text-neutral-900"
           }`}
-          defaultValue="1"
+          defaultValue={1}
           aria-label="duration"
         >
-          <option value="1">7 days</option>
-          <option value="2">2 weeks</option>
-          <option value="3">1 month</option>
-          <option value="4">3 months</option>
+          <option value={1}>7 days</option>
+          <option value={2}>2 weeks</option>
+          <option value={3}>1 month</option>
+          <option value={4}>3 months</option>
         </select>
       </div>
       {errors.duration && (
