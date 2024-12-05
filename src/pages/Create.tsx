@@ -53,6 +53,7 @@ export default function Create() {
         now.setMonth(now.getMonth() + 1);
         break;
       case 4:
+        now.setMonth(now.getMonth() + 3);
         break;
       default:
         now.setDate(now.getDate() + 7);
