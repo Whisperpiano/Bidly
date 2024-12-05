@@ -72,6 +72,8 @@ export default function DragDrop({
       return renumberedMedia;
     });
   }
+
+  console.log(media);
   return (
     <>
       <h2 className="mb-3 text-sm font-semibold uppercase dark:text-neutral-50 text-neutral-900">
