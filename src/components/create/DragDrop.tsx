@@ -1,4 +1,4 @@
-import { PiCameraPlusFill } from "react-icons/pi";
+import { PiCameraPlusFill, PiXBold } from "react-icons/pi";
 import { MediaInput } from "../../pages/Create";
 import { Dispatch, SetStateAction, useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
@@ -33,18 +33,15 @@ export default function DragDrop({
         throw new Error("Error uploading the image");
       }
 
-      // Create the new image object with a temporary ID
       const objectTemplate = {
         url: picture.link,
         alt: `Image for ${file.name}`,
         id: `dropzoneFile${media.length + 1}`,
       };
 
-      // Update the state with the new image
       setMedia((prev) => {
         const updatedMedia = [...prev, objectTemplate].slice(0, 5);
 
-        // Renumber IDs to maintain sequence
         const renumberedMedia = updatedMedia.map((item, index) => ({
           ...item,
           id: `dropzoneFile${index + 1}`,
@@ -63,7 +60,6 @@ export default function DragDrop({
     setMedia((prev) => {
       const updatedMedia = prev.filter((item) => item.id !== id);
 
-      // Renumber IDs after deletion to keep them in order
       const renumberedMedia = updatedMedia.map((item, index) => ({
         ...item,
         id: `dropzoneFile${index + 1}`,
@@ -120,25 +116,42 @@ export default function DragDrop({
         </label>
       </div>
 
-      <div className="grid grid-cols-5 gap-2 mt-2">
+      <div className="grid grid-cols-4 gap-y-2 mt-3">
         {media.map((image, index) => (
           <div
             key={image.id}
-            className="flex flex-col items-center justify-center aspect-video w-full border-2 border-dashed rounded-lg dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
+            className={`relative animate-reveal flex items-center justify-between w-full rounded-lg ${
+              index === 0 ? "col-span-5 px-1.5" : "px-1.5"
+            }`}
           >
             <img
               src={image.url}
               alt={image.alt}
-              className="w-full h-full object-cover"
+              className={` w-full object-cover rounded-lg ${
+                index === 0 ? "aspect-[16/5]" : "aspect-square"
+              }`}
             />
-            <button
-              type="button"
-              onClick={() => handleRemove(image.id)}
-              className="text-xs font-normal text-red-600 mt-2"
+            <div
+              className={`transition-opacity duration-300 opacity-100 hover:opacity-100 absolute inset-0 rounded-lg mx-1.5 dark:bg-neutral-900/50 bg-neutral-200/50`}
             >
-              Remove
-            </button>
-            <span>{index === 0 && "MAIN IMAGE"}</span>
+              <button
+                className="absolute top-1.5 right-1.5 dark:bg-neutral-700 dark:hover:bg-neutral-600 bg-neutral-700 hover:bg-neutral-800 p-1.5 rounded-full"
+                type="button"
+                onClick={() => handleRemove(image.id)}
+              >
+                <span className="sr-only">Remove the picture {index + 1}</span>
+                <PiXBold
+                  size={14}
+                  className="text-neutral-50 dark:text-neutral-50 duration-0 "
+                />
+              </button>
+
+              {index === 0 && (
+                <span className="absolute top-1.5 left-1.5 text-center uppercase text-xs font-semibold p-2 rounded-lg bg-primary-600 text-neutral-50 backdrop-blur-sm">
+                  Main picture
+                </span>
+              )}
+            </div>
           </div>
         ))}
       </div>
