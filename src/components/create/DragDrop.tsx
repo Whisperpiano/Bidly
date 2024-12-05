@@ -160,8 +160,6 @@ export default function DragDrop({
           </div>
         ))}
       </div>
-
-      <div>{loadingState.loading && <p>Uploading...</p>}</div>
     </>
   );
 }
