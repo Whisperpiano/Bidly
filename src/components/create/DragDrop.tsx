@@ -1,4 +1,4 @@
-import { PiCameraPlusFill, PiPlusBold } from "react-icons/pi";
+import { PiCameraPlusFill } from "react-icons/pi";
 import { MediaInput } from "../../pages/Create";
 import { Dispatch, SetStateAction, useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
@@ -11,11 +11,7 @@ export default function DragDrop({
   media: MediaInput[];
 }) {
   const [loadingState, setLoadingState] = useState({
-    dropzoneFile1: false,
-    dropzoneFile2: false,
-    dropzoneFile3: false,
-    dropzoneFile4: false,
-    dropzoneFile5: false,
+    loading: false,
   });
   const [imgurError, setImgurError] = useState<string | null>(null);
 
@@ -29,7 +25,7 @@ export default function DragDrop({
     }
 
     try {
-      setLoadingState((prev) => ({ ...prev, [event.target.id]: true }));
+      setLoadingState({ loading: true });
       const picture = await uploadPicture(file);
 
       if (!picture.link) {
@@ -39,21 +35,12 @@ export default function DragDrop({
 
       const objectTemplate = {
         url: picture.link,
-        alt: `Image for the ${event.target.id}`,
-        id: event.target.id,
+        alt: `Image for ${file.name}`,
+        id: `dropzoneFile${media.length + 1}`,
       };
 
       setMedia((prev) => {
-        const existing = prev.find((item) => item.id === event.target.id);
-        let updatedMedia;
-        if (existing) {
-          updatedMedia = prev.map((item) =>
-            item.id === event.target.id ? { ...item, file } : item
-          );
-        } else {
-          updatedMedia = [...prev, objectTemplate];
-        }
-
+        const updatedMedia = [...prev, objectTemplate].slice(0, 5);
         return updatedMedia.sort((a, b) => {
           const idA = parseInt(a.id.split("-")[2]);
           const idB = parseInt(b.id.split("-")[2]);
@@ -61,17 +48,15 @@ export default function DragDrop({
         });
       });
     } catch (error) {
-      console.log(`Uknown error uploading image: ${error}`);
+      console.log(`Unknown error uploading image: ${error}`);
     } finally {
-      setLoadingState((prev) => ({ ...prev, [event.target.id]: false }));
+      setLoadingState({ loading: false });
     }
   };
 
   function handleRemove(id: string) {
     setMedia((prev) => prev.filter((item) => item.id !== id));
   }
-  console.log(loadingState);
-  console.log(media);
 
   return (
     <>
@@ -83,7 +68,7 @@ export default function DragDrop({
       </p>
       <div className="flex items-center justify-between">
         <span className="text-xs font-medium dark:text-neutral-400 text-neutral-500">
-          0/5
+          {media.length}/5
         </span>
         {imgurError && (
           <span className="text-xs font-normal animate-reveal dark:text-red-400 text-red-600">
@@ -94,7 +79,7 @@ export default function DragDrop({
 
       <div className="mt-1 flex items-center justify-center w-full">
         <label
-          htmlFor="dropzoneFile1"
+          htmlFor="dropzoneFile"
           className="flex flex-col items-center justify-center w-full h-64 border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
@@ -110,116 +95,38 @@ export default function DragDrop({
             </p>
           </div>
           <input
-            id="dropzoneFile1"
+            id="dropzoneFile"
             type="file"
             className="hidden"
             onChange={handleChange}
+            disabled={media.length >= 5}
           />
         </label>
       </div>
+
       <div className="grid grid-cols-4 gap-2 mt-2">
-        <label
-          htmlFor="dropzoneFile2"
-          className=" flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
-        >
-          <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold
-              size={15}
-              className="dark:text-neutral-200 text-neutral-700 duration-0"
+        {media.map((image) => (
+          <div
+            key={image.id}
+            className="flex flex-col items-center justify-center aspect-video w-full border-2 border-dashed rounded-lg dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
+          >
+            <img
+              src={image.url}
+              alt={image.alt}
+              className="w-full h-full object-cover"
             />
-            <p className="sr-only">Add more pictures</p>
+            <button
+              type="button"
+              onClick={() => handleRemove(image.id)}
+              className="text-xs font-normal text-red-600 mt-2"
+            >
+              Remove
+            </button>
           </div>
-
-          <input
-            id="dropzoneFile2"
-            type="file"
-            className="hidden"
-            onChange={handleChange}
-          />
-        </label>
-
-        <label
-          htmlFor="dropzoneFile3"
-          className=" flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
-        >
-          <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold
-              size={15}
-              className="dark:text-neutral-200 text-neutral-700 duration-0"
-            />
-            <p className="sr-only">Add more pictures</p>
-          </div>
-
-          <input
-            id="dropzoneFile3"
-            type="file"
-            className="hidden"
-            onChange={handleChange}
-          />
-        </label>
-
-        <label
-          htmlFor="dropzoneFile4"
-          className=" flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
-        >
-          <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold
-              size={15}
-              className="dark:text-neutral-200 text-neutral-700 duration-0"
-            />
-            <p className="sr-only">Add more pictures</p>
-          </div>
-
-          <input
-            id="dropzoneFile4"
-            type="file"
-            className="hidden"
-            onChange={handleChange}
-          />
-        </label>
-
-        <label
-          htmlFor="dropzoneFile5"
-          className="flex flex-col items-center justify-center aspect-video w-full border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
-        >
-          <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiPlusBold
-              size={15}
-              className="dark:text-neutral-200 text-neutral-700 duration-0"
-            />
-            <p className="sr-only">Add more pictures</p>
-          </div>
-
-          <input
-            id="dropzoneFile5"
-            type="file"
-            className="hidden"
-            onChange={handleChange}
-          />
-        </label>
+        ))}
       </div>
-      <div>
-        <button type="button" onClick={() => handleRemove("dropzoneFile1")}>
-          Remove 1
-        </button>
-        <button type="button" onClick={() => handleRemove("dropzoneFile2")}>
-          Remove 2
-        </button>
-        <button type="button" onClick={() => handleRemove("dropzoneFile3")}>
-          Remove 3
-        </button>
-        <button type="button" onClick={() => handleRemove("dropzoneFile4")}>
-          Remove 4
-        </button>
-        <button type="button" onClick={() => handleRemove("dropzoneFile5")}>
-          Remove 5
-        </button>
-        <p>{loadingState.dropzoneFile1 && "Loading 1..."}</p>
-        <p>{loadingState.dropzoneFile2 && "Loading 2..."}</p>
-        <p>{loadingState.dropzoneFile3 && "Loading 3..."}</p>
-        <p>{loadingState.dropzoneFile4 && "Loading 4..."}</p>
-        <p>{loadingState.dropzoneFile5 && "Loading 5..."}</p>
-      </div>
+
+      <div>{loadingState.loading && <p>Uploading...</p>}</div>
     </>
   );
 }
