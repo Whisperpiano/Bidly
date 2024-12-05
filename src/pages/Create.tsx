@@ -33,9 +33,10 @@ export default function Create() {
     register,
     handleSubmit,
     watch,
+    setValue,
     reset,
 
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<CreateInputs>();
   const navigate = useNavigate();
 
@@ -92,7 +93,6 @@ export default function Create() {
     }
   };
 
-  console.log(isSubmitting);
   const handleBack = () => {
     const hasUnsavedChanges = () => {
       return (
@@ -139,7 +139,12 @@ export default function Create() {
             <Title register={register} errors={errors} watch={watch} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <Description register={register} errors={errors} watch={watch} />
+            <Description
+              register={register}
+              errors={errors}
+              watch={watch}
+              setValue={setValue}
+            />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
             <Duration register={register} errors={errors} />
