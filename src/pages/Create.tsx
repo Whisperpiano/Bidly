@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
+import createListing from "../api/listings/createListing";
 
 export interface CreateInputs {
   title: string;
@@ -26,21 +27,71 @@ export type MediaInput = {
 export default function Create() {
   const [media, setMedia] = useState<MediaInput[]>([]);
   const [tags, setTags] = useState<string[]>([]);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    reset,
+
+    formState: { errors, isSubmitting },
   } = useForm<CreateInputs>();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<CreateInputs> = async (data) => {
-    console.log(data);
-    console.log("media", media);
-    console.log("tags", tags);
+  const transformDuration = (duration: number): string => {
+    const now = new Date();
+
+    switch (duration) {
+      case 1:
+        now.setDate(now.getDate() + 7);
+        break;
+      case 2:
+        now.setDate(now.getDate() + 14);
+        break;
+      case 3:
+        now.setMonth(now.getMonth() + 1);
+        break;
+      case 4:
+        break;
+      default:
+        now.setDate(now.getDate() + 7);
+    }
+
+    return now.toISOString();
   };
 
+  const onSubmit: SubmitHandler<CreateInputs> = async (data) => {
+    try {
+      const body = {
+        title: data.title,
+        description: data.description,
+        tags: tags,
+        media: media,
+        endsAt: transformDuration(Number(data.duration)),
+      };
+
+      const response = await createListing(body);
+
+      if (!response) {
+        return;
+      }
+      if ("data" in response) {
+        setSubmitError(null);
+      }
+      if ("errors" in response) {
+        setSubmitError(response.errors[0]?.message || "Something went wrong");
+      }
+    } catch (error) {
+      alert(`${submitError} ${error}. Try again later.`);
+    } finally {
+      reset();
+      setMedia([]);
+      setTags([]);
+    }
+  };
+
+  console.log(isSubmitting);
   const handleBack = () => {
     const hasUnsavedChanges = () => {
       return (
