@@ -1,4 +1,4 @@
-export default function Submit() {
+export default function Submit({ handleBack }: { handleBack: () => void }) {
   return (
     <>
       <p className="py-3 text-xl font-semibold dark:text-neutral-50 text-neutral-900">
@@ -20,8 +20,10 @@ export default function Submit() {
           Create item
         </button>
         <button
+          type="button"
           className="w-full p-2.5 rounded-lg text-sm font-medium dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-neutral-50 bg-neutral-200/50 text-neutral-900 hover:bg-neutral-200"
           aria-label="Discard changes"
+          onClick={handleBack}
         >
           Discard
         </button>

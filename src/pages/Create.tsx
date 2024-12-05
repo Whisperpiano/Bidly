@@ -12,17 +12,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 
 export interface CreateInputs {
-  media: {
-    dropZone1: File;
-    dropZone2?: File;
-    dropZone3?: File;
-    dropZone4?: File;
-    dropZone5?: File;
-  };
   title: string;
   description: string;
   duration: string;
-  tags: string[];
 }
 
 export type MediaInput = {
@@ -33,22 +25,42 @@ export type MediaInput = {
 
 export default function Create() {
   const [media, setMedia] = useState<MediaInput[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
+
   const {
     register,
     handleSubmit,
     watch,
-
     formState: { errors },
   } = useForm<CreateInputs>();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<CreateInputs> = async (data) => {
     console.log(data);
-    console.log(media);
+    console.log("media", media);
+    console.log("tags", tags);
   };
 
   const handleBack = () => {
-    navigate(-1);
+    const hasUnsavedChanges = () => {
+      return (
+        media.length > 0 ||
+        tags.length > 0 ||
+        !!watch("title")?.trim() ||
+        !!watch("description")?.trim()
+      );
+    };
+
+    if (hasUnsavedChanges()) {
+      const confirmLeave = window.confirm(
+        "You have unsaved changes. Are you sure you want to leave?"
+      );
+      if (confirmLeave) {
+        navigate(-1);
+      }
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
@@ -75,16 +87,16 @@ export default function Create() {
             <Title register={register} errors={errors} watch={watch} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <Description />
+            <Description register={register} errors={errors} watch={watch} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <Duration />
+            <Duration register={register} errors={errors} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <Tags />
+            <Tags tags={tags} setTags={setTags} />
           </div>
           <div className="text-center px-0 sm:px-3 pb-8 pt-6">
-            <Submit />
+            <Submit handleBack={handleBack} />
           </div>
         </form>
       </section>

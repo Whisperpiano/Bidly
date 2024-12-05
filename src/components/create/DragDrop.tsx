@@ -3,6 +3,7 @@ import { MediaInput } from "../../pages/Create";
 import { Dispatch, SetStateAction, useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
 import Spinner from "../elements/Spinner";
+import Alert from "../elements/Alert";
 
 export default function DragDrop({
   setMedia,
@@ -76,16 +77,11 @@ export default function DragDrop({
       <p className="mb-3 text-sm dark:text-neutral-50 text-neutral-900 ">
         Add up to 5 pictures and let the magic happen!
       </p>
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-medium dark:text-neutral-400 text-neutral-500">
-          {media.length}/5
-        </span>
-        {imgurError && (
-          <span className="text-xs font-normal animate-reveal dark:text-red-400 text-red-600">
-            {imgurError}
-          </span>
-        )}
-      </div>
+      {imgurError && <Alert text={imgurError} type="error" />}
+
+      <span className="text-xs font-medium dark:text-neutral-400 text-neutral-500">
+        {media.length}/5
+      </span>
 
       <div className="mt-1 flex items-center justify-center w-full">
         <label
