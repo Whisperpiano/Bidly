@@ -199,19 +199,19 @@ export default function DragDrop({
         </label>
       </div>
       <div>
-        <button type="button" onClick={() => handleRemove("dropzone-file-1")}>
+        <button type="button" onClick={() => handleRemove("dropzoneFile1")}>
           Remove 1
         </button>
-        <button type="button" onClick={() => handleRemove("dropzone-file-2")}>
+        <button type="button" onClick={() => handleRemove("dropzoneFile2")}>
           Remove 2
         </button>
-        <button type="button" onClick={() => handleRemove("dropzone-file-3")}>
+        <button type="button" onClick={() => handleRemove("dropzoneFile3")}>
           Remove 3
         </button>
-        <button type="button" onClick={() => handleRemove("dropzone-file-4")}>
+        <button type="button" onClick={() => handleRemove("dropzoneFile4")}>
           Remove 4
         </button>
-        <button type="button" onClick={() => handleRemove("dropzone-file-5")}>
+        <button type="button" onClick={() => handleRemove("dropzoneFile5")}>
           Remove 5
         </button>
         <p>{loadingState.dropzoneFile1 && "Loading 1..."}</p>
