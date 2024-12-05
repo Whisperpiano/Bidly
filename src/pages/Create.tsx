@@ -9,14 +9,15 @@ import Submit from "../components/create/Submit";
 import { useNavigate } from "react-router-dom";
 
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
 
 export interface CreateInputs {
   media: {
-    file1: File;
-    file2?: File;
-    file3?: File;
-    file4?: File;
-    file5?: File;
+    dropZone1: File;
+    dropZone2?: File;
+    dropZone3?: File;
+    dropZone4?: File;
+    dropZone5?: File;
   };
   title: string;
   description: string;
@@ -24,30 +25,31 @@ export interface CreateInputs {
   tags: string[];
 }
 
+export type MediaInput = {
+  url: string;
+  alt: string;
+  id: string;
+};
+
 export default function Create() {
-  const navigate = useNavigate();
+  const [media, setMedia] = useState<MediaInput[]>([]);
   const {
     register,
     handleSubmit,
     watch,
+
     formState: { errors },
   } = useForm<CreateInputs>();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<CreateInputs> = async (data) => {
     console.log(data);
+    console.log(media);
   };
 
   const handleBack = () => {
     navigate(-1);
   };
-
-  // if (watch("media.file1") === undefined) {
-  //   console.log("file1 is undefined");
-  // } else {
-  //   console.log(Object.keys(watch("media")).length);
-  // }
-
-  console.log(watch("media.file1"));
 
   return (
     <>
@@ -67,7 +69,7 @@ export default function Create() {
             </button>
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <DragDrop register={register} errors={errors} watch={watch} />
+            <DragDrop media={media} setMedia={setMedia} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
             <Title register={register} errors={errors} watch={watch} />
