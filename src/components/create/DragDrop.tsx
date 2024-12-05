@@ -68,7 +68,6 @@ export default function DragDrop({
     });
   }
 
-  console.log(media);
   return (
     <>
       <h2 className="mb-3 text-sm font-semibold uppercase dark:text-neutral-50 text-neutral-900">
@@ -116,6 +115,7 @@ export default function DragDrop({
             type="file"
             className="hidden"
             onChange={handleChange}
+            accept="image/jpeg, image/png"
             disabled={media.length >= 5 || loadingState}
           />
         </label>
