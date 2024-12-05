@@ -58,6 +58,8 @@ export default function DragDrop({
     setMedia((prev) => prev.filter((item) => item.id !== id));
   }
 
+  console.log(media);
+
   return (
     <>
       <h2 className="mb-3 text-sm font-semibold uppercase dark:text-neutral-50 text-neutral-900">
@@ -104,8 +106,8 @@ export default function DragDrop({
         </label>
       </div>
 
-      <div className="grid grid-cols-4 gap-2 mt-2">
-        {media.map((image) => (
+      <div className="grid grid-cols-5 gap-2 mt-2">
+        {media.map((image, index) => (
           <div
             key={image.id}
             className="flex flex-col items-center justify-center aspect-video w-full border-2 border-dashed rounded-lg dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
@@ -122,6 +124,7 @@ export default function DragDrop({
             >
               Remove
             </button>
+            <span>{index === 0 && "MAIN IMAGE"}</span>
           </div>
         ))}
       </div>
