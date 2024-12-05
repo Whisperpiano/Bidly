@@ -2,6 +2,7 @@ import { PiCameraPlusFill, PiXBold } from "react-icons/pi";
 import { MediaInput } from "../../pages/Create";
 import { Dispatch, SetStateAction, useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
+import Spinner from "../elements/Spinner";
 
 export default function DragDrop({
   setMedia,
@@ -10,9 +11,7 @@ export default function DragDrop({
   setMedia: Dispatch<SetStateAction<MediaInput[]>>;
   media: MediaInput[];
 }) {
-  const [loadingState, setLoadingState] = useState({
-    loading: false,
-  });
+  const [loadingState, setLoadingState] = useState(false);
   const [imgurError, setImgurError] = useState<string | null>(null);
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +24,7 @@ export default function DragDrop({
     }
 
     try {
-      setLoadingState({ loading: true });
+      setLoadingState(true);
       const picture = await uploadPicture(file);
 
       if (!picture.link) {
@@ -52,7 +51,7 @@ export default function DragDrop({
     } catch (error) {
       console.log(`Unknown error uploading image: ${error}`);
     } finally {
-      setLoadingState({ loading: false });
+      setLoadingState(false);
     }
   };
 
@@ -95,23 +94,29 @@ export default function DragDrop({
           className="flex flex-col items-center justify-center w-full h-64 border-2  border-dashed rounded-lg cursor-pointer dark:bg-neutral-950 dark:border-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-900 bg-neutral-50 border-neutral-200 hover:bg-neutral-100 hover:border-neutral-400"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6 dark:text-neutral-200 text-neutral-700">
-            <PiCameraPlusFill
-              size={30}
-              className="dark:text-neutral-200 text-neutral-700 duration-0"
-            />
-            <p className="mb-2 text-sm dark:text-neutral-200 text-neutral-700">
-              Click to upload or drag and drop
-            </p>
-            <p className="text-xs  dark:text-neutral-400 text-neutral-500">
-              JPG or PNG (MAX. 10mb)
-            </p>
+            {loadingState ? (
+              <Spinner />
+            ) : (
+              <>
+                <PiCameraPlusFill
+                  size={30}
+                  className="dark:text-neutral-200 text-neutral-700 duration-0"
+                />
+                <p className="mb-2 text-sm dark:text-neutral-200 text-neutral-700">
+                  Click to upload or drag and drop
+                </p>
+                <p className="text-xs  dark:text-neutral-400 text-neutral-500">
+                  JPG or PNG (MAX. 10mb)
+                </p>
+              </>
+            )}
           </div>
           <input
             id="dropzoneFile"
             type="file"
             className="hidden"
             onChange={handleChange}
-            disabled={media.length >= 5}
+            disabled={media.length >= 5 || loadingState}
           />
         </label>
       </div>
@@ -160,31 +165,3 @@ export default function DragDrop({
     </>
   );
 }
-
-// const [imgurError, setImgurError] = useState<string | null>(null);
-// const [picture, setPicture] = useState<string | null>(null);
-
-// const handleFileChangeAndUpload = async (
-//   event: React.ChangeEvent<HTMLInputElement>
-// ) => {
-//   const file = event.target.files?.[0];
-//   if (!file) return;
-
-//   if (file.type !== "image/jpeg" && file.type !== "image/png") {
-//     alert("Please upload a JPEG or PNG image");
-//     return;
-//   }
-
-//   try {
-//     const picture = await uploadPicture(file);
-
-//     if (!picture.link) {
-//       setImgurError("Something went wrong uploading the image");
-//       throw new Error("Something went wrong uploading the image");
-//     }
-
-//     setPicture(picture.link);
-//   } catch (error) {
-//     console.log(`Uknown error uploading image: ${error}`);
-//   }
-// };
