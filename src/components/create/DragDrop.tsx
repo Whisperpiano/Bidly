@@ -33,19 +33,24 @@ export default function DragDrop({
         throw new Error("Error uploading the image");
       }
 
+      // Create the new image object with a temporary ID
       const objectTemplate = {
         url: picture.link,
         alt: `Image for ${file.name}`,
         id: `dropzoneFile${media.length + 1}`,
       };
 
+      // Update the state with the new image
       setMedia((prev) => {
         const updatedMedia = [...prev, objectTemplate].slice(0, 5);
-        return updatedMedia.sort((a, b) => {
-          const idA = parseInt(a.id.split("-")[2]);
-          const idB = parseInt(b.id.split("-")[2]);
-          return idA - idB;
-        });
+
+        // Renumber IDs to maintain sequence
+        const renumberedMedia = updatedMedia.map((item, index) => ({
+          ...item,
+          id: `dropzoneFile${index + 1}`,
+        }));
+
+        return renumberedMedia;
       });
     } catch (error) {
       console.log(`Unknown error uploading image: ${error}`);
@@ -55,11 +60,18 @@ export default function DragDrop({
   };
 
   function handleRemove(id: string) {
-    setMedia((prev) => prev.filter((item) => item.id !== id));
+    setMedia((prev) => {
+      const updatedMedia = prev.filter((item) => item.id !== id);
+
+      // Renumber IDs after deletion to keep them in order
+      const renumberedMedia = updatedMedia.map((item, index) => ({
+        ...item,
+        id: `dropzoneFile${index + 1}`,
+      }));
+
+      return renumberedMedia;
+    });
   }
-
-  console.log(media);
-
   return (
     <>
       <h2 className="mb-3 text-sm font-semibold uppercase dark:text-neutral-50 text-neutral-900">
