@@ -1,16 +1,60 @@
-import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
+import {
+  FieldErrors,
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
 import { PiStarFourFill } from "react-icons/pi";
 import { CreateInputs } from "../../pages/Create";
+import { useState } from "react";
+import generateAIText from "../../api/gemini/generateText";
 
 export default function Description({
   register,
   errors,
   watch,
+  setValue,
 }: {
   register: UseFormRegister<CreateInputs>;
   errors: FieldErrors<CreateInputs>;
   watch: UseFormWatch<CreateInputs>;
+  setValue: UseFormSetValue<CreateInputs>;
 }) {
+  const [typing, setTyping] = useState<boolean>(false);
+
+  const typeText = (text: string) => {
+    setTyping(true);
+    setValue("description", "");
+    let index = 0;
+
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setValue("description", text.substring(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+        setTyping(false);
+      }
+    }, 50);
+  };
+  const handleGenerate = async () => {
+    if (typing) return;
+
+    const title = watch("title") || "";
+    const prompt = `Create a fun and witty description for a listing based on the given title: ${title}. The description should be no more than 250 characters. If no title is provided, respond with something humorous similar to "Maybe you need to write a title first!, but not the same."`;
+
+    try {
+      const response = await generateAIText(prompt);
+      if (response) {
+        typeText(response);
+      } else {
+        console.warn("No content was generated.");
+      }
+    } catch (error) {
+      console.error("Error generating content:", error);
+    }
+  };
+
   return (
     <>
       <h2 className="mb-3 text-sm font-semibold uppercase dark:text-neutral-50 text-neutral-900">
@@ -29,7 +73,7 @@ export default function Description({
                 : "dark:text-neutral-400 text-neutral-500"
             }`}
           >
-            {watch("description")?.length || 0}/500
+            {watch("description")?.length || 0}/250
           </span>
           {errors.description && (
             <span className="text-xs font-normal animate-reveal dark:text-red-400 text-red-600">
@@ -47,8 +91,8 @@ export default function Description({
               message: "Description is required",
             },
             maxLength: {
-              value: 500,
-              message: "500 characters max.",
+              value: 250,
+              message: "250 characters max.",
             },
           })}
           id="description"
@@ -59,12 +103,14 @@ export default function Description({
           }`}
           placeholder="Write a detailed description of your item, or let the AI draft it for you!"
           rows={8}
+          disabled={typing}
         />
       </div>
       <button
         type="button"
-        className="flex gap-2 items-center text-sm font-medium py-3 pr-3 pl-2 border rounded-lg dark:text-neutral-300 bg-transparent dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900 disabled:opacity-50 pointer-events-none"
-        disabled
+        className="flex gap-2 items-center text-sm font-medium py-3 pr-3 pl-2 border rounded-lg dark:text-neutral-300 bg-transparent dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900 disabled:opacity-50 "
+        onClick={handleGenerate}
+        disabled={typing}
       >
         <PiStarFourFill className="dark:text-neutral-300 text-neutral-800 duration-0" />
         <span className="sr-only">Use AI to generate description</span>
