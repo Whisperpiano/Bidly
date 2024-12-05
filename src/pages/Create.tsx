@@ -8,17 +8,51 @@ import Tags from "../components/create/Tags";
 import Submit from "../components/create/Submit";
 import { useNavigate } from "react-router-dom";
 
+import { SubmitHandler, useForm } from "react-hook-form";
+
+export interface CreateInputs {
+  media: {
+    file1: File;
+    file2?: File;
+    file3?: File;
+    file4?: File;
+    file5?: File;
+  };
+  title: string;
+  description: string;
+  duration: string;
+  tags: string[];
+}
+
 export default function Create() {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<CreateInputs>();
+
+  const onSubmit: SubmitHandler<CreateInputs> = async (data) => {
+    console.log(data);
+  };
 
   const handleBack = () => {
     navigate(-1);
   };
 
+  // if (watch("media.file1") === undefined) {
+  //   console.log("file1 is undefined");
+  // } else {
+  //   console.log(Object.keys(watch("media")).length);
+  // }
+
+  console.log(watch("media.file1"));
+
   return (
     <>
       <section className="max-w-screen-sm mx-auto sm:border-x dark:border-neutral-800 border-neutral-200">
-        <form name="create">
+        <form name="create" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center justify-between px-0 sm:px-3 py-6 border-b dark:border-neutral-800 border-neutral-200 ">
             <h1 className="text-base sm:text-xl font-semibold dark:text-neutral-50 text-neutral-900">
               Create your listing
@@ -33,10 +67,10 @@ export default function Create() {
             </button>
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <DragDrop />
+            <DragDrop register={register} errors={errors} watch={watch} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
-            <Title />
+            <Title register={register} errors={errors} watch={watch} />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
             <Description />
