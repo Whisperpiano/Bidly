@@ -3,7 +3,7 @@ import { emailTemplate } from "../../lib/emailTemplate";
 export default function SubscribeBanner() {
   const handleClick = async () => {
     try {
-      const response = await fetch("/api", {
+      const response = await fetch("/https://api.resend.com/emails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
