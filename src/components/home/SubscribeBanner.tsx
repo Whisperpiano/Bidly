@@ -1,4 +1,10 @@
+import { sendEmail } from "../../api/resend/resend";
+
 export default function SubscribeBanner() {
+  const handleClick = async () => {
+    const test = await sendEmail("jesusalberola90@gmail.com");
+    console.log(test);
+  };
   return (
     <section className="rounded-lg bg-primary-100 dark:bg-primary-950 my-10 px-6 xs:px-10 py-10 text-center">
       <h2 className="text-xl md:text-2xl font-bold dark:text-primary-50 text-neutral-900">
@@ -18,9 +24,10 @@ export default function SubscribeBanner() {
           className="w-full h-[36px] md:h-[42px] dark:bg-primary-900 text-sm bg-primary-200 dark:text-neutral-50 text-neutral-900 dark:placeholder:text-primary-200 placeholder:text-neutral-600/50 px-4 rounded-lg outline-none border dark:border-primary-900  border-primary-200 dark:focus:border-neutral-200 focus:border-primary-400/50 dark:hover:bg-primary-800  dark:focus:bg-primary-800 focus:bg-primary-100 hover:border-primary-400/50"
         />
         <button
-          type="submit"
+          type="button"
           className="rounded-lg text-sm flex items-center gap-2 h-[36px] md:h-[42px]  px-4 justify-center dark:hover:bg-neutral-300 dark:bg-neutral-50 dark:text-neutral-900 bg-neutral-800 text-neutral-50 hover:bg-neutral-600 font-medium"
           aria-label="Subscribe to our newsletter"
+          onClick={handleClick}
         >
           Subscribe
         </button>
