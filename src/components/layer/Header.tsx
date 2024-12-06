@@ -15,7 +15,7 @@ export default function Header() {
   const handleLoginClose = useModalStore((state) => state.handleLoginClose);
   return (
     <>
-      <header className="sticky top-0 z-50 px-2 py-4 flex justify-between items-center max-w-screen-2xl mx-auto w-full dark:bg-neutral-950/90 bg-neutral-50/90 backdrop-blur-lg border-b dark:border-neutral-800 border-neutral-200 main-header">
+      <header className="sticky top-0 z-50 px-2 py-4 flex justify-between items-center max-w-screen-2xl mx-auto w-full dark:bg-neutral-950/90 bg-neutral-50/90 backdrop-blur-lg border-b dark:border-neutral-800 border-neutral-200">
         <div className="flex items-center gap-5 ">
           <Logo />
           <Separator />
