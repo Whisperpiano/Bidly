@@ -21,12 +21,10 @@ export default function SearchListings() {
     selectedFilter,
   });
 
-  // Reset page to 1 when query or selectedFilter changes
   useEffect(() => {
     setPage(1);
   }, [query, selectedFilter]);
 
-  // Update the number of skeletons to show based on the screen width
   useEffect(() => {
     const updateNumberOfItems = () => {
       const width = window.innerWidth;
@@ -62,7 +60,7 @@ export default function SearchListings() {
         <GridLayoutSwitcher />
       </div>
       {listings.length === 0 && !isLoading && (
-        <div className="relative">
+        <div className="relative animate-fastreveal">
           <p className="absolute z-10 w-full h-full max-h-screen text-center flex flex-col items-center justify-center -translate-y-10 text-xl font-semibold dark:text-neutral-50 text-neutral-900">
             No listings found
             <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
