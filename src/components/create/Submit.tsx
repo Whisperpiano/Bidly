@@ -1,4 +1,14 @@
-export default function Submit({ handleBack }: { handleBack: () => void }) {
+import Spinner from "../elements/Spinner";
+
+export default function Submit({
+  handleBack,
+  tiping,
+  isSubmitting,
+}: {
+  handleBack: () => void;
+  tiping: boolean;
+  isSubmitting: boolean;
+}) {
   return (
     <>
       <p className="py-3 text-xl font-semibold dark:text-neutral-50 text-neutral-900">
@@ -14,10 +24,11 @@ export default function Submit({ handleBack }: { handleBack: () => void }) {
 
       <div className="mb-3 flex flex-col gap-3 pt-6 max-w-[380px] mx-auto">
         <button
-          className="w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700"
+          className="w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700 disabled:opacity-50"
           aria-label="Buy now"
+          disabled={tiping}
         >
-          Create item
+          {isSubmitting ? <Spinner /> : "Create item"}
         </button>
         <button
           type="button"

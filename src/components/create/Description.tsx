@@ -6,22 +6,24 @@ import {
 } from "react-hook-form";
 import { PiStarFourFill } from "react-icons/pi";
 import { CreateInputs } from "../../pages/Create";
-import { useState } from "react";
 import generateAIText from "../../api/gemini/generateText";
+import { Dispatch, SetStateAction } from "react";
 
 export default function Description({
   register,
   errors,
   watch,
   setValue,
+  typing,
+  setTyping,
 }: {
   register: UseFormRegister<CreateInputs>;
   errors: FieldErrors<CreateInputs>;
   watch: UseFormWatch<CreateInputs>;
   setValue: UseFormSetValue<CreateInputs>;
+  typing: boolean;
+  setTyping: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [typing, setTyping] = useState<boolean>(false);
-
   const typeText = (text: string) => {
     setTyping(true);
     setValue("description", "");

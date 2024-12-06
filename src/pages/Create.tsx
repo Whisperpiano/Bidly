@@ -9,8 +9,9 @@ import Submit from "../components/create/Submit";
 import { useNavigate } from "react-router-dom";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import createListing from "../api/listings/createListing";
+import { scrollToTop } from "../utils/ScrollTop";
 
 export interface CreateInputs {
   title: string;
@@ -28,6 +29,7 @@ export default function Create() {
   const [media, setMedia] = useState<MediaInput[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [typing, setTyping] = useState<boolean>(false);
 
   const {
     register,
@@ -36,7 +38,7 @@ export default function Create() {
     setValue,
     reset,
 
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<CreateInputs>();
   const navigate = useNavigate();
 
@@ -80,6 +82,15 @@ export default function Create() {
       }
       if ("data" in response) {
         setSubmitError(null);
+        setMedia([]);
+        setTags([]);
+        scrollToTop();
+        navigate(
+          `/listing/${response.data.title
+            .toLocaleLowerCase()
+            .split(" ")
+            .join("-")}?id=${response.data.id}`
+        );
       }
       if ("errors" in response) {
         setSubmitError(response.errors[0]?.message || "Something went wrong");
@@ -88,8 +99,6 @@ export default function Create() {
       alert(`${submitError} ${error}. Try again later.`);
     } finally {
       reset();
-      setMedia([]);
-      setTags([]);
     }
   };
 
@@ -114,6 +123,10 @@ export default function Create() {
       navigate(-1);
     }
   };
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <>
@@ -144,6 +157,8 @@ export default function Create() {
               errors={errors}
               watch={watch}
               setValue={setValue}
+              typing={typing}
+              setTyping={setTyping}
             />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
@@ -153,7 +168,11 @@ export default function Create() {
             <Tags tags={tags} setTags={setTags} />
           </div>
           <div className="text-center px-0 sm:px-3 pb-8 pt-6">
-            <Submit handleBack={handleBack} />
+            <Submit
+              handleBack={handleBack}
+              tiping={typing}
+              isSubmitting={isSubmitting}
+            />
           </div>
         </form>
       </section>

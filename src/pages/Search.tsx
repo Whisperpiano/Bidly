@@ -2,6 +2,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { AuthGuard } from "../utils/AuthGuard";
 import { useModalStore } from "../store/modal";
+import { useEffect } from "react";
+import { scrollToTop } from "../utils/ScrollTop";
 
 export default function Search() {
   const { query } = useParams();
@@ -12,6 +14,10 @@ export default function Search() {
     "block border-b-2 dark:border-neutral-50 border-neutral-950 text-neutral-900 dark:text-neutral-50 py-2 font-semibold m-0";
   const inactiveStyles =
     "block dark:text-neutral-300 dark:hover:text-neutral-100 text-neutral-700 hover:text-neutral-900 py-2 m-0";
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <>

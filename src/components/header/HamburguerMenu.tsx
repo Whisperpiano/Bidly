@@ -12,6 +12,7 @@ import { useThemeStore } from "../../store/theme";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/user";
 import { AuthGuard } from "../../utils/AuthGuard";
+import { scrollToTop } from "../../utils/ScrollTop";
 
 export default function HamburguerMenu({
   onLoginOpen,
@@ -62,6 +63,7 @@ export default function HamburguerMenu({
     if (confirm) {
       logout();
       navigate("/");
+      scrollToTop();
     }
   };
 

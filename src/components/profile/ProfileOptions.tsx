@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
+import { scrollToTop } from "../../utils/ScrollTop";
 
 interface ProfileOptionsProps {
   setAvatar: (picture: string) => void;
@@ -39,6 +40,7 @@ export default function ProfileOptions({
     if (confirm) {
       logout();
       navigate("/");
+      scrollToTop();
     }
   }
 
