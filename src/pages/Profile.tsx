@@ -7,6 +7,7 @@ import Spinner from "../components/elements/Spinner";
 import GridItemSkeleton from "../components/skeletons/GridItemSkeleton";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../store/user";
+import { scrollToTop } from "../utils/ScrollTop";
 
 export default function Profile() {
   const { profile, isLoading, selectedFilter, setSelectedFilter, listings } =
@@ -33,6 +34,10 @@ export default function Profile() {
     return () => {
       window.removeEventListener("resize", updateNumberOfItems);
     };
+  }, []);
+
+  useEffect(() => {
+    scrollToTop();
   }, []);
 
   return (
@@ -69,7 +74,7 @@ export default function Profile() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 min-h-[650px]">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 xs:min-h-[600px] sm:min-h-[700px] md:min-h-[650px] lg:min-h-[750px] xl:min-h-[700px] ">
                 {listings.map((listing) => (
                   <ProfileItemCard key={listing.id} item={listing} />
                 ))}
