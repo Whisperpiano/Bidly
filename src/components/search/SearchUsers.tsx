@@ -7,18 +7,40 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetchProfiles } from "../../hooks/profiles/useSearchProfiles";
 import Pagination from "../elements/Pagination";
+import GridProfileSkeleton from "../skeletons/GridProfileSkeleton";
 
 export default function SearchUsers() {
   const { query } = useParams();
 
   const [page, setPage] = useState<number>(1);
   const [selectedFilter, setSelectedFilter] = useState<string | null>("");
-  // const [skeletonsToShow, setSkeletonsToShow] = useState<number>(0);
-  const { profiles, meta } = useFetchProfiles({
+  const [skeletonsToShow, setSkeletonsToShow] = useState<number>(20);
+  const { profiles, meta, isLoading } = useFetchProfiles({
     query,
     page,
     selectedFilter,
   });
+
+  useEffect(() => {
+    const updateNumberOfItems = () => {
+      const width = window.innerWidth;
+
+      if (width >= 1280) {
+        setSkeletonsToShow(20);
+      } else if (width >= 1024) {
+        setSkeletonsToShow(16);
+      } else if (width >= 768) {
+        setSkeletonsToShow(12);
+      } else {
+        setSkeletonsToShow(8);
+      }
+    };
+    updateNumberOfItems();
+    window.addEventListener("resize", updateNumberOfItems);
+    return () => {
+      window.removeEventListener("resize", updateNumberOfItems);
+    };
+  }, []);
 
   // Reset page to 1 when query or selectedFilter changes
   useEffect(() => {
@@ -40,13 +62,35 @@ export default function SearchUsers() {
         </div>
         <GridLayoutSwitcher />
       </div>
+      {profiles.length === 0 && !isLoading && (
+        <div className="relative animate-fastreveal">
+          <p className="absolute z-10 w-full h-full max-h-screen text-center flex flex-col items-center justify-center -translate-y-10 text-xl font-semibold dark:text-neutral-50 text-neutral-900">
+            No profiles found
+            <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
+              We couldn't find any profile matching your search criteria.
+            </span>
+          </p>
+          <div className="relative grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b dark:after:from-neutral-950/85 dark:after:to-neutral-950  after:from-neutral-50/85 after:to-neutral-50 after:z-10 animate-pulse">
+            {Array.from({ length: skeletonsToShow }, (_, index) => (
+              <GridProfileSkeleton key={index} />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-4 py-6 px-0 md:px-2">
-        {profiles.map((profile) => (
-          <UserCard
-            key={`${profile.name}-${profile.credits}`}
-            profile={profile}
-          />
-        ))}
+        {isLoading &&
+          Array.from({ length: 20 }, (_, index) => (
+            <GridProfileSkeleton key={index} />
+          ))}
+        {profiles.length > 0 &&
+          !isLoading &&
+          profiles.map((profile) => (
+            <UserCard
+              key={`${profile.name}-${profile.credits}`}
+              profile={profile}
+            />
+          ))}
       </div>
       {meta && meta.totalCount >= 20 && (
         <Pagination meta={meta} setPage={setPage} />
