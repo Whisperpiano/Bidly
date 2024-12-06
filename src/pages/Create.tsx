@@ -29,6 +29,7 @@ export default function Create() {
   const [media, setMedia] = useState<MediaInput[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [typing, setTyping] = useState<boolean>(false);
 
   const {
     register,
@@ -37,7 +38,7 @@ export default function Create() {
     setValue,
     reset,
 
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<CreateInputs>();
   const navigate = useNavigate();
 
@@ -156,6 +157,8 @@ export default function Create() {
               errors={errors}
               watch={watch}
               setValue={setValue}
+              typing={typing}
+              setTyping={setTyping}
             />
           </div>
           <div className="border-b dark:border-neutral-800 border-neutral-200 px-0 sm:px-3 pb-8 pt-6">
@@ -165,7 +168,11 @@ export default function Create() {
             <Tags tags={tags} setTags={setTags} />
           </div>
           <div className="text-center px-0 sm:px-3 pb-8 pt-6">
-            <Submit handleBack={handleBack} />
+            <Submit
+              handleBack={handleBack}
+              tiping={typing}
+              isSubmitting={isSubmitting}
+            />
           </div>
         </form>
       </section>
