@@ -18,7 +18,7 @@ export default function RankedUser({ profile }: { profile: UserProfile }) {
         scope="row"
         className="hidden sm:table-cell px-2 sm:px-6 py-3 xs:py-4 font-bold whitespace-nowrap dark:text-neutral-400 text-neutral-500 dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50 rounded-tl-lg rounded-bl-lg"
       >
-        1
+        {profile.position}
       </th>
       <td className="px-2 xs:px-6 py-3 xs:py-4 flex items-center gap-4 dark:group-hover:bg-neutral-900 group-hover:bg-neutral-200/50 ">
         <img

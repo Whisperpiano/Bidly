@@ -1,10 +1,13 @@
 import { UserProfile } from "../../types/types";
+import RankedUserSkeleton from "../skeletons/RankingUserSkeleton";
 import RankedUser from "./RankedUser";
 
 export default function TableContent({
   profiles,
+  isLoading,
 }: {
   profiles: UserProfile[];
+  isLoading: boolean;
 }) {
   return (
     <>
@@ -36,10 +39,14 @@ export default function TableContent({
           </th>
         </tr>
       </thead>
-      <tbody>
-        {profiles.map((profile, index) => (
-          <RankedUser key={index} profile={profile} />
-        ))}
+      <tbody className={isLoading ? "animate-pulse" : ""}>
+        {isLoading
+          ? Array.from({ length: 5 }, (_, index) => (
+              <RankedUserSkeleton key={index} />
+            ))
+          : profiles.map((profile, index) => (
+              <RankedUser key={index} profile={profile} />
+            ))}
       </tbody>
     </>
   );

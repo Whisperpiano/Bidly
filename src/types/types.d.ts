@@ -52,6 +52,7 @@ export interface UserProfile {
     listings: number;
     wins: number;
   };
+  position?: number;
 }
 
 export type SingleProfileResponse = SuccessResponse | ErrorResponse;
