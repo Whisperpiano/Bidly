@@ -1,13 +1,42 @@
 import { useEffect, useState } from "react";
-import { UserProfile } from "../../types/types";
+import { Listing, Media } from "../../types/types";
 import { useParams } from "react-router-dom";
 import getSingleProfile from "../../api/profiles/getSingleProfile";
+import { sortListings } from "../../utils/sortListings";
+
+interface Profile {
+  name: string;
+  email: string;
+  bio: string | null;
+  avatar: Media;
+  banner: Media;
+  credits: number;
+  listings?: Listing[];
+  wins?: Listing[];
+  _count: {
+    listings: number;
+    wins: number;
+  };
+}
+
+const emptyProfile: Profile = {
+  name: "",
+  email: "",
+  bio: null,
+  avatar: { url: "", alt: "" },
+  banner: { url: "", alt: "" },
+  credits: 0,
+  _count: { listings: 0, wins: 0 },
+};
 
 export function useProfile() {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [profile, setProfile] = useState<Profile>(emptyProfile);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [listings, setListings] = useState<Listing[]>([]);
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const { username } = useParams();
 
   useEffect(() => {
@@ -32,20 +61,29 @@ export function useProfile() {
         } else if ("errors" in profile) {
           setIsError(true);
           setErrorMessage(profile?.errors?.[0]?.message || "Unknown error");
-          setProfile(null);
         }
       } catch (error) {
         setIsError(true);
-        setErrorMessage(` Something went wrong fetching the profile: ${error}`);
-        setProfile(null);
+        setErrorMessage(`Something went wrong fetching the profile: ${error}`);
       } finally {
         setIsLoading(false);
       }
     }
     fetchProfile();
   }, [username]);
+
+  useEffect(() => {
+    if (!profile?.listings) return;
+
+    const sortedListings = sortListings(profile.listings, selectedFilter);
+    setListings(sortedListings);
+  }, [profile, selectedFilter]);
+
   return {
     profile,
+    listings,
+    selectedFilter,
+    setSelectedFilter,
     isLoading,
     isError,
     errorMessage,
