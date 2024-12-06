@@ -9,8 +9,9 @@ import Submit from "../components/create/Submit";
 import { useNavigate } from "react-router-dom";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import createListing from "../api/listings/createListing";
+import { scrollToTop } from "../utils/ScrollTop";
 
 export interface CreateInputs {
   title: string;
@@ -80,6 +81,15 @@ export default function Create() {
       }
       if ("data" in response) {
         setSubmitError(null);
+        setMedia([]);
+        setTags([]);
+        scrollToTop();
+        navigate(
+          `/listing/${response.data.title
+            .toLocaleLowerCase()
+            .split(" ")
+            .join("-")}?id=${response.data.id}`
+        );
       }
       if ("errors" in response) {
         setSubmitError(response.errors[0]?.message || "Something went wrong");
@@ -88,8 +98,6 @@ export default function Create() {
       alert(`${submitError} ${error}. Try again later.`);
     } finally {
       reset();
-      setMedia([]);
-      setTags([]);
     }
   };
 
@@ -114,6 +122,10 @@ export default function Create() {
       navigate(-1);
     }
   };
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   return (
     <>
