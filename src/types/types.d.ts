@@ -46,8 +46,8 @@ export interface UserProfile {
   avatar: Media;
   banner: Media;
   credits: number;
-  listings: Listing[];
-  wins: Listing[];
+  listings?: Listing[];
+  wins?: Listing[];
   _count: {
     listings: number;
     wins: number;
