@@ -28,7 +28,7 @@ export default function RankedUserSkeleton() {
             className={`mx-auto bg-neutral-300 dark:bg-neutral-600 dark:bg-gr-neutral-700 rounded-lg h-[8px] my-2 flex items-center gap-1 w-8`}
           ></div>
         </td>
-        <td className="mx-2 sm:mx-6 py-3 xs:py-4">
+        <td className="mx-2 sm:mx-6 py-3 xs:py-4 text-primary-600">
           <div
             className={`mx-auto bg-neutral-300 dark:bg-neutral-600 dark:bg-gr-neutral-700 rounded-lg h-[8px] my-2 flex items-center gap-1 w-6`}
           ></div>
