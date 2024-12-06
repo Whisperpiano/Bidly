@@ -1,33 +1,4 @@
-import { emailTemplate } from "../../lib/emailTemplate";
-
 export default function SubscribeBanner() {
-  const handleClick = async () => {
-    try {
-      const response = await fetch("/https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "onboarding@resend.dev",
-          to: "jesusalberola90@gmail.com",
-          subject: "Hello World",
-          html: emailTemplate,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Email sent successfully:", data);
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
-
   return (
     <section className="rounded-lg bg-primary-100 dark:bg-primary-950 my-10 px-6 xs:px-10 py-10 text-center">
       <h2 className="text-xl md:text-2xl font-bold dark:text-primary-50 text-neutral-900">
@@ -50,7 +21,6 @@ export default function SubscribeBanner() {
           type="button"
           className="rounded-lg text-sm flex items-center gap-2 h-[36px] md:h-[42px]  px-4 justify-center dark:hover:bg-neutral-300 dark:bg-neutral-50 dark:text-neutral-900 bg-neutral-800 text-neutral-50 hover:bg-neutral-600 font-medium"
           aria-label="Subscribe to our newsletter"
-          onClick={handleClick}
         >
           Subscribe
         </button>
