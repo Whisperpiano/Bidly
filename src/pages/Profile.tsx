@@ -13,9 +13,10 @@ export default function Profile() {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!profile) return;
+    if (!profile?.listings) return;
 
     const sortedListings = sortListings(profile.listings, selectedFilter);
+
     setListings(sortedListings);
   }, [profile, selectedFilter]);
 
