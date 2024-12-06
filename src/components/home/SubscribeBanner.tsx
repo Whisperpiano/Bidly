@@ -2,8 +2,8 @@ import { sendEmail } from "../../api/resend/resend";
 
 export default function SubscribeBanner() {
   const handleClick = async () => {
-    const test = await sendEmail("jesusalberola90@gmail.com");
-    console.log(test);
+    const tests = await sendEmail("jesusalberola90@gmail.com");
+    console.log(tests);
   };
   return (
     <section className="rounded-lg bg-primary-100 dark:bg-primary-950 my-10 px-6 xs:px-10 py-10 text-center">
