@@ -9,6 +9,7 @@ import ListingOptions from "./ListingOptions";
 import Alert from "../elements/Alert";
 import LastBidder from "./LastBidder";
 import { useModalStore } from "../../store/modal";
+import { useAuthStore } from "../../store/user";
 
 export default function Sidebar({
   listing,
@@ -24,6 +25,7 @@ export default function Sidebar({
   const [lastBidder, setLastBidder] = useState<Bidder | null>(null);
   const isLoggedIn = AuthGuard();
   const { handleLoginOpen } = useModalStore();
+  const userLogged = useAuthStore((state) => state.username);
 
   function handlePlaceBidModalOpen() {
     setIsPlaceBidModalOpen(true);
@@ -90,6 +92,15 @@ export default function Sidebar({
           </div>
         )}
 
+        {isLoggedIn && listing.seller.name === userLogged && (
+          <div className="pt-6">
+            <Alert
+              text="You cannot place a bid on your own listing."
+              type="information"
+            />
+          </div>
+        )}
+
         <div className="flex flex-col gap-3 pt-6">
           {isFinished ? (
             <div>
@@ -97,7 +108,9 @@ export default function Sidebar({
             </div>
           ) : (
             <button
-              className="rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
+              className={`rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold ${
+                isLoggedIn && listing.seller.name === userLogged ? "hidden" : ""
+              } `}
               aria-label="Buy now"
               onClick={isLoggedIn ? handlePlaceBidModalOpen : handleLoginOpen}
             >
