@@ -46,7 +46,7 @@ export const EmailTemplate = `<!DOCTYPE html>
                 .cta {
                     display: inline-block;
                     background-color: #275da2;
-                    color: #ffffff !impportant;
+                    color: #ffffff !important;
                     text-decoration: none;
                     padding: 10px 20px;
                     border-radius: 4px;
