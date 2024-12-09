@@ -11,8 +11,8 @@ export default function SubscribeBanner() {
   const onSubmit: SubmitHandler<NewsletterInput> = async (data) => {
     try {
       const response = await sendEmail({ email: data.email });
-      if (response.success) {
-        alert("Email sent successfully");
+      if (response.response.data.id) {
+        alert("Email sent successfully! Please check your inbox.");
       } else {
         throw new Error("Something went wrong");
       }

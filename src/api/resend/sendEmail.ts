@@ -14,7 +14,6 @@ export const sendEmail = async ({ email }: { email: string }) => {
     });
 
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Error sending email:", error);
