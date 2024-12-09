@@ -1,41 +1,92 @@
-export const EmailTemplate = `<div>
-      <h1>Hello !</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio
-        consequuntur a neque eveniet sint soluta dolores ipsam natus. Earum non
-        modi voluptatibus vel accusantium quibusdam odio magnam nostrum
-        praesentium laudantium? Praesentium rem obcaecati amet! Laborum quo at
-        nobis a sequi, deleniti, mollitia consequuntur possimus ducimus sed
-        eaque vero quod nam hic quam placeat? Consequuntur facere expedita quam
-        dicta autem id. Optio impedit eaque facilis neque quia debitis in
-        suscipit, dolor deleniti sint repellat exercitationem amet omnis
-        explicabo nobis aut fuga est nihil nemo tempore rerum inventore
-        accusamus earum ex! Vitae. Iste iure quos beatae fugit in inventore rem
-        velit exercitationem dolorum quibusdam sit aspernatur, omnis a?
-        Repudiandae quasi maiores temporibus praesentium totam eveniet,
-        provident ducimus, dolor officia, molestiae libero deleniti. Recusandae
-        id numquam consequatur? Tempore excepturi quidem omnis error dolore cum.
-        Quidem dolores delectus fugiat laborum fugit, eos iure libero, enim unde
-        assumenda odio porro eligendi molestias aut voluptatem veritatis? Quis
-        odit delectus laborum vero mollitia, ea consequatur temporibus provident
-        sit ab a nulla quod debitis recusandae porro libero illum? Eius minima
-        ut, facilis consequatur totam quam perspiciatis vitae impedit. Dolore
-        autem necessitatibus voluptates possimus delectus, quis amet, iste
-        tempore odit cupiditate blanditiis, sint expedita placeat mollitia
-        dignissimos voluptatem fuga assumenda! Voluptas quasi tempore modi porro
-        ratione! Labore, repellendus corporis! Eos possimus ducimus quidem rem
-        tempore repudiandae accusamus sed minima, doloremque fuga laborum
-        tempora provident, amet id qui distinctio magnam nulla facilis hic!
-        Voluptatum molestiae expedita eius. Minima, omnis? Ut. Tenetur
-        aspernatur nobis vel commodi dolor natus distinctio soluta modi dolore
-        laboriosam obcaecati voluptate libero quam dicta culpa quas
-        perspiciatis, beatae, ullam quidem eligendi id laudantium, voluptatum
-        iste sapiente? Ipsa? Molestiae ratione et dignissimos libero repellat
-        debitis, sed vitae consectetur, dolore facere consequatur voluptas,
-        adipisci doloribus alias quod. Possimus sapiente in dolores omnis a.
-        Quaerat soluta mollitia dicta voluptates debitis.
-      </p>
-      <a href="https://bidlify.netlify.app/home" target="_blank">
-        Go to bidlify
-      </a>
-    </div>`;
+export const EmailTemplate = `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Bidlify - Subscription Confirmation</title>
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: Arial, sans-serif;
+                    background-color: #f9f9f9;
+                    color: #333;
+                }
+                .email-container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                    background: #ffffff;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                .header {
+                    background-color: #275da2;
+                    color: #ffffff;
+                    text-align: center;
+                    padding: 20px;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                .content {
+                    padding: 20px;
+                    text-align: center;
+                }
+                .content h1 {
+                    font-size: 28px;
+                    color: #275da2;
+                    margin-bottom: 10px;
+                }
+                .content p {
+                    font-size: 16px;
+                    line-height: 1.5;
+                    margin-bottom: 20px;
+                }
+                .cta {
+                    display: inline-block;
+                    background-color: #275da2;
+                    color: #ffffff;
+                    text-decoration: none;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+                .footer {
+                    background-color: #f1f1f1;
+                    text-align: center;
+                    padding: 10px;
+                    font-size: 12px;
+                    color: #777;
+                }
+                .footer a {
+                    color: #4caf50;
+                    text-decoration: none;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="email-container">
+                <!-- Header -->
+                <div class="header">
+                    Welcome to Bidlify!
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h1>Hello!</h1>
+                    <p>Thanks for subscribing to <strong>Bidlify</strong>! We’re excited to have you on board.</p>
+                    <p>Get ready to explore exclusive auctions and make the most of your experience with us.</p>
+                    <a href="https://bidlify.netlify.app/home" class="cta">Start Browsing</a>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    If you have any questions, feel free to <a href="mailto:support@bidlify.com">contact us</a>.
+                    <br />
+                    © 2024 Bidlify, Inc. All rights reserved.
+                </div>
+            </div>
+        </body>
+        </html>`;
