@@ -1,5 +1,4 @@
 import { Resend } from "resend";
-import EmailTemplate from "../../src/components/templates/EmailTemplate";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -11,8 +10,7 @@ export async function handler(event) {
       from: "Acme <onboarding@resend.dev>",
       to: body.to || ["default@example.com"],
       subject: body.subject || "Hello World!",
-      react: EmailTemplate(),
-      text: "",
+      react: body.react || "<strong>It works!</strong>",
     });
 
     return {
