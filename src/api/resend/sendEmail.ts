@@ -8,7 +8,7 @@ export const sendEmail = async ({ email }: { email: string }) => {
       body: JSON.stringify({
         to: [`${email}`],
         subject: "Hello World!",
-        html: EmailTemplate(),
+        react: EmailTemplate(),
       }),
     });
 
