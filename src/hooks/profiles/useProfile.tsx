@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Listing, Media } from "../../types/types";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import getSingleProfile from "../../api/profiles/getSingleProfile";
 import { sortListings } from "../../utils/sortListings";
 
@@ -38,6 +38,7 @@ export function useProfile() {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
   const { username } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -61,6 +62,7 @@ export function useProfile() {
         } else if ("errors" in profile) {
           setIsError(true);
           setErrorMessage(profile?.errors?.[0]?.message || "Unknown error");
+          navigate("/not-found");
         }
       } catch (error) {
         setIsError(true);
@@ -70,7 +72,7 @@ export function useProfile() {
       }
     }
     fetchProfile();
-  }, [username]);
+  }, [username, navigate]);
 
   useEffect(() => {
     if (!profile?.listings) return;
