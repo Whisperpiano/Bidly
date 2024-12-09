@@ -1,32 +1,28 @@
 import { useCallback, useEffect, useState } from "react";
 import { Listing } from "../../types/types";
 import getSingleListing from "../../api/listings/getSIngleListing";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-export function useSingleListing({ id }: { id: string }) {
+export function useSingleListing() {
   const [listing, setListing] = useState<Listing | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  // Función para realizar el fetch
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id") ?? "";
+  const navigate = useNavigate();
+
+  // Function to make refetch again
   const fetchSingleListing = useCallback(async () => {
-    if (!id) {
-      setIsError(true);
-      setErrorMessage("Invalid ID provided");
-      return;
-    }
-
     setIsLoading(true);
-    setIsError(false);
-    setErrorMessage("");
-
     try {
       const item = await getSingleListing({ id });
 
       if (!item || ("errors" in item && item.errors.length > 0)) {
         setIsError(true);
         setErrorMessage(item?.errors?.[0]?.message || "Unknown error");
-        setListing(undefined);
+        navigate("/not-found");
       } else if ("data" in item) {
         setListing(item.data);
       }
@@ -41,7 +37,7 @@ export function useSingleListing({ id }: { id: string }) {
     } finally {
       setIsLoading(false);
     }
-  }, [id]);
+  }, [id, navigate]);
 
   useEffect(() => {
     fetchSingleListing();
@@ -53,5 +49,6 @@ export function useSingleListing({ id }: { id: string }) {
     isError,
     errorMessage,
     refetch: fetchSingleListing,
+    id,
   };
 }
