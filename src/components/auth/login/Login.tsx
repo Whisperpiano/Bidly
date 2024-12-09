@@ -96,6 +96,7 @@ export default function Login({ onClose, handleViewChange }: LoginProps) {
             title="Email must be a valid stud.noroff.no address"
             placeholder="example@stud.noroff.no"
             className="ps-9 p-2.5 rounded-lg border outline-none text-sm placeholder:text-sm dark:bg-neutral-800 dark:border-neutral-800 dark:text-neutral-50 dark:focus:border-neutral-500 dark:placeholder:text-neutral-400 dark:focus:bg-neutral-900/50  bg-neutral-200/50 text-neutral-900 focus:border-neutral-400/50 placeholder:text-neutral-500 focus:bg-neutral-50"
+            autoComplete="off"
           />
         </div>
         {/* Password Input */}

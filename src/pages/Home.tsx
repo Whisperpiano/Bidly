@@ -3,6 +3,7 @@ import SubscribeBanner from "../components/home/SubscribeBanner";
 import ItemsGrid from "../components/grid/ItemsGrid";
 import RankingTable from "../components/table/RankingTable";
 import HeroBanner from "../components/home/HeroBanner";
+import { AuthGuard } from "../utils/AuthGuard";
 
 export default function Home() {
   const { listings: latestListings, isLoading: isLatestListingsLoading } =
@@ -21,6 +22,9 @@ export default function Home() {
       sortOrder: "asc",
     });
 
+  const isLogged = AuthGuard();
+  console.log(isLogged);
+
   return (
     <>
       <HeroBanner />
@@ -37,7 +41,7 @@ export default function Home() {
         isLoading={isFinishingListingsLoading}
       />
 
-      <RankingTable />
+      {isLogged && <RankingTable />}
       <SubscribeBanner />
     </>
   );

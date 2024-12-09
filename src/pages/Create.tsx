@@ -130,7 +130,7 @@ export default function Create() {
 
   return (
     <>
-      <section className="max-w-screen-sm mx-auto sm:border-x dark:border-neutral-800 border-neutral-200">
+      <section className="animate-reveal max-w-screen-sm mx-auto sm:border-x dark:border-neutral-800 border-neutral-200">
         <form name="create" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center justify-between px-0 sm:px-3 py-6 border-b dark:border-neutral-800 border-neutral-200 ">
             <h1 className="text-base sm:text-xl font-semibold dark:text-neutral-50 text-neutral-900">

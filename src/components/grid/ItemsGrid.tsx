@@ -43,7 +43,7 @@ export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
 
   return (
     <section
-      className={`rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6 ${
+      className={` rounded-lg sm:border dark:border-neutral-800 border-neutral-200 my-10 p-0 sm:p-6 ${
         isLoading ? "animate-pulse" : ""
       }`}
     >
