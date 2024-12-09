@@ -56,6 +56,18 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "auth",
+      onRehydrateStorage: () => () => {
+        syncStateAcrossTabs();
+      },
     }
   )
 );
+
+function syncStateAcrossTabs() {
+  window.addEventListener("storage", (event) => {
+    if (event.key === "auth") {
+      const newState = JSON.parse(event.newValue || "{}");
+      useAuthStore.setState(newState.state);
+    }
+  });
+}
