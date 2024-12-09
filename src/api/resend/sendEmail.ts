@@ -9,6 +9,7 @@ export const sendEmail = async ({ email }: { email: string }) => {
         to: [`${email}`],
         subject: "Hello World!",
         react: EmailTemplate(),
+        text: "",
       }),
     });
 
