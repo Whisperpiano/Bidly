@@ -10,8 +10,7 @@ export async function handler(event) {
       from: "Acme <onboarding@resend.dev>",
       to: body.to || ["default@example.com"],
       subject: body.subject || "Hello World!",
-      react: body.react || "<strong>It worksss!</strong>",
-      text: body.text || "",
+      html: body.react || "<strong>It worksss!</strong>",
     });
 
     return {

@@ -1,4 +1,4 @@
-import EmailTemplate from "../../components/templates/EmailTemplate";
+import { EmailTemplate } from "../../components/templates/EmailTemplate";
 
 export const sendEmail = async ({ email }: { email: string }) => {
   try {
@@ -8,7 +8,7 @@ export const sendEmail = async ({ email }: { email: string }) => {
       body: JSON.stringify({
         to: [`${email}`],
         subject: "Hello World!",
-        react: EmailTemplate(),
+        html: EmailTemplate,
         text: "",
       }),
     });

@@ -1,6 +1,4 @@
-export default function EmailTemplate() {
-  return (
-    <div>
+export const EmailTemplate = `<div>
       <h1>Hello !</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio
@@ -40,6 +38,4 @@ export default function EmailTemplate() {
       <a href="https://bidlify.netlify.app/home" target="_blank">
         Go to bidlify
       </a>
-    </div>
-  );
-}
+    </div>`;
