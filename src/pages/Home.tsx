@@ -4,7 +4,6 @@ import ItemsGrid from "../components/grid/ItemsGrid";
 import RankingTable from "../components/table/RankingTable";
 import HeroBanner from "../components/home/HeroBanner";
 import { AuthGuard } from "../utils/AuthGuard";
-import { sendEmail } from "../api/resend/sendEmail";
 
 export default function Home() {
   const { listings: latestListings, isLoading: isLatestListingsLoading } =
@@ -24,19 +23,10 @@ export default function Home() {
     });
 
   const isLogged = AuthGuard();
-  console.log(isLogged);
 
   return (
     <>
       <HeroBanner />
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          sendEmail();
-        }}
-      >
-        Send email
-      </button>
 
       <ItemsGrid
         title="Latest items"
