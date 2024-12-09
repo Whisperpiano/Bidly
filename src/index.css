@@ -56,3 +56,35 @@ input[type="search"]::-webkit-search-cancel-button {
   animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
     500ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
+
+/* Scroll personalizado para modo claro */
+.scrollbar-inside::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-inside::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Gris claro */
+  border-radius: 10px;
+}
+
+.scrollbar-inside::-webkit-scrollbar-thumb {
+  background: #888; /* Gris medio */
+  border-radius: 5px;
+}
+
+.scrollbar-inside::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Gris oscuro */
+}
+
+/* Scroll personalizado para modo oscuro */
+.dark .scrollbar-inside::-webkit-scrollbar-track {
+  background: #3e3e3e; /* Gris oscuro */
+}
+
+.dark .scrollbar-inside::-webkit-scrollbar-thumb {
+  background: #626262; /* Gris medio en modo oscuro */
+}
+
+.dark .scrollbar-inside::-webkit-scrollbar-thumb:hover {
+  background: #747474; /* Gris más claro en modo oscuro */
+}

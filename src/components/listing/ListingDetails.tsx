@@ -32,14 +32,14 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
             Latest bids
           </h2>
           {listing.bids.length > 0 ? (
-            <section className="border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3">
+            <section className="border dark:border-neutral-800 border-neutral-200 rounded-lg mt-3 max-h-[425px] overflow-y-auto scrollbar-inside">
               <div className="cursor-pointer group text-sm md:text-base  p-1.5 md:p-3 ">
                 {listing.bids
                   .slice()
                   .sort(
                     (a, b) =>
-                      new Date(a.created).getTime() -
-                      new Date(b.created).getTime()
+                      new Date(b.created).getTime() -
+                      new Date(a.created).getTime()
                   )
                   .map((bid) => (
                     <Bidder key={bid.id} bid={bid} />
