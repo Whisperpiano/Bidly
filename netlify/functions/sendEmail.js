@@ -7,10 +7,10 @@ export async function handler(event) {
     const body = JSON.parse(event.body);
 
     const response = await resend.emails.send({
-      from: "Bidlify <newsletter@bidlify.dev>",
+      from: "Bidlify | Newsletter <onboarding@resend.dev>",
       to: body.to || ["default@example.com"],
-      subject: body.subject || "Sending emails with resend",
-      html: body.html || "<strong>This works!</strong>",
+      subject: body.subject || "Resend is amazing",
+      html: body.html || "<strong>It works!</strong>",
     });
 
     return {
