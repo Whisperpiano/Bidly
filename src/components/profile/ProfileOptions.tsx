@@ -3,6 +3,7 @@ import { PiDotsThreeBold } from "react-icons/pi";
 import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../utils/ScrollTop";
+import { toast } from "sonner";
 
 interface ProfileOptionsProps {
   setAvatar: (picture: string) => void;
@@ -41,6 +42,7 @@ export default function ProfileOptions({
       logout();
       navigate("/");
       scrollToTop();
+      toast.info("You have been logged out successfully!");
     }
   }
 

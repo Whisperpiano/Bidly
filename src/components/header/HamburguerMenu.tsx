@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/user";
 import { AuthGuard } from "../../utils/AuthGuard";
 import { scrollToTop } from "../../utils/ScrollTop";
+import { toast } from "sonner";
 
 export default function HamburguerMenu({
   onLoginOpen,
@@ -64,6 +65,7 @@ export default function HamburguerMenu({
       logout();
       navigate("/");
       scrollToTop();
+      toast.info("You have been logged out successfully!");
     }
   };
 

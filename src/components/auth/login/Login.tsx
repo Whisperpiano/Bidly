@@ -6,6 +6,7 @@ import { PiLockFill } from "react-icons/pi";
 import Alert from "../../elements/Alert";
 import LoginFooter from "./LoginFooter";
 import LoginHeader from "./LoginHeader";
+import { toast } from "sonner";
 
 interface LoginProps {
   onClose: () => void;
@@ -36,6 +37,7 @@ export default function Login({ onClose, handleViewChange }: LoginProps) {
       reset();
       setAuth(user.data.name, user.data.accessToken);
       onClose();
+      toast.success(`Welcome back, ${user.data.name}!`);
     }
   };
 

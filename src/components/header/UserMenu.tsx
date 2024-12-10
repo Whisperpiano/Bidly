@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthGuard } from "../../utils/AuthGuard";
 import { useAuthStore } from "../../store/user";
 import { scrollToTop } from "../../utils/ScrollTop";
+import { toast } from "sonner";
 
 export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,6 +55,7 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
       logout();
       navigate("/");
       scrollToTop();
+      toast.info("You have been logged out successfully!");
     }
   };
 
