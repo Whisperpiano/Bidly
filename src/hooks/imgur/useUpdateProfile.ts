@@ -33,6 +33,12 @@ export function useUpdateProfile() {
       // Upload the image to imgur
       const picture = await uploadPicture(file);
 
+      toast.promise(picture, {
+        loading: "Uploading image...",
+        success: "Image uploaded successfully!",
+        error: "Something went wrong uploading the image",
+      });
+
       if (!picture.link) {
         setImgurError("Something went wrong uploading the image");
         throw new Error("Something went wrong uploading the image");
@@ -47,7 +53,6 @@ export function useUpdateProfile() {
 
       if ("data" in update) {
         updateCallback(picture.link);
-        toast.success("Image updated successfully!");
       } else if ("errors" in update) {
         setNoroffApiError(update.errors[0].message);
         throw new Error(update.errors[0].message);
@@ -58,7 +63,6 @@ export function useUpdateProfile() {
       }
     } catch (error) {
       console.log(`Uknown error uploading image: ${error}`);
-      toast.error("Something went wrong uploading the image");
     } finally {
       setIsUploading(false);
     }
