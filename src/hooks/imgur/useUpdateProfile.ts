@@ -27,22 +27,20 @@ export function useUpdateProfile() {
       return;
     }
 
+    // Start showing the toast for uploading
+    const toastId = toast.loading("Uploading picture...");
+
     setIsUploading(true);
 
     try {
       // Upload the image to imgur
       const picture = await uploadPicture(file);
 
-      toast.promise(picture, {
-        loading: "Uploading image...",
-        success: "Image uploaded successfully!",
-        error: "Something went wrong uploading the image",
-      });
-
       if (!picture.link) {
         setImgurError("Something went wrong uploading the image");
         throw new Error("Something went wrong uploading the image");
       }
+
       // Update the profile in NOROFF API
       const update = await updateProfile({ [profileField]: picture.link });
 
@@ -57,12 +55,17 @@ export function useUpdateProfile() {
         setNoroffApiError(update.errors[0].message);
         throw new Error(update.errors[0].message);
       }
+
       // Update the profile in the localstorage
       if (username && accessToken) {
         setAuth(username, accessToken);
       }
+
+      // If everything is successful, show the success toast
+      toast.success("Image updated successfully!", { id: toastId });
     } catch (error) {
-      console.log(`Uknown error uploading image: ${error}`);
+      console.log(`Unknown error uploading image: ${error}`);
+      toast.error("Something went wrong uploading the image", { id: toastId });
     } finally {
       setIsUploading(false);
     }
