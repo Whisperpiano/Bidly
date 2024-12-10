@@ -2,6 +2,7 @@ import { useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
 import updateProfile from "../../api/profiles/updateProfile";
 import { useAuthStore } from "../../store/user";
+import { toast } from "sonner";
 
 export function useUpdateProfile() {
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -31,6 +32,12 @@ export function useUpdateProfile() {
     try {
       // Upload the image to imgur
       const picture = await uploadPicture(file);
+
+      toast.promise(uploadPicture(file), {
+        loading: "Uploading image...",
+        success: "Image uploaded successfully!",
+        error: "Something went wrong uploading the image",
+      });
 
       if (!picture.link) {
         setImgurError("Something went wrong uploading the image");
