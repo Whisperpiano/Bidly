@@ -38,24 +38,11 @@ export default function PlaceBidModal({
     name: "tiny",
     value: 1,
   });
+  const [hasEnoughCoins, setHasEnoughCoins] = useState<boolean>(false);
 
-  const { isLoading, hasEnoughCoins, makeBid } = useMakeBid({
-    price,
-    selectedBid,
-    user,
+  const { isLoading, makeBid } = useMakeBid({
     refetch,
   });
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
 
   const handleBidTypeChange = (type: BidSelection) => {
     if (selectedBid.name === type) return;
@@ -70,6 +57,24 @@ export default function PlaceBidModal({
     await makeBid(id, selectedBid.value + price);
     onClose();
   };
+
+  useEffect(() => {
+    if (user) {
+      const requiredAmount = selectedBid.value + price;
+      setHasEnoughCoins(user?.credits >= requiredAmount);
+    }
+  }, [selectedBid, user, price]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

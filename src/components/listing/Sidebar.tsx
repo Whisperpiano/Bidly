@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { AuthGuard } from "../../utils/AuthGuard";
 import { Bidder, Listing } from "../../types/types";
 import Badge from "../elements/Badge";
-import PlaceBidModal from "../modal/PlaceBidModal";
 import Creator from "./Creator";
 import PricingAndTiming from "./PricingAndTiming";
 import ListingOptions from "./ListingOptions";
@@ -13,43 +12,26 @@ import { useAuthStore } from "../../store/user";
 
 export default function Sidebar({
   listing,
-  id,
   refetch,
+  lastBidder,
 }: {
   listing: Listing;
   id: string;
   refetch: () => void;
+  lastBidder: Bidder | null;
 }) {
-  const [isPlaceBidModalOpen, setIsPlaceBidModalOpen] = useState(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
-  const [lastBidder, setLastBidder] = useState<Bidder | null>(null);
   const isLoggedIn = AuthGuard();
   const { handleLoginOpen } = useModalStore();
   const userLogged = useAuthStore((state) => state.username);
-
-  function handlePlaceBidModalOpen() {
-    setIsPlaceBidModalOpen(true);
-  }
-  function handlePlaceBidModalClose() {
-    setIsPlaceBidModalOpen(false);
-  }
+  const handlePlaceBidModalOpen = useModalStore(
+    (state) => state.handlePlaceABidOpen
+  );
 
   useEffect(() => {
     const currentDate = new Date();
     const endDate = new Date(listing.endsAt);
     setIsFinished(currentDate > endDate);
-  }, [listing]);
-
-  useEffect(() => {
-    if (listing.bids.length > 0) {
-      const lastBidder = listing.bids
-        .slice()
-        .sort(
-          (a, b) =>
-            new Date(b.created).getTime() - new Date(a.created).getTime()
-        )[0];
-      setLastBidder(lastBidder);
-    }
   }, [listing]);
 
   return (
@@ -121,13 +103,6 @@ export default function Sidebar({
       </article>
 
       {/* Place a bid modal */}
-      <PlaceBidModal
-        isOpen={isPlaceBidModalOpen}
-        onClose={handlePlaceBidModalClose}
-        price={lastBidder?.amount || 0}
-        id={id}
-        refetch={refetch}
-      />
     </>
   );
 }

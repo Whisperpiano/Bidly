@@ -4,34 +4,15 @@ import { AuthGuard } from "../../utils/AuthGuard";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/user";
-import { useEffect, useState } from "react";
-import getSingleProfile from "../../api/profiles/getSingleProfile";
 
 interface WalletBtnProps {
   onLoginOpen: () => void;
 }
 
 export default function WalletBtn({ onLoginOpen }: WalletBtnProps) {
-  const userCoins = useAuthStore((state) => state.profile);
   const userName = useAuthStore((state) => state.profile?.name);
   const isLoggedIn = AuthGuard();
-  const [credits, setCredits] = useState<number>(0);
-
-  useEffect(() => {
-    async function fetchProfile() {
-      if (!userName) return;
-      const profile = await getSingleProfile({ username: userName });
-      if (!profile) return;
-      if ("data" in profile) {
-        setCredits(profile.data.credits);
-      }
-    }
-    fetchProfile();
-    const interval = setInterval(() => {
-      fetchProfile();
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [userName, userCoins]);
+  const credits = useAuthStore((state) => state.profile?.credits);
 
   return (
     <>
