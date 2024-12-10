@@ -33,7 +33,7 @@ export function useUpdateProfile() {
       // Upload the image to imgur
       const picture = await uploadPicture(file);
 
-      toast.promise(uploadPicture(file), {
+      toast.promise(picture, {
         loading: "Uploading image...",
         success: "Image uploaded successfully!",
         error: "Something went wrong uploading the image",
