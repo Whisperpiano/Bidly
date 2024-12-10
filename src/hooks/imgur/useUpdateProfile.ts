@@ -27,13 +27,10 @@ export function useUpdateProfile() {
       return;
     }
 
-    // Start showing the toast for uploading
     const toastId = toast.loading("Uploading picture...");
-
     setIsUploading(true);
 
     try {
-      // Upload the image to imgur
       const picture = await uploadPicture(file);
 
       if (!picture.link) {
@@ -41,7 +38,6 @@ export function useUpdateProfile() {
         throw new Error("Something went wrong uploading the image");
       }
 
-      // Update the profile in NOROFF API
       const update = await updateProfile({ [profileField]: picture.link });
 
       if (!update) {
@@ -56,12 +52,10 @@ export function useUpdateProfile() {
         throw new Error(update.errors[0].message);
       }
 
-      // Update the profile in the localstorage
       if (username && accessToken) {
         setAuth(username, accessToken);
       }
 
-      // If everything is successful, show the success toast
       toast.success("Image updated successfully!", { id: toastId });
     } catch (error) {
       console.log(`Unknown error uploading image: ${error}`);
