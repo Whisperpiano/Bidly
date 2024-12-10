@@ -2,6 +2,7 @@ import { useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
 import updateProfile from "../../api/profiles/updateProfile";
 import { useAuthStore } from "../../store/user";
+import { toast } from "sonner";
 
 export function useUpdateProfile() {
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -46,6 +47,7 @@ export function useUpdateProfile() {
 
       if ("data" in update) {
         updateCallback(picture.link);
+        toast.success("Image updated successfully!");
       } else if ("errors" in update) {
         setNoroffApiError(update.errors[0].message);
         throw new Error(update.errors[0].message);
@@ -56,6 +58,7 @@ export function useUpdateProfile() {
       }
     } catch (error) {
       console.log(`Uknown error uploading image: ${error}`);
+      toast.error("Something went wrong uploading the image");
     } finally {
       setIsUploading(false);
     }
