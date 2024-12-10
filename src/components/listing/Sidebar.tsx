@@ -101,8 +101,6 @@ export default function Sidebar({
           )}
         </div>
       </article>
-
-      {/* Place a bid modal */}
     </>
   );
 }

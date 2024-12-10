@@ -12,6 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import createListing from "../api/listings/createListing";
 import { scrollToTop } from "../utils/ScrollTop";
+import { toast } from "sonner";
 
 export interface CreateInputs {
   title: string;
@@ -85,18 +86,27 @@ export default function Create() {
         setMedia([]);
         setTags([]);
         scrollToTop();
-        navigate(
-          `/listing/${response.data.title
-            .toLocaleLowerCase()
-            .split(" ")
-            .join("-")}?id=${response.data.id}`
-        );
+        navigate("/home");
+        toast.success("Listing created successfully!", {
+          action: {
+            label: " View listing",
+            onClick: () => {
+              navigate(
+                `/listing/${response.data.title
+                  .toLocaleLowerCase()
+                  .split(" ")
+                  .join("-")}?id=${response.data.id}`
+              );
+            },
+          },
+        });
       }
       if ("errors" in response) {
         setSubmitError(response.errors[0]?.message || "Something went wrong");
+        toast.error(response.errors[0]?.message || "Something went wrong");
       }
     } catch (error) {
-      alert(`${submitError} ${error}. Try again later.`);
+      toast.error(`${submitError} ${error}. Try again later.`);
     } finally {
       reset();
     }

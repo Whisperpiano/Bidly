@@ -1,6 +1,7 @@
 import { useState } from "react";
 import setBid from "../../api/listings/setBid";
 import { useAuthStore } from "../../store/user";
+import { toast } from "sonner";
 
 interface MakeBidProps {
   refetch: () => void;
@@ -30,10 +31,12 @@ export function useMakeBid({ refetch }: MakeBidProps) {
         setErrorMessage("");
         updateCredits(amount);
         refetch();
+        toast.success("Bid placed successfully!");
       }
       if ("errors" in bid) {
         setIsError(true);
         setErrorMessage(bid.errors[0]?.message || "Unknown error");
+        toast.error(bid.errors[0]?.message || "Unknown error");
       }
     } catch (error) {
       console.error(error);

@@ -6,6 +6,7 @@ import {
   PiShareFatFill,
 } from "react-icons/pi";
 import Spinner from "../elements/Spinner";
+import { toast } from "sonner";
 
 //TODO refresh button
 
@@ -21,20 +22,22 @@ export default function ListingOptions({ refetch }: { refetch: () => void }) {
 
     navigator.clipboard.writeText(window.location.href);
     setIsCopied(true);
+    toast.success("Link copied to clipboard!");
 
     timeoutRef.current = setTimeout(() => {
       setIsCopied(false);
-    }, 2000);
+    }, 4000);
   };
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
     try {
       refetch();
-      // to simulate a delay
       await new Promise((resolve) => setTimeout(resolve, 1200));
+      toast.success("Listing updated successfully!");
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong, please try again later.");
     } finally {
       setIsRefreshing(false);
     }
