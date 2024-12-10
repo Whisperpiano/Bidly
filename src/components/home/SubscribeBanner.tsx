@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { sendEmail } from "../../api/resend/sendEmail";
 
 interface NewsletterInput {
   email: string;
@@ -8,19 +7,11 @@ interface NewsletterInput {
 export default function SubscribeBanner() {
   const { register, handleSubmit, reset } = useForm<NewsletterInput>();
 
-  const onSubmit: SubmitHandler<NewsletterInput> = async (data) => {
-    try {
-      const response = await sendEmail({ email: data.email });
-      if (response.response.data.id) {
-        alert("Email sent successfully! Please check your inbox.");
-      } else {
-        throw new Error("Something went wrong");
-      }
-    } catch (error) {
-      alert(`Something went wrong: ${error}. Try again later.`);
-    } finally {
-      reset();
-    }
+  const onSubmit: SubmitHandler<NewsletterInput> = () => {
+    alert(
+      `Thank you for subscribing, you will receive a confirmation email soon!`
+    );
+    reset();
   };
 
   return (
