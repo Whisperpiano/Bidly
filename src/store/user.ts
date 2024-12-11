@@ -64,10 +64,32 @@ export const useAuthStore = create<AuthState>()(
 );
 
 function syncStateAcrossTabs() {
-  window.addEventListener("storage", (event) => {
+  window.addEventListener("storage", async (event) => {
     if (event.key === "auth") {
       const newState = JSON.parse(event.newValue || "{}");
-      useAuthStore.setState(newState.state);
+      await useAuthStore.setState(newState.state);
+      if (newState.state.username) {
+        const profile = await getSingleProfile({
+          username: newState.state.username,
+        });
+        if (profile && "data" in profile) {
+          useAuthStore.setState({ profile: profile.data });
+        } else {
+          useAuthStore.setState({ profile: null });
+        }
+      }
+    }
+  });
+
+  window.addEventListener("beforeunload", async () => {
+    const state = useAuthStore.getState();
+    if (state.username) {
+      const profile = await getSingleProfile({ username: state.username });
+      if (profile && "data" in profile) {
+        useAuthStore.setState({ profile: profile.data });
+      } else {
+        useAuthStore.setState({ profile: null });
+      }
     }
   });
 }
