@@ -9,11 +9,11 @@ import {
 } from "react-icons/pi";
 import { useThemeStore } from "../../store/theme";
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthGuard } from "../../utils/AuthGuard";
 import { useAuthStore } from "../../store/user";
-import { scrollToTop } from "../../utils/ScrollTop";
-import { toast } from "sonner";
+
+import { useModalStore } from "../../store/modal";
 
 export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,10 +21,11 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
   const theme = useThemeStore((state) => state.theme);
   const timeoutRef = useRef<number | null>(null);
   const isLoggedIn = AuthGuard();
-  const logout = useAuthStore((state) => state.clearAuth);
   const userName = useAuthStore((state) => state.profile?.name);
   const userPicture = useAuthStore((state) => state.profile?.avatar.url);
-  const navigate = useNavigate();
+  const handleConfirmLogoutOpen = useModalStore(
+    (state) => state.handleConfirmLogoutOpen
+  );
 
   const handleMouseEnter = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -50,13 +51,8 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
 
   const handleLogout = () => {
     setIsOpen(false);
-    const confirm = window.confirm("Are you sure you want to logout?");
-    if (confirm) {
-      logout();
-      navigate("/");
-      scrollToTop();
-      toast.info("You have been logged out successfully!");
-    }
+
+    handleConfirmLogoutOpen();
   };
 
   return (
