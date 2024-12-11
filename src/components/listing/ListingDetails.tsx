@@ -22,7 +22,7 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
           <h2 className="pt-6 text-sm md:text-base font-semibold dark:text-neutral-50 text-neutral-900">
             Description
           </h2>
-          <p className="text-sm md:text-base pt-2 dark:text-neutral-50 text-neutral-900">
+          <p className="text-sm md:text-base pt-2 dark:text-neutral-50 text-neutral-900 truncate">
             {listing.description}
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
               </div>
             </section>
           ) : (
-            <div className="mt-3 relative animate-fastreveal border dark:border-neutral-800 border-neutral-200 rounded-lg mt-">
+            <div className="mt-3 relative animate-fastreveal border dark:border-neutral-800 border-neutral-200 rounded-lg ">
               <p className="absolute z-10 w-full h-full max-h-screen text-center flex flex-col items-center justify-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
                 No active bids yet.
                 <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
