@@ -10,7 +10,7 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
           Overview
         </button>
         <button
-          className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:pointer-events-none"
+          className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:cursor-not-allowed opacity-75"
           disabled
         >
           Analytics
@@ -48,13 +48,13 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
             </section>
           ) : (
             <div className="mt-3 relative animate-fastreveal border dark:border-neutral-800 border-neutral-200 rounded-lg ">
-              <p className="absolute z-10 w-full h-full max-h-screen text-center flex flex-col items-center justify-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
+              <p className="absolute z-20 w-full h-full max-h-screen text-center flex flex-col items-center justify-center text-xl font-semibold dark:text-neutral-50 text-neutral-900 rounded-lg">
                 No active bids yet.
                 <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
                   Be the first to make a bid!
                 </span>
               </p>
-              <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b dark:after:from-neutral-950/85 dark:after:to-neutral-950  after:from-neutral-50/85 after:to-neutral-50 after:z-10 animate-pulse">
+              <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b dark:after:from-neutral-950/75 dark:after:to-neutral-950  after:from-neutral-50/85 after:to-neutral-50 after:z-10 rounded-lg ">
                 <BiddersSkeleton />
               </div>
             </div>

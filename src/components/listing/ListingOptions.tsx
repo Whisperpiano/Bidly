@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import {
   PiArrowClockwiseBold,
   PiCheckBold,
-  PiDotsThreeBold,
   PiShareFatFill,
 } from "react-icons/pi";
 import Spinner from "../elements/Spinner";
@@ -81,16 +80,6 @@ export default function ListingOptions({ refetch }: { refetch: () => void }) {
           )}
         </button>
       </div>
-      <button
-        className="dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 disabled:cursor-not-allowed"
-        disabled
-      >
-        <span className="sr-only">Options</span>
-        <PiDotsThreeBold
-          size={20}
-          className="dark:text-neutral-400 dark:hover:text-neutral-200 text-neutral-500 hover:text-neutral-700 duration-0"
-        />
-      </button>
     </>
   );
 }

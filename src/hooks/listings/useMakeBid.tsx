@@ -17,10 +17,6 @@ export function useMakeBid({ refetch }: MakeBidProps) {
     setIsLoading(true);
 
     try {
-      const confirm = window.confirm(
-        `Heads up! Bidding will cost you ${amount} NOFF. Ready to roll the dice?`
-      );
-      if (!confirm) return;
       const bid = await setBid({ id, amount });
 
       if (!bid) {
