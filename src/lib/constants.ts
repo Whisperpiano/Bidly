@@ -14,7 +14,12 @@ export const FILTER_LISTINGS_OPTIONS = [
   "Sort by title Z-A",
 ];
 
-export const FILTER_PROFILE_OPTIONS = ["Sort by newest", "Sort by oldest"];
+export const FILTER_PROFILE_OPTIONS = [
+  "Sort by newest",
+  "Sort by oldest",
+  "Only active",
+  "Only finished",
+];
 
 const NOROFF_API_URL_BASE = "https://v2.api.noroff.dev";
 
