@@ -8,6 +8,7 @@ import GridItemSkeleton from "../components/skeletons/GridItemSkeleton";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../store/user";
 import { scrollToTop } from "../utils/ScrollTop";
+import { Link } from "react-router-dom";
 
 export type ProfileButton = "items" | "wins";
 
@@ -68,17 +69,27 @@ export default function Profile() {
 
             {selectedButton === "items" && listings.length === 0 ? (
               <div className="relative animate-fastreveal">
-                <p className="absolute z-10 w-full h-full max-h-screen text-center flex flex-col items-center justify-center -translate-y-10 text-xl font-semibold dark:text-neutral-50 text-neutral-900">
-                  {username === profile.name
-                    ? "No listings created yet."
-                    : "User has no listings yet."}
-                  <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
+                <div className="absolute z-20 w-full h-full max-h-screen flex flex-col items-center justify-center -translate-y-10">
+                  <p className="text-center flex flex-col items-center justify-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
                     {username === profile.name
-                      ? "Create your first listing to get started!"
-                      : "Stay tuned for some cool stuff soon!"}
-                  </span>
-                </p>
-                <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b dark:after:from-neutral-950/85 dark:after:to-neutral-950 after:from-neutral-50/85 after:to-neutral-50 after:z-10 animate-pulse">
+                      ? "No listings created yet."
+                      : "User has no listings yet."}
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
+                      {username === profile.name
+                        ? "Create your first listing to get started!"
+                        : "Stay tuned for some cool stuff soon!"}
+                    </span>
+                  </p>
+                  {username === profile.name && (
+                    <Link
+                      to={"/create"}
+                      className="mt-3 rounded-lg text-sm flex items-center gap-2 h-[36px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
+                    >
+                      Create list
+                    </Link>
+                  )}
+                </div>
+                <div className="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-6 px-0 md:px-2 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b dark:after:from-neutral-950/85 dark:after:to-neutral-950 after:from-neutral-50/85 after:to-neutral-50 after:z-10 ">
                   {Array.from({ length: skeletonsToShow }, (_, index) => (
                     <GridItemSkeleton key={index} />
                   ))}

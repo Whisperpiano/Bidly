@@ -23,7 +23,7 @@ export default function ProfileNavigationHeader({
         onClick={() => setSelectedButton("items")}
       >
         Items{" "}
-        <span className="font-normal dark:text-neutral-400 text-neutral-600">
+        <span className="font-normal dark:text-neutral-400 text-neutral-500">
           ({itemsNumber})
         </span>
       </button>
@@ -37,7 +37,7 @@ export default function ProfileNavigationHeader({
         disabled={winsNumber === 0}
       >
         Wins{" "}
-        <span className="font-normal dark:text-neutral-400 text-neutral-600">
+        <span className="font-normal dark:text-neutral-400 text-neutral-500">
           ({winsNumber})
         </span>
       </button>
