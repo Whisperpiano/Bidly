@@ -24,8 +24,6 @@ export default function Home() {
 
   const isLogged = AuthGuard();
 
-  console.log("hola");
-
   return (
     <>
       <HeroBanner />
