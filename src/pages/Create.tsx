@@ -93,7 +93,8 @@ export default function Create() {
             onClick: () => {
               navigate(
                 `/listing/${response.data.title
-                  .toLocaleLowerCase()
+                  .replace(/[^a-zA-Z0-9]/g, "")
+                  .toLowerCase()
                   .split(" ")
                   .join("-")}?id=${response.data.id}`
               );

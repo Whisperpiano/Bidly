@@ -24,7 +24,11 @@ export default function ProfileItemCard({
 
   return (
     <Link
-      to={`/listing/${title.toLocaleLowerCase().split(" ").join("-")}?id=${id}`}
+      to={`/listing/${title
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .toLowerCase()
+        .split(" ")
+        .join("-")}?id=${id}`}
       aria-label={`View details for the ${title} item`}
       viewTransition
     >
