@@ -42,13 +42,13 @@ export default function ProfileNavigationHeader({
         </span>
       </button>
       <button
-        className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90"
+        className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:pointer-events-none opacity-75"
         disabled
       >
         About
       </button>
       <button
-        className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90"
+        className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:pointer-events-none opacity-75"
         disabled
       >
         Activity
