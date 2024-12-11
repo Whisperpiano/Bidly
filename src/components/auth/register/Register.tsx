@@ -5,6 +5,7 @@ import { MdEmail } from "react-icons/md";
 import Alert from "../../elements/Alert";
 import RegisterHeader from "./RegisterHeader";
 import RegisterFooter from "./RegisterFooter";
+import { toast } from "sonner";
 
 interface RegisterProps {
   handleViewChange: (view: "login" | "register") => void;
@@ -24,8 +25,7 @@ export default function Register({ handleViewChange }: RegisterProps) {
     reset,
   } = useForm<RegisterInputs>();
 
-  const { isLoading, isSuccess, isError, errorMessage, registerUser } =
-    useRegister();
+  const { isLoading, isError, errorMessage, registerUser } = useRegister();
 
   const onSubmit: SubmitHandler<RegisterInputs> = async ({
     username,
@@ -39,6 +39,8 @@ export default function Register({ handleViewChange }: RegisterProps) {
       if (document.activeElement instanceof HTMLInputElement) {
         document.activeElement.blur();
       }
+      toast.success("User registered successfully!");
+      handleViewChange("login");
     }
   };
 
@@ -49,16 +51,13 @@ export default function Register({ handleViewChange }: RegisterProps) {
     >
       <RegisterHeader handleViewChange={handleViewChange} />
 
-      {!isError && !isSuccess && (
+      {!isError && (
         <Alert
           text="Only stud.noroff.no accounts are supported"
           type="information"
         />
       )}
       {isError && <Alert text={errorMessage} type="error" />}
-      {isSuccess && (
-        <Alert text={`User registered successfully!`} type="success" />
-      )}
 
       <form name="register" onSubmit={handleSubmit(onSubmit)}>
         {/* Username Input */}
