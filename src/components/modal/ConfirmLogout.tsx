@@ -3,6 +3,7 @@ import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../utils/ScrollTop";
 import { toast } from "sonner";
+import { PiXBold } from "react-icons/pi";
 
 interface ModalProps {
   isOpen: boolean;
@@ -48,22 +49,35 @@ export default function ConfirmLogout({ isOpen, onClose }: ModalProps) {
       onClick={handleClose}
     >
       <div className="flex overflow-hidden max-w-sm dark:bg-neutral-900 bg-neutral-50 rounded-lg p-6">
-        <div className="flex flex-col gap-3">
-          <p>Are you sure you want to sign out?</p>
+        <div className="flex flex-col gap-3 w-[320px]">
+          <button
+            type="button"
+            onClick={handleClose}
+            className="absolute z-50 top-3 right-3 rounded-full p-2 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700 bg-neutral-200/50 text-neutral-900 hover:bg-neutral-200"
+          >
+            <span className="sr-only">Close auth modal</span>
+            <PiXBold size={15} />
+          </button>
+          <h2 className="pb-1.5 text-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
+            Sign out
+          </h2>
+          <p className="text-center pb-3 text-sm dark:text-neutral-50 text-neutral-900">
+            Are you sure you want to sign out?
+          </p>
           <div className="flex items-center justify-between gap-3">
             <button
               type="button"
               onClick={handleCancel}
-              className="rounded-lg text-sm flex items-center gap-2 h-[42px] bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 w-full justify-center font-semibold "
+              className="rounded-lg text-sm flex items-center gap-2 h-[42px] bg-neutral-200/50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-700 w-full justify-center font-semibold "
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={handleConfirm}
-              className="rounded-lg text-sm flex items-center gap-2 h-[42px] bg-red-600 text-neutral-900 dark:bg-red-400 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 w-full justify-center font-semibold "
+              className="rounded-lg text-sm flex items-center gap-2 h-[42px] dark:bg-red-900 dark:text-red-50 dark:border-red-900 bg-red-300 text-neutral-900 border-red-200 hover:bg-red-400 w-full dark:hover:bg-red-800 justify-center font-semibold "
             >
-              Sign out
+              Yes
             </button>
           </div>
         </div>
