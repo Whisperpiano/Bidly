@@ -1,14 +1,45 @@
-export default function ProfileNavigationHeader() {
+import { Dispatch, SetStateAction } from "react";
+import { ProfileButton } from "../../pages/Profile";
+
+export default function ProfileNavigationHeader({
+  selectedButton,
+  setSelectedButton,
+  winsNumber,
+  itemsNumber,
+}: {
+  selectedButton: ProfileButton;
+  setSelectedButton: Dispatch<SetStateAction<ProfileButton>>;
+  winsNumber: number;
+  itemsNumber: number;
+}) {
   return (
     <header className="text-sm md:text-base">
-      <button className="border-b-2 dark:text-neutral-50 text-neutral-900 dark:border-neutral-50 border-neutral-950 py-2 font-semibold">
-        Items
+      <button
+        className={`py-2 ${
+          selectedButton === "items"
+            ? "border-b-2 dark:text-neutral-50 text-neutral-900 dark:border-neutral-50 border-neutral-950  font-semibold"
+            : ""
+        }`}
+        onClick={() => setSelectedButton("items")}
+      >
+        Items{" "}
+        <span className="font-normal dark:text-neutral-400 text-neutral-600">
+          ({itemsNumber})
+        </span>
       </button>
       <button
-        className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:cursor-not-allowed"
-        disabled
+        className={`ml-6 py-2 ${
+          selectedButton === "wins"
+            ? "border-b-2 dark:text-neutral-50 text-neutral-900 dark:border-neutral-50 border-neutral-950  font-semibold"
+            : ""
+        }`}
+        onClick={() => setSelectedButton("wins")}
+        disabled={winsNumber === 0}
       >
-        Wins
+        Wins{" "}
+        <span className="font-normal dark:text-neutral-400 text-neutral-600">
+          ({winsNumber})
+        </span>
       </button>
       <button
         className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:cursor-not-allowed"
