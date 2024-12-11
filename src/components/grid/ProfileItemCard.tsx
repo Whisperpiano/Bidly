@@ -15,14 +15,20 @@ export interface ProfileItemCardProps {
 
 export default function ProfileItemCard({
   item,
+  isWin,
 }: {
   item: ProfileItemCardProps;
+  isWin: boolean;
 }) {
   const { id, title, description, endsAt, media } = item;
 
   return (
     <Link
-      to={`/listing/${title.toLocaleLowerCase().split(" ").join("-")}?id=${id}`}
+      to={`/listing/${title
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .toLowerCase()
+        .split(" ")
+        .join("-")}?id=${id}`}
       aria-label={`View details for the ${title} item`}
       viewTransition
     >
@@ -47,14 +53,16 @@ export default function ProfileItemCard({
           </span>
         </div>
 
-        <footer className="dark:bg-neutral-900 bg-neutral-100 rounded-lg p-3 ">
-          <div className="flex items-center justify-between">
-            <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
-              Finishing
-            </span>
-            <TimeLeft endsAt={endsAt} />
-          </div>
-        </footer>
+        {!isWin && (
+          <footer className="dark:bg-neutral-900 bg-neutral-100 rounded-lg p-3 ">
+            <div className="flex items-center justify-between">
+              <span className="dark:text-neutral-400 text-neutral-600 font-semibold text-xs xs:text-sm">
+                Finishing
+              </span>
+              <TimeLeft endsAt={endsAt} />
+            </div>
+          </footer>
+        )}
       </article>
     </Link>
   );
