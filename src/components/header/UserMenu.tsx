@@ -160,19 +160,19 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
         <div className="py-2 text-sm ">
           <ul className="select-none">
             <li className="cursor-normal">
-              <span className="px-4 py-2 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
+              <span className="px-4 py-2 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5 opacity-75">
                 <PiGearFill
                   size={16}
-                  className="text-neutral-500 dark:text-neutral-400 duration-0"
+                  className="text-neutral-500 dark:text-neutral-400 duration-0 opacity-75"
                 />
                 Settings
               </span>
             </li>
             <li className="cursor-normal">
-              <span className="px-4 py-2 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
+              <span className="px-4 py-2 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5 opacity-75">
                 <PiGlobeFill
                   size={16}
-                  className="dark:text-neutral-300 text-neutral-700 duration-0"
+                  className="text-neutral-500 dark:text-neutral-400 duration-0 opacity-75"
                 />
                 Language
               </span>

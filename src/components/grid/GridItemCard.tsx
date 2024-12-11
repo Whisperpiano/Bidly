@@ -38,7 +38,7 @@ export default function GridItemCard({ item }: { item: Listing }) {
       aria-label={`View details for the ${title} item`}
       viewTransition
     >
-      <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
+      <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2 transition-all duration-300 hover:border-neutral-400 hover:dark:border-neutral-600 hover:-translate-y-2 ">
         <div>
           <img
             src={
@@ -54,7 +54,7 @@ export default function GridItemCard({ item }: { item: Listing }) {
           </h3>
 
           <span
-            className="text-xs xs:text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1 "
+            className="text-xs xs:text-sm font-semibold dark:text-neutral-400 text-neutral-500 flex items-center gap-1 hover:underline"
             onClick={handleClick}
           >
             {seller.name}
