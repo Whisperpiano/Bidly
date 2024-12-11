@@ -29,13 +29,13 @@ export default function Gallery({ media }: { media: Media[] }) {
         />
       </div>
 
-      {media.length > 1 && (
-        <div className="grid grid-cols-5 gap-2 mt-2 ">
-          {media.map((picture, index) => (
+      {media.length > 0 && (
+        <div className="grid grid-cols-5 gap-2 mt-2">
+          {media.slice(0, 5).map((picture, index) => (
             <div key={index}>
               <img
                 src={picture.url}
-                alt={`Picture ${index + 1} of ${media.length}`}
+                alt={`Picture ${index + 1} of ${Math.min(media.length, 5)}`}
                 className="w-full aspect-[16/12] object-cover object-center rounded-lg cursor-pointer"
                 onClick={handleChangePicture}
               />
