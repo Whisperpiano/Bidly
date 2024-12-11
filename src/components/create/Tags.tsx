@@ -11,7 +11,7 @@ export default function Tags({
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleAddTag() {
-    const newTag = inputRef.current?.value.trim();
+    const newTag = inputRef.current?.value.trim().split(" ").join("");
 
     if (!newTag || tags.includes(newTag)) {
       if (inputRef.current) {
