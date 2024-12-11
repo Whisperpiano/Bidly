@@ -55,7 +55,7 @@ export default function Search() {
           <li>
             <NavLink
               to={`/search/collections/${query || "all"}`}
-              className="text-neutral-500/90 dark:text-neutral-400/90 cursor-not-allowed"
+              className="text-neutral-500/90 dark:text-neutral-400/90 pointer-events-none"
               onClick={(e) => e.preventDefault()}
             >
               Collections

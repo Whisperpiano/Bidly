@@ -86,21 +86,14 @@ export default function Create() {
         setMedia([]);
         setTags([]);
         scrollToTop();
-        navigate("/home");
-        toast.success("Listing created successfully!", {
-          action: {
-            label: " View listing",
-            onClick: () => {
-              navigate(
-                `/listing/${response.data.title
-                  .replace(/[^a-zA-Z0-9]/g, "")
-                  .toLowerCase()
-                  .split(" ")
-                  .join("-")}?id=${response.data.id}`
-              );
-            },
-          },
-        });
+        navigate(
+          `/listing/${response.data.title
+            .replace(/[^a-zA-Z0-9]/g, "")
+            .toLowerCase()
+            .split(" ")
+            .join("-")}?id=${response.data.id}`
+        );
+        toast.success("Listing created successfully!");
       }
       if ("errors" in response) {
         setSubmitError(response.errors[0]?.message || "Something went wrong");

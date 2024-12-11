@@ -29,7 +29,7 @@ export default function Home() {
       <HeroBanner />
 
       <ItemsGrid
-        title="Latest items"
+        title="Latest listings"
         items={latestListings}
         isLoading={isLatestListingsLoading}
       />

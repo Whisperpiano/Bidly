@@ -10,7 +10,7 @@ export default function ListingDetails({ listing }: { listing: Listing }) {
           Overview
         </button>
         <button
-          className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 disabled:cursor-not-allowed opacity-75"
+          className="ml-6 py-2 disabled:text-neutral-500/90 dark:disabled:text-neutral-400/90 opacity-75"
           disabled
         >
           Analytics

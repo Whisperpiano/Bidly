@@ -150,7 +150,7 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
                     size={16}
                     className="dark:text-neutral-300 text-neutral-700 duration-0"
                   />
-                  Create a list
+                  Create a listing
                 </span>
               </Link>
             </li>

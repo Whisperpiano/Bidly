@@ -175,7 +175,7 @@ export default function PlaceBidModal({
             </div>
           </div>
           <button
-            className=" mt-6 w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-75"
+            className=" mt-6 w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700 disabled:opacity-75"
             disabled={!hasEnoughCoins || isLoading}
             onClick={handleMakeBid}
           >

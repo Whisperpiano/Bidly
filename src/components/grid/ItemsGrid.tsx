@@ -61,9 +61,9 @@ export default function ItemsGrid({ title, items, isLoading }: ItemsGridProps) {
         <Link
           to="/search/listings/all"
           className="rounded-lg text-sm flex items-center gap-2 h-[42px] bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 w-full justify-center font-semibold "
-          aria-label="View the latest items"
+          aria-label="View the latest listings"
         >
-          View all items
+          View all listings
           <PiArrowRightBold className="dark:text-neutral-50 text-neutral-900 duration-0" />
         </Link>
       </div>

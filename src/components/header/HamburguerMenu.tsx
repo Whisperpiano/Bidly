@@ -173,7 +173,7 @@ export default function HamburguerMenu({
                         size={16}
                         className="dark:text-neutral-300 text-neutral-700 duration-0"
                       />
-                      Create a list
+                      Create a listing
                     </span>
                   </Link>
                 </li>
@@ -183,19 +183,19 @@ export default function HamburguerMenu({
             <div className="py-2 text-sm border-b border-neutral-200 dark:border-neutral-800">
               <ul className="select-none">
                 <li className="cursor-normal">
-                  <span className="p-3 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
+                  <span className="p-3 text-neutral-700 dark:text-neutral-400 flex items-center gap-1.5 opacity-75">
                     <PiGearFill
                       size={16}
-                      className="text-neutral-500 dark:text-neutral-400 duration-0"
+                      className="text-neutral-700 dark:text-neutral-400 duration-0 opacity-75"
                     />
                     Settings
                   </span>
                 </li>
                 <li className="cursor-normal">
-                  <span className="p-3 text-neutral-500 dark:text-neutral-400 flex items-center gap-1.5">
+                  <span className="p-3 text-neutral-700 dark:text-neutral-400 flex items-center gap-1.5 opacity-75">
                     <PiGlobeFill
                       size={16}
-                      className="text-neutral-500 dark:text-neutral-400 duration-0"
+                      className="text-neutral-700 dark:text-neutral-400 duration-0 opacity-75"
                     />
                     Language
                   </span>
