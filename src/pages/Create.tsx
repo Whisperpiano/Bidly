@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useModalStore } from "../store/modal";
+import { scrollToTop } from "../utils/ScrollTop";
 import { PiArrowLeftBold } from "react-icons/pi";
 
 import DragDrop from "../components/create/DragDrop";
@@ -6,15 +12,10 @@ import Description from "../components/create/Description";
 import Duration from "../components/create/Duration";
 import Tags from "../components/create/Tags";
 import Submit from "../components/create/Submit";
-import { useNavigate } from "react-router-dom";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
 import createListing from "../api/listings/createListing";
-import { scrollToTop } from "../utils/ScrollTop";
-import { toast } from "sonner";
-import { useModalStore } from "../store/modal";
 import ConfirmGoBack from "../components/modal/ConfirmGoBack";
+import transformDuration from "../utils/transformDuration";
 
 export interface CreateInputs {
   title: string;
@@ -43,34 +44,11 @@ export default function Create() {
     watch,
     setValue,
     reset,
-
     formState: { errors, isSubmitting },
   } = useForm<CreateInputs>();
   const navigate = useNavigate();
 
-  const transformDuration = (duration: number): string => {
-    const now = new Date();
-
-    switch (duration) {
-      case 1:
-        now.setDate(now.getDate() + 7);
-        break;
-      case 2:
-        now.setDate(now.getDate() + 14);
-        break;
-      case 3:
-        now.setMonth(now.getMonth() + 1);
-        break;
-      case 4:
-        now.setMonth(now.getMonth() + 3);
-        break;
-      default:
-        now.setDate(now.getDate() + 7);
-    }
-
-    return now.toISOString();
-  };
-
+  // Logic to handle the submit
   const onSubmit: SubmitHandler<CreateInputs> = async (data) => {
     try {
       const body = {
@@ -111,6 +89,7 @@ export default function Create() {
     }
   };
 
+  // Handle back button click
   const handleBack = () => {
     const hasUnsavedChanges = () => {
       return (
@@ -128,6 +107,7 @@ export default function Create() {
     }
   };
 
+  // Scroll to top of the page when the form is loaded
   useEffect(() => {
     scrollToTop();
   }, []);

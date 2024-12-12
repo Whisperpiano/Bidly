@@ -10,6 +10,7 @@ export default function Tags({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Logic to add a tag
   function handleAddTag() {
     const newTag = inputRef.current?.value.trim().split(" ").join("");
 
@@ -30,7 +31,7 @@ export default function Tags({
       inputRef.current.value = "";
     }
   }
-
+  // Logic to remove a tag
   const handleRemoveTag = (index: number) => {
     setTags((prev) => {
       const updatedTags = prev.filter((_, i) => i !== index);
@@ -38,6 +39,7 @@ export default function Tags({
     });
   };
 
+  // If the user presses enter, add a tag
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();

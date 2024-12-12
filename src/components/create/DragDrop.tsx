@@ -1,10 +1,10 @@
-import { PiCameraPlusFill, PiXBold } from "react-icons/pi";
-import { MediaInput } from "../../pages/Create";
 import { Dispatch, SetStateAction, useState } from "react";
+import { toast } from "sonner";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
+import { MediaInput } from "../../pages/Create";
+import { PiCameraPlusFill, PiXBold } from "react-icons/pi";
 import Spinner from "../elements/Spinner";
 import Alert from "../elements/Alert";
-import { toast } from "sonner";
 
 export default function DragDrop({
   setMedia,
@@ -16,6 +16,7 @@ export default function DragDrop({
   const [loadingState, setLoadingState] = useState(false);
   const [imgurError, setImgurError] = useState<string | null>(null);
 
+  // Logic to handle the file change
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -57,6 +58,7 @@ export default function DragDrop({
     }
   };
 
+  // Logic to remove a picture from the media array
   function handleRemove(id: string) {
     setMedia((prev) => {
       const updatedMedia = prev.filter((item) => item.id !== id);

@@ -26,6 +26,7 @@ export default function Description({
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
+  // Logic to type the description
   const typeText = (text: string) => {
     setTyping(true);
     setValue("description", "");
@@ -42,6 +43,7 @@ export default function Description({
     }, 50);
   };
 
+  // Logic to generate the description
   const handleGenerate = async () => {
     if (typing) return;
 
