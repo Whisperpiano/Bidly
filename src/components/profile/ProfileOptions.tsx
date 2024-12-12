@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
+import useClickOutside from "../../hooks/general/useClickOutside";
 
 interface ProfileOptionsProps {
   setAvatar: (picture: string) => void;
@@ -22,27 +23,12 @@ export default function ProfileOptions({
   onAvatarChange,
   onBannerChange,
 }: ProfileOptionsProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { isOpen, setIsOpen } = useClickOutside(dropdownRef);
 
   function handleClick() {
     setIsOpen(!isOpen);
   }
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <>

@@ -9,7 +9,7 @@ import ProfileNavigationHeader from "../components/profile/ProfileNavigationHead
 import ProfileItemCard from "../components/grid/ProfileItemCard";
 import Spinner from "../components/elements/Spinner";
 import GridItemSkeleton from "../components/skeletons/GridItemSkeleton";
-import useResponsiveProfileSkeletons from "../hooks/responsive/useResponsiveProfileSkeletons";
+import useResponsiveListingsSkeletons from "../hooks/responsive/useResponsiveListingsSkeletons";
 
 export type ProfileButton = "items" | "wins";
 
@@ -24,7 +24,7 @@ export default function Profile() {
   const username = useAuthStore((state) => state.username);
 
   // Get the number of skeletons to show based on the screen width
-  const skeletonsToShow = useResponsiveProfileSkeletons();
+  const skeletonsToShow = useResponsiveListingsSkeletons();
 
   // Scroll to top of the page when the profile is loaded
   useEffect(() => {

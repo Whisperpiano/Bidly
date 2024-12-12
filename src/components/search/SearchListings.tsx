@@ -8,43 +8,28 @@ import GridItemCard from "../grid/GridItemCard";
 import GridItemSkeleton from "../skeletons/GridItemSkeleton";
 import Pagination from "../elements/Pagination";
 import { useFetchListings } from "../../hooks/listings/useSearchListings";
+import useResponsiveListingsSkeletons from "../../hooks/responsive/useResponsiveListingsSkeletons";
 
 export default function SearchListings() {
   const { query } = useParams();
 
   const [page, setPage] = useState(1);
   const [selectedFilter, setSelectedFilter] = useState<string | null>("");
-  const [skeletonsToShow, setSkeletonsToShow] = useState(15);
+
+  // Get the listings based on the search query and selected filter
   const { listings, meta, isLoading } = useFetchListings({
     query,
     page,
     selectedFilter,
   });
 
+  // Get the number of skeletons to show based on the screen width
+  const skeletonsToShow = useResponsiveListingsSkeletons();
+
+  // Reset page to 1 when query or selectedFilter changes
   useEffect(() => {
     setPage(1);
   }, [query, selectedFilter]);
-
-  useEffect(() => {
-    const updateNumberOfItems = () => {
-      const width = window.innerWidth;
-
-      if (width >= 1280) {
-        setSkeletonsToShow(15);
-      } else if (width >= 1024) {
-        setSkeletonsToShow(12);
-      } else if (width >= 768) {
-        setSkeletonsToShow(9);
-      } else {
-        setSkeletonsToShow(4);
-      }
-    };
-    updateNumberOfItems();
-    window.addEventListener("resize", updateNumberOfItems);
-    return () => {
-      window.removeEventListener("resize", updateNumberOfItems);
-    };
-  }, []);
 
   return (
     <section>

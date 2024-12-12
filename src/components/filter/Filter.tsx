@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { PiCaretDownBold } from "react-icons/pi";
+import useClickOutside from "../../hooks/general/useClickOutside";
 
 interface FilterProps {
   options: string[];
@@ -12,8 +13,8 @@ export default function Filter({
   selected,
   setSelected,
 }: FilterProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
+  const { isOpen, setIsOpen } = useClickOutside(filterRef);
 
   const handleOpenClick = () => {
     setIsOpen(!isOpen);
@@ -27,22 +28,6 @@ export default function Filter({
   useEffect(() => {
     setSelected(options[0]);
   }, [options, setSelected]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        filterRef.current &&
-        !filterRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <>

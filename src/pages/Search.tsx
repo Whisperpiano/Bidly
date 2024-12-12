@@ -1,13 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { AuthGuard } from "../utils/AuthGuard";
 import { useModalStore } from "../store/modal";
-import { useEffect } from "react";
 import { scrollToTop } from "../utils/ScrollTop";
 
 export default function Search() {
   const { query } = useParams();
   const isLoggedIn = AuthGuard();
+
+  // Modal logic
   const handleOpenLogin = useModalStore((state) => state.handleLoginOpen);
 
   const activeStyles =

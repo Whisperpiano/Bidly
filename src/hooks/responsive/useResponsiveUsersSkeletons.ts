@@ -1,30 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-export const useResponsiveProfileSkeletons = () => {
-  const [skeletonsToShow, setSkeletonsToShow] = useState(10);
+function useResponsiveUsersSkeletons() {
+  const [skeletonsToShow, setSkeletonsToShow] = useState<number>(20);
 
   useEffect(() => {
     const updateNumberOfItems = () => {
       const width = window.innerWidth;
 
       if (width >= 1280) {
-        setSkeletonsToShow(10);
+        setSkeletonsToShow(20);
       } else if (width >= 1024) {
-        setSkeletonsToShow(8);
+        setSkeletonsToShow(16);
       } else if (width >= 768) {
-        setSkeletonsToShow(6);
+        setSkeletonsToShow(12);
       } else {
-        setSkeletonsToShow(4);
+        setSkeletonsToShow(8);
       }
     };
+
     updateNumberOfItems();
     window.addEventListener("resize", updateNumberOfItems);
+
     return () => {
       window.removeEventListener("resize", updateNumberOfItems);
     };
   }, []);
 
   return skeletonsToShow;
-};
+}
 
-export default useResponsiveProfileSkeletons;
+export default useResponsiveUsersSkeletons;

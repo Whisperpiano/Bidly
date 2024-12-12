@@ -8,39 +8,20 @@ import { useParams } from "react-router-dom";
 import { useFetchProfiles } from "../../hooks/profiles/useSearchProfiles";
 import Pagination from "../elements/Pagination";
 import GridProfileSkeleton from "../skeletons/GridProfileSkeleton";
+import useResponsiveUsersSkeletons from "../../hooks/responsive/useResponsiveUsersSkeletons";
 
 export default function SearchUsers() {
   const { query } = useParams();
-
   const [page, setPage] = useState<number>(1);
   const [selectedFilter, setSelectedFilter] = useState<string | null>("");
-  const [skeletonsToShow, setSkeletonsToShow] = useState<number>(20);
   const { profiles, meta, isLoading } = useFetchProfiles({
     query,
     page,
     selectedFilter,
   });
 
-  useEffect(() => {
-    const updateNumberOfItems = () => {
-      const width = window.innerWidth;
-
-      if (width >= 1280) {
-        setSkeletonsToShow(20);
-      } else if (width >= 1024) {
-        setSkeletonsToShow(16);
-      } else if (width >= 768) {
-        setSkeletonsToShow(12);
-      } else {
-        setSkeletonsToShow(8);
-      }
-    };
-    updateNumberOfItems();
-    window.addEventListener("resize", updateNumberOfItems);
-    return () => {
-      window.removeEventListener("resize", updateNumberOfItems);
-    };
-  }, []);
+  // Get the number of skeletons to show based on the screen width
+  const skeletonsToShow = useResponsiveUsersSkeletons();
 
   // Reset page to 1 when query or selectedFilter changes
   useEffect(() => {
