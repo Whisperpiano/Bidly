@@ -29,7 +29,7 @@ export default function Gallery({ media }: { media: Media[] }) {
         />
       </div>
 
-      {media.length > 0 && (
+      {media.length > 1 && (
         <div className="grid grid-cols-5 gap-2 mt-2">
           {media.slice(0, 5).map((picture, index) => (
             <div key={index}>
