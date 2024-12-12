@@ -37,7 +37,7 @@ export const NOROFF_API = {
 // Here you can personalize the hero banner for different seasons
 export const HERO_BANNER = {
   account: "bidlychristmas",
-  img: "/public/bidlychristmas.webp",
+  img: "./public/bidlychristmas.webp",
   title: "Jingle bids, jingle bids, jingle all the way!",
   subtitle: "Unwrap the joy of Christmas with our exclusive festive offers.",
   buttonText: "Shop deals",
