@@ -50,14 +50,6 @@ export default function ConfirmLogout({ isOpen, onClose }: ModalProps) {
     >
       <div className="flex overflow-hidden max-w-sm dark:bg-neutral-900 bg-neutral-50 rounded-lg p-6">
         <div className="flex flex-col gap-3 w-[320px]">
-          <button
-            type="button"
-            onClick={handleClose}
-            className="absolute z-50 top-3 right-3 rounded-full p-2 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700 bg-neutral-200/50 text-neutral-900 hover:bg-neutral-200"
-          >
-            <span className="sr-only">Close auth modal</span>
-            <PiXBold size={15} />
-          </button>
           <h2 className="pb-1.5 text-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
             Sign out
           </h2>
