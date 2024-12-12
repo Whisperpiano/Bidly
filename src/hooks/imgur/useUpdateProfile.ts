@@ -58,8 +58,7 @@ export function useUpdateProfile() {
 
       toast.success("Image updated successfully!", { id: toastId });
     } catch (error) {
-      console.log(`Unknown error uploading image: ${error}`);
-      toast.error("Something went wrong uploading the image", { id: toastId });
+      toast.error(`Unknown error uploading image: ${error}`, { id: toastId });
     } finally {
       setIsUploading(false);
     }

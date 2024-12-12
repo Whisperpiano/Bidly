@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { NOROFF_API } from "../../lib/constants";
 
 export default async function login({
@@ -21,6 +22,6 @@ export default async function login({
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    toast.error(`Error logging in: ${error}`);
   }
 }

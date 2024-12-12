@@ -47,8 +47,6 @@ export default function SearchUsers() {
     setPage(1);
   }, [query, selectedFilter]);
 
-  console.log(page);
-
   return (
     <section>
       <div className="border-t dark:border-neutral-800 border-neutral-200 px-0 md:px-2 flex justify-between items-center">

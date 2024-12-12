@@ -45,7 +45,6 @@ export default function Tags({
     }
   };
 
-  console.log(tags);
   return (
     <>
       <h2 className="mb-3 text-sm font-semibold uppercase  dark:text-neutral-50 text-neutral-900">

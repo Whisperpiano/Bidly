@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { toast } from "sonner";
 
 const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_AI_API_KEY);
 
@@ -8,6 +9,6 @@ export default async function generateAIText(prompt: string) {
     const result = await model.generateContent(prompt);
     return result.response.text();
   } catch (error) {
-    console.log(`Error generating AI content: ${error}`);
+    toast.error(`Error generating AI content: ${error}`);
   }
 }

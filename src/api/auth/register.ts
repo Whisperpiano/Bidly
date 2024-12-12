@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { NOROFF_API } from "../../lib/constants";
 
 export default async function register({
@@ -24,6 +25,6 @@ export default async function register({
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    toast.error(`Error registering: ${error}`);
   }
 }

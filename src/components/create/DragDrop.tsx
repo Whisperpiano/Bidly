@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
 import Spinner from "../elements/Spinner";
 import Alert from "../elements/Alert";
+import { toast } from "sonner";
 
 export default function DragDrop({
   setMedia,
@@ -50,7 +51,7 @@ export default function DragDrop({
         return renumberedMedia;
       });
     } catch (error) {
-      console.log(`Unknown error uploading image: ${error}`);
+      toast.error(`Unknown error uploading image: ${error}`);
     } finally {
       setLoadingState(false);
     }

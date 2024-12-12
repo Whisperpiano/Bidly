@@ -4,7 +4,7 @@ import { useRouteError } from "react-router-dom";
 export default function ErrorPage() {
   const error = useRouteError();
   const typedError = error as { statusText: string; message: string };
-  console.log(error);
+
   return (
     <>
       <section className="grid place-content-center text-center h-full">
