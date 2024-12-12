@@ -7,7 +7,7 @@ import {
 import { PiStarFourFill } from "react-icons/pi";
 import { CreateInputs } from "../../pages/Create";
 import generateAIText from "../../api/gemini/generateText";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export default function Description({
   register,
@@ -24,6 +24,8 @@ export default function Description({
   typing: boolean;
   setTyping: Dispatch<SetStateAction<boolean>>;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const typeText = (text: string) => {
     setTyping(true);
     setValue("description", "");
@@ -39,9 +41,11 @@ export default function Description({
       }
     }, 50);
   };
+
   const handleGenerate = async () => {
     if (typing) return;
 
+    setIsLoading(true);
     const title = watch("title") || "";
     const prompt = `Create a fun and witty description for a listing based on the given title: ${title}. The description should be no more than 250 characters. If no title is provided, respond with something humorous similar to "Maybe you need to write a title first!, but not the same."`;
 
@@ -54,6 +58,8 @@ export default function Description({
       }
     } catch (error) {
       console.error("Error generating content:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -112,11 +118,11 @@ export default function Description({
         type="button"
         className="flex gap-2 items-center text-sm font-medium py-3 pr-3 pl-2 border rounded-lg dark:text-neutral-300 bg-transparent dark:border-neutral-800 ml-auto dark:hover:bg-neutral-900 dark:hover:text-neutral-50 dark:hover:border-neutral-500 text-neutral-800 hover:bg-neutral-200/50 hover:text-neutral-900 disabled:opacity-50 "
         onClick={handleGenerate}
-        disabled={typing}
+        disabled={isLoading || typing}
       >
         <PiStarFourFill className="dark:text-neutral-300 text-neutral-800 duration-0" />
         <span className="sr-only">Use AI to generate description</span>
-        Use AI description
+        {isLoading || typing ? "Generating..." : "Use AI description"}
       </button>
     </>
   );
