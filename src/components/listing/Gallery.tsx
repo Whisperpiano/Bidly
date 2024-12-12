@@ -4,6 +4,7 @@ import { Media } from "../../types/types";
 export default function Gallery({ media }: { media: Media[] }) {
   const [selectedPicture, setSelectedPicture] = useState<string>("");
 
+  // Change the selected picture when the user clicks on a picture
   function handleChangePicture(
     event: React.MouseEvent<HTMLImageElement, MouseEvent>
   ) {
@@ -11,6 +12,7 @@ export default function Gallery({ media }: { media: Media[] }) {
     setSelectedPicture(event.currentTarget.src);
   }
 
+  // Get the first picture of the media array, if not available, use a placeholder
   useEffect(() => {
     if (media.length > 0) {
       setSelectedPicture(media[0].url);

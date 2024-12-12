@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { useModalStore } from "../../store/modal";
 import { useMakeBid } from "../../hooks/listings/useMakeBid";
 import Spinner from "../elements/Spinner";
+import useBodyOverflow from "../../hooks/modal/useBodyOverflow";
 
 interface ModalProps {
   isOpen: boolean;
@@ -18,28 +18,20 @@ export default function ConfirmBid({
   id,
   refetch,
 }: ModalProps) {
-  const closeMakeBidPanel = useModalStore(
-    (state) => state.handlePlaceABidClose
-  );
-
   const { isLoading, makeBid } = useMakeBid({ refetch });
 
+  // Modal logic to close the place a bid modal
+  const { handlePlaceABidClose } = useModalStore();
+
+  // Logic to make the bid
   const handleConfirm = async () => {
     await makeBid(id, price);
     onClose();
-    closeMakeBidPanel();
+    handlePlaceABidClose();
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  // Hide the body overflow when the modal is open
+  useBodyOverflow(isOpen);
 
   if (!isOpen) return null;
 

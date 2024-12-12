@@ -4,6 +4,7 @@ import { useAuthStore } from "../../store/user";
 import Alert from "../elements/Alert";
 import ConfirmBid from "./ConfirmBid";
 import { useModalStore } from "../../store/modal";
+import useBodyOverflow from "../../hooks/modal/useBodyOverflow";
 
 interface ModalProps {
   isOpen: boolean;
@@ -33,20 +34,18 @@ export default function PlaceBidModal({
   id,
   refetch,
 }: ModalProps) {
-  const user = useAuthStore((state) => state.profile);
+  const [hasEnoughCoins, setHasEnoughCoins] = useState<boolean>(false);
   const [selectedBid, setSelectedBid] = useState<BidSelectionObj>({
     name: "tiny",
     value: 1,
   });
-  const [hasEnoughCoins, setHasEnoughCoins] = useState<boolean>(false);
 
-  const isConfirmBidOpen = useModalStore((state) => state.isConfirmBidOpen);
-  const handleConfirmBidClose = useModalStore(
-    (state) => state.handleConfirmBidClose
-  );
-  const handleConfirmBidOpen = useModalStore(
-    (state) => state.handleConfirmBidOpen
-  );
+  // Get the user profile
+  const user = useAuthStore((state) => state.profile);
+
+  // Modal logic
+  const { isConfirmBidOpen, handleConfirmBidClose, handleConfirmBidOpen } =
+    useModalStore();
 
   const handleBidTypeChange = (type: BidSelection) => {
     if (selectedBid.name === type) return;
@@ -56,7 +55,7 @@ export default function PlaceBidModal({
     });
   };
 
-  const handleMakeBid = async () => {
+  const handleClick = async () => {
     if (!hasEnoughCoins) return;
     handleConfirmBidOpen();
   };
@@ -68,16 +67,8 @@ export default function PlaceBidModal({
     }
   }, [selectedBid, user, price]);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  // Hide the body overflow when the modal is open
+  useBodyOverflow(isOpen);
 
   if (!isOpen) return null;
 
@@ -183,7 +174,7 @@ export default function PlaceBidModal({
             <button
               className=" mt-6 w-full p-2.5 rounded-lg text-sm font-medium dark:bg-primary-600 dark:text-neutral-50 dark:hover:bg-primary-700 bg-primary-600 text-neutral-50 hover:bg-primary-700 disabled:opacity-75"
               disabled={!hasEnoughCoins}
-              onClick={handleMakeBid}
+              onClick={handleClick}
             >
               Confirm bid
             </button>

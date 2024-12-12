@@ -5,6 +5,7 @@ export default function TimeLeft({ endsAt }: { endsAt: string }) {
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<string>(formatDateFromISO(endsAt));
 
+  // Update the time left every second
   useEffect(() => {
     const endDate = new Date(endsAt);
 

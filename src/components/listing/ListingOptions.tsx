@@ -1,46 +1,17 @@
-import { useRef, useState } from "react";
 import {
   PiArrowClockwiseBold,
   PiCheckBold,
   PiShareFatFill,
 } from "react-icons/pi";
 import Spinner from "../elements/Spinner";
-import { toast } from "sonner";
-
-//TODO refresh button
+import useCopyToClipboard from "../../hooks/general/useCopyToClipboard";
+import useRefresh from "../../hooks/general/useRefresh";
 
 export default function ListingOptions({ refetch }: { refetch: () => void }) {
-  const [isCopied, setIsCopied] = useState(false);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const timeoutRef = useRef<number | undefined>();
-
-  const copyToClipboard = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    navigator.clipboard.writeText(window.location.href);
-    setIsCopied(true);
-    toast.success("Link copied to clipboard!");
-
-    timeoutRef.current = setTimeout(() => {
-      setIsCopied(false);
-    }, 4000);
-  };
-
-  const handleRefresh = async () => {
-    setIsRefreshing(true);
-    try {
-      refetch();
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      toast.success("Listing updated successfully!");
-    } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong, please try again later.");
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
+  // Logic to copy the link to clipboard
+  const { isCopied, copyToClipboard } = useCopyToClipboard(4000);
+  // Logic to refresh the listing
+  const { isRefreshing, handleRefresh } = useRefresh(refetch);
 
   return (
     <>

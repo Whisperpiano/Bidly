@@ -1,25 +1,27 @@
+import { useEffect, useState } from "react";
+import { useSingleListing } from "../hooks/listings/useSingleListing";
+import { useModalStore } from "../store/modal";
+import { scrollToTop } from "../utils/ScrollTop";
+import { Bidder } from "../types/types";
 import Gallery from "../components/listing/Gallery";
 import Sidebar from "../components/listing/Sidebar";
-import { useSingleListing } from "../hooks/listings/useSingleListing";
-import { useEffect, useState } from "react";
-import { scrollToTop } from "../utils/ScrollTop";
 import ListingDetails from "../components/listing/ListingDetails";
 import Spinner from "../components/elements/Spinner";
 import PlaceBidModal from "../components/modal/PlaceBidModal";
-import { useModalStore } from "../store/modal";
-import { Bidder } from "../types/types";
 
 export default function SingleItem() {
   const { listing, refetch, id } = useSingleListing();
   const [lastBidder, setLastBidder] = useState<Bidder | null>(null);
 
-  const isPlaceABidOpen = useModalStore((state) => state.isPlaceABidOpen);
-  const handleModalClose = useModalStore((state) => state.handlePlaceABidClose);
+  // Modal logic
+  const { isPlaceABidOpen, handlePlaceABidClose } = useModalStore();
 
+  // Scroll to top of the page when the listing is loaded
   useEffect(() => {
     scrollToTop();
   }, []);
 
+  // Get the last bidder of the listing
   useEffect(() => {
     if (!listing) return;
     if (listing.bids.length > 0) {
@@ -65,7 +67,7 @@ export default function SingleItem() {
           {/* Modal for place a bid */}
           <PlaceBidModal
             isOpen={isPlaceABidOpen}
-            onClose={handleModalClose}
+            onClose={handlePlaceABidClose}
             price={lastBidder?.amount || 0}
             id={listing.id}
             refetch={refetch}

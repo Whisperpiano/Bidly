@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { AuthGuard } from "../../utils/AuthGuard";
+import { useModalStore } from "../../store/modal";
+import { useAuthStore } from "../../store/user";
 import { Bidder, Listing } from "../../types/types";
 import Badge from "../elements/Badge";
 import Creator from "./Creator";
@@ -7,8 +9,6 @@ import PricingAndTiming from "./PricingAndTiming";
 import ListingOptions from "./ListingOptions";
 import Alert from "../elements/Alert";
 import LastBidder from "./LastBidder";
-import { useModalStore } from "../../store/modal";
-import { useAuthStore } from "../../store/user";
 
 export default function Sidebar({
   listing,
@@ -22,12 +22,14 @@ export default function Sidebar({
 }) {
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const isLoggedIn = AuthGuard();
-  const { handleLoginOpen } = useModalStore();
-  const userLogged = useAuthStore((state) => state.username);
-  const handlePlaceBidModalOpen = useModalStore(
-    (state) => state.handlePlaceABidOpen
-  );
 
+  // Logic to open the place a bid modal
+  const { handleLoginOpen, handlePlaceABidOpen } = useModalStore();
+
+  // Get the name of the user logged in
+  const { username } = useAuthStore();
+
+  // Logic to determine if the listing is finished
   useEffect(() => {
     const currentDate = new Date();
     const endDate = new Date(listing.endsAt);
@@ -74,7 +76,7 @@ export default function Sidebar({
           </div>
         )}
 
-        {isLoggedIn && listing.seller.name === userLogged && (
+        {isLoggedIn && listing.seller.name === username && (
           <div className="pt-6">
             <Alert
               text="You cannot place a bid on your own listing."
@@ -91,10 +93,10 @@ export default function Sidebar({
           ) : (
             <button
               className={`rounded-lg text-sm flex items-center gap-2 h-[36px] sm:h-[42px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold ${
-                isLoggedIn && listing.seller.name === userLogged ? "hidden" : ""
+                isLoggedIn && listing.seller.name === username ? "hidden" : ""
               } `}
               aria-label="Buy now"
-              onClick={isLoggedIn ? handlePlaceBidModalOpen : handleLoginOpen}
+              onClick={isLoggedIn ? handlePlaceABidOpen : handleLoginOpen}
             >
               Place a bid
             </button>
