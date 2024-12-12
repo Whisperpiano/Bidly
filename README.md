@@ -20,8 +20,6 @@
   
   </p>
   <p align="center">
-    <br />
-    <br />
     <a href="https://www.figma.com/design/nt0MH5obT13cPCzsMvu1zZ/Semester-Project-2?node-id=1-2&t=74LguUfaSPR6VYJV-1">Figma file</a>
     ·
     <a href="https://github.com/Whisperpiano/semester-project-2/issues">Report Bug</a>
@@ -29,6 +27,7 @@
     <a href="https://github.com/Whisperpiano/semester-project-2/issues">Request Feature</a>
       ·
     <a href="https://bidlify.netlify.app/home">Preview</a>
+    <br />
   </p>
 </div>
 
