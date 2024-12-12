@@ -111,8 +111,13 @@ To run this project locally, you'll need to set up a `.env.local` file with the 
 - **VITE_IMGUR_CLIENT_ID**: Create a new Imgur Client ID [View API Documentation](https://apidocs.imgur.com/).
 - **VITE_GOOGLE_AI_API_KEY**: Obtain your Google AI API [View API Documentation](https://ai.google.dev/gemini-api/docs/api-key).
 
+</br>
 
-<!-- CONTRIBUTING -->
+> **Warning**: 
+> Even with a correct Imgur Client ID, uploading images in local mode will not work and will result in an error. To ensure uploads function properly, deploy the site.
+
+
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
