@@ -62,7 +62,7 @@ export default function SingleItem() {
             </div>
           </section>
 
-          {/* Modal for place a bid */}
+          {/* Modals for place a bid */}
           <PlaceBidModal
             isOpen={isPlaceABidOpen}
             onClose={handleModalClose}

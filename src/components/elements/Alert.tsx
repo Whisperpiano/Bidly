@@ -2,7 +2,7 @@ import { PiInfoFill } from "react-icons/pi";
 
 interface AlertProps {
   text: string;
-  type: "success" | "error" | "information";
+  type: "success" | "error" | "information" | "warning";
 }
 
 export default function Alert({ text, type }: AlertProps) {
@@ -16,6 +16,8 @@ export default function Alert({ text, type }: AlertProps) {
       "dark:bg-red-950/75 dark:text-red-50 dark:border-red-900 bg-red-100 text-red-900 border-red-200",
     information:
       "dark:bg-primary-950 dark:text-primary-50 dark:border-primary-800 bg-primary-100 text-primary-900 border-primary-200",
+    warning:
+      "dark:bg-yellow-950/75 dark:text-yellow-50 dark:border-yellow-800 bg-yellow-100 text-yellow-900 border-yellow-200",
   };
 
   return (

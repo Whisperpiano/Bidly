@@ -5,6 +5,7 @@ interface ModalState {
   isPlaceABidOpen: boolean;
   isConfirmLogoutOpen: boolean;
   isGoBackOpen: boolean;
+  isConfirmBidOpen: boolean;
   handleLoginOpen: () => void;
   handleLoginClose: () => void;
   handlePlaceABidOpen: () => void;
@@ -13,6 +14,8 @@ interface ModalState {
   handleConfirmLogoutClose: () => void;
   handleGoBackOpen: () => void;
   handleGoBackClose: () => void;
+  handleConfirmBidOpen: () => void;
+  handleConfirmBidClose: () => void;
 }
 
 export const useModalStore = create<ModalState>()((set) => ({
@@ -20,6 +23,7 @@ export const useModalStore = create<ModalState>()((set) => ({
   isPlaceABidOpen: false,
   isConfirmLogoutOpen: false,
   isGoBackOpen: false,
+  isConfirmBidOpen: false,
   handleLoginOpen: () => set({ isLoginOpen: true }),
   handleLoginClose: () => set({ isLoginOpen: false }),
   handlePlaceABidOpen: () => set({ isPlaceABidOpen: true }),
@@ -28,4 +32,6 @@ export const useModalStore = create<ModalState>()((set) => ({
   handleConfirmLogoutClose: () => set({ isConfirmLogoutOpen: false }),
   handleGoBackOpen: () => set({ isGoBackOpen: true }),
   handleGoBackClose: () => set({ isGoBackOpen: false }),
+  handleConfirmBidOpen: () => set({ isConfirmBidOpen: true }),
+  handleConfirmBidClose: () => set({ isConfirmBidOpen: false }),
 }));
