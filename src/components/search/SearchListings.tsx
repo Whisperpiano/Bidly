@@ -1,13 +1,13 @@
-import Filter from "../filter/Filter";
-import { FILTER_LISTINGS_OPTIONS } from "../../lib/constants";
-import SortButton from "../elements/SortButton";
-import GridLayoutSwitcher from "../elements/GridLayoutSwitcher";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FILTER_LISTINGS_OPTIONS } from "../../lib/constants";
+import { useFetchListings } from "../../hooks/listings/useSearchListings";
+import Filter from "../filter/Filter";
+import SortButton from "../elements/SortButton";
+import GridLayoutSwitcher from "../elements/GridLayoutSwitcher";
 import GridItemCard from "../grid/GridItemCard";
 import GridItemSkeleton from "../skeletons/GridItemSkeleton";
 import Pagination from "../elements/Pagination";
-import { useFetchListings } from "../../hooks/listings/useSearchListings";
 import useResponsiveListingsSkeletons from "../../hooks/responsive/useResponsiveListingsSkeletons";
 
 export default function SearchListings() {

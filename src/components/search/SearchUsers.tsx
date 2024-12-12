@@ -1,19 +1,22 @@
-import Filter from "../filter/Filter";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { FILTER_USER_OPTIONS } from "../../lib/constants";
+import { useFetchProfiles } from "../../hooks/profiles/useSearchProfiles";
+import Filter from "../filter/Filter";
 import UserCard from "./UserCard";
 import SortButton from "../elements/SortButton";
 import GridLayoutSwitcher from "../elements/GridLayoutSwitcher";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useFetchProfiles } from "../../hooks/profiles/useSearchProfiles";
 import Pagination from "../elements/Pagination";
 import GridProfileSkeleton from "../skeletons/GridProfileSkeleton";
 import useResponsiveUsersSkeletons from "../../hooks/responsive/useResponsiveUsersSkeletons";
 
 export default function SearchUsers() {
   const { query } = useParams();
+
   const [page, setPage] = useState<number>(1);
   const [selectedFilter, setSelectedFilter] = useState<string | null>("");
+
+  // Get the profiles based on the search query and selected filter
   const { profiles, meta, isLoading } = useFetchProfiles({
     query,
     page,
