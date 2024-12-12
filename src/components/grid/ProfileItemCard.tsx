@@ -32,7 +32,7 @@ export default function ProfileItemCard({
       aria-label={`View details for the ${title} item`}
       viewTransition
     >
-      <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
+      <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2 transition-all duration-300 hover:border-neutral-400 hover:dark:border-neutral-600 hover:-translate-y-2 ">
         <div>
           <img
             src={
