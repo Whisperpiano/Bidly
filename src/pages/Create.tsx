@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import createListing from "../api/listings/createListing";
 import { scrollToTop } from "../utils/ScrollTop";
 import { toast } from "sonner";
+import { useModalStore } from "../store/modal";
+import ConfirmGoBack from "../components/modal/ConfirmGoBack";
 
 export interface CreateInputs {
   title: string;
@@ -31,6 +33,9 @@ export default function Create() {
   const [tags, setTags] = useState<string[]>([]);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [typing, setTyping] = useState<boolean>(false);
+  const openGoBackModal = useModalStore((state) => state.handleGoBackOpen);
+  const isGoBackOpen = useModalStore((state) => state.isGoBackOpen);
+  const handleGoBackClose = useModalStore((state) => state.handleGoBackClose);
 
   const {
     register,
@@ -117,12 +122,7 @@ export default function Create() {
     };
 
     if (hasUnsavedChanges()) {
-      const confirmLeave = window.confirm(
-        "You have unsaved changes. Are you sure you want to leave?"
-      );
-      if (confirmLeave) {
-        navigate(-1);
-      }
+      openGoBackModal();
     } else {
       navigate(-1);
     }
@@ -180,6 +180,7 @@ export default function Create() {
           </div>
         </form>
       </section>
+      <ConfirmGoBack isOpen={isGoBackOpen} onClose={handleGoBackClose} />
     </>
   );
 }

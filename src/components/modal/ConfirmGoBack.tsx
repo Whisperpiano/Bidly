@@ -1,24 +1,20 @@
 import { useEffect } from "react";
-import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../utils/ScrollTop";
-import { toast } from "sonner";
+import { PiWarningCircleFill } from "react-icons/pi";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function ConfirmLogout({ isOpen, onClose }: ModalProps) {
-  const logout = useAuthStore((state) => state.clearAuth);
+export default function ConfirmGoBack({ isOpen, onClose }: ModalProps) {
   const navigate = useNavigate();
 
   function handleConfirm() {
-    logout();
     onClose();
-    navigate("/");
+    navigate(-1);
     scrollToTop();
-    toast.info("You have been logged out successfully!");
   }
 
   useEffect(() => {
@@ -41,11 +37,13 @@ export default function ConfirmLogout({ isOpen, onClose }: ModalProps) {
     >
       <div className="flex overflow-hidden max-w-sm dark:bg-neutral-900 bg-neutral-50 rounded-lg p-6">
         <div className="flex flex-col gap-3 w-[320px]">
-          <h2 className="pb-1.5 text-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
-            Sign out
-          </h2>
+          <PiWarningCircleFill
+            size={24}
+            className="dark:text-neutral-50 text-neutral-900 duration-0 mx-auto"
+          />
           <p className="text-center pb-3 text-sm dark:text-neutral-50 text-neutral-900">
-            Are you sure you want to sign out?
+            You’ve made changes that haven’t been saved yet. If you leave now,
+            your changes will be lost. Do you want to proceed?
           </p>
           <div className="flex items-center justify-between gap-3">
             <button
@@ -60,7 +58,7 @@ export default function ConfirmLogout({ isOpen, onClose }: ModalProps) {
               onClick={handleConfirm}
               className="rounded-lg text-sm flex items-center gap-2 h-[42px] dark:bg-red-900 dark:text-red-50 dark:border-red-900 bg-red-300 text-neutral-900 border-red-200 hover:bg-red-400 w-full dark:hover:bg-red-800 justify-center font-semibold "
             >
-              Yes
+              Go back
             </button>
           </div>
         </div>
