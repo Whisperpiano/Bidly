@@ -9,11 +9,10 @@ import {
   PiUserPlusFill,
 } from "react-icons/pi";
 import { useThemeStore } from "../../store/theme";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/user";
 import { AuthGuard } from "../../utils/AuthGuard";
-import { scrollToTop } from "../../utils/ScrollTop";
-import { toast } from "sonner";
+import { useModalStore } from "../../store/modal";
 
 export default function HamburguerMenu({
   onLoginOpen,
@@ -23,13 +22,14 @@ export default function HamburguerMenu({
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const [isOpen, setIsOpen] = useState(false);
-  const logout = useAuthStore((state) => state.clearAuth);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const isLoggedIn = AuthGuard();
   const userName = useAuthStore((state) => state.profile?.name);
   const userPicture = useAuthStore((state) => state.profile?.avatar.url);
-  const navigate = useNavigate();
+  const handleLogoutOpen = useModalStore(
+    (state) => state.handleConfirmLogoutOpen
+  );
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -60,13 +60,7 @@ export default function HamburguerMenu({
 
   const handleLogoutClick = () => {
     setIsOpen(false);
-    const confirm = window.confirm("Are you sure you want to log out?");
-    if (confirm) {
-      logout();
-      navigate("/");
-      scrollToTop();
-      toast.info("You have been logged out successfully!");
-    }
+    handleLogoutOpen();
   };
 
   return (

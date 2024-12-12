@@ -49,9 +49,8 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
     setIsOpen(false);
   };
 
-  const handleLogout = () => {
+  const handleClickLogout = () => {
     setIsOpen(false);
-
     handleConfirmLogoutOpen();
   };
 
@@ -199,7 +198,7 @@ export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
           <div className="py-2 dark:text-red-400 text-red-600 select-none duration-0 cursor-pointer">
             <span
               className="px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50 flex items-center gap-1.5 "
-              onClick={handleLogout}
+              onClick={handleClickLogout}
             >
               <PiSignOutFill
                 size={16}

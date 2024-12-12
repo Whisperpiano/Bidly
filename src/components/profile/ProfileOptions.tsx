@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
-import { useAuthStore } from "../../store/user";
-import { useNavigate } from "react-router-dom";
-import { scrollToTop } from "../../utils/ScrollTop";
-import { toast } from "sonner";
+import { useModalStore } from "../../store/modal";
 
 interface ProfileOptionsProps {
   setAvatar: (picture: string) => void;
@@ -28,8 +25,9 @@ export default function ProfileOptions({
 }: ProfileOptionsProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const logout = useAuthStore((state) => state.clearAuth);
-  const navigate = useNavigate();
+  const handleLogoutOpen = useModalStore(
+    (state) => state.handleConfirmLogoutOpen
+  );
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -37,13 +35,7 @@ export default function ProfileOptions({
 
   function handleLogout() {
     setIsOpen(false);
-    const confirm = window.confirm("Are you sure you want to log out?");
-    if (confirm) {
-      logout();
-      navigate("/");
-      scrollToTop();
-      toast.info("You have been logged out successfully!");
-    }
+    handleLogoutOpen();
   }
 
   useEffect(() => {
