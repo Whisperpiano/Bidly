@@ -3,7 +3,6 @@ import { useAuthStore } from "../../store/user";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../utils/ScrollTop";
 import { toast } from "sonner";
-import { PiXBold } from "react-icons/pi";
 
 interface ModalProps {
   isOpen: boolean;
