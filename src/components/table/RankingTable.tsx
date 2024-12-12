@@ -13,6 +13,7 @@ export default function RankingTable() {
   const firstTableProfiles = profiles
     .slice(0, 5)
     .map((profile, index) => ({ ...profile, position: index + 1 }));
+
   const secondTableProfiles = profiles.slice(5, 10).map((profile, index) => ({
     ...profile,
     position: index + 6,

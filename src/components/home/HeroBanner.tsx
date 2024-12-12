@@ -1,6 +1,8 @@
 import { HERO_BANNER } from "../../lib/constants";
 import AuthGuardLink from "../auth/AuthGuardLink";
 
+// You can add your own hero banner by adding a new object to the HERO_BANNER constant
+
 export default function HeroBanner() {
   const { account, img, title, subtitle, buttonText, season } = HERO_BANNER;
 
