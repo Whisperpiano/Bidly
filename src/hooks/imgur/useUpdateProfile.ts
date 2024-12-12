@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { uploadPicture } from "../../api/imgur/uploadPicture";
 import updateProfile from "../../api/profiles/updateProfile";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import { toast } from "sonner";
 
 export function useUpdateProfile() {

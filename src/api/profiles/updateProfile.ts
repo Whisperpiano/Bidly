@@ -1,5 +1,5 @@
 import { NOROFF_API } from "../../lib/constants";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import {
   ProfileUpdateErrorResponse,
   ProfileUpdateSuccessResponse,

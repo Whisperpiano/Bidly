@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSingleListing } from "../hooks/listings/useSingleListing";
-import { useModalStore } from "../store/modal";
+import { useModalStore } from "../store/modalStore";
 import { scrollToTop } from "../utils/ScrollTop";
 import { Bidder } from "../types/types";
 import Gallery from "../components/listing/Gallery";

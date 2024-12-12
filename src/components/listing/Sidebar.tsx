@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AuthGuard } from "../../utils/AuthGuard";
-import { useModalStore } from "../../store/modal";
-import { useAuthStore } from "../../store/user";
+import { useModalStore } from "../../store/modalStore";
+import { useAuthStore } from "../../store/userStore";
 import { Bidder, Listing } from "../../types/types";
 import Badge from "../elements/Badge";
 import Creator from "./Creator";

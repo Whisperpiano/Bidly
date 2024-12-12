@@ -1,6 +1,6 @@
 import { useState } from "react";
 import setBid from "../../api/listings/setBid";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import { toast } from "sonner";
 
 interface MakeBidProps {

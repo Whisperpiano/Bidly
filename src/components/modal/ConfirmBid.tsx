@@ -1,4 +1,4 @@
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 import { useMakeBid } from "../../hooks/listings/useMakeBid";
 import Spinner from "../elements/Spinner";
 import useBodyOverflow from "../../hooks/modal/useBodyOverflow";

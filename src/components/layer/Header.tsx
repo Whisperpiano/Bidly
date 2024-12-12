@@ -7,7 +7,7 @@ import Separator from "../elements/Separator";
 import Navigation from "../header/Navigation";
 import WalletBtn from "../header/WalletBtn";
 import UserMenu from "../header/UserMenu";
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 
 export default function Header() {
   const isLoginOpen = useModalStore((state) => state.isLoginOpen);

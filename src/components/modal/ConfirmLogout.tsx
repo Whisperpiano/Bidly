@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../../utils/ScrollTop";
 import { toast } from "sonner";

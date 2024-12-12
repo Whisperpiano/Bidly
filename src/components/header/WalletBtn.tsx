@@ -3,7 +3,7 @@ import { AuthGuard } from "../../utils/AuthGuard";
 
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 
 interface WalletBtnProps {
   onLoginOpen: () => void;

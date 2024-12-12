@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useThemeStore } from "../../store/theme";
+import { useThemeStore } from "../../store/themeStore";
 import { scrollToTop } from "../../utils/ScrollTop";
 
 export default function Logo() {

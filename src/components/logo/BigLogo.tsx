@@ -1,4 +1,4 @@
-import { useThemeStore } from "../../store/theme";
+import { useThemeStore } from "../../store/themeStore";
 
 export default function BigLogo() {
   const theme = useThemeStore((state) => state.theme);

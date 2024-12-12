@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { AuthGuard } from "../utils/AuthGuard";
-import { useModalStore } from "../store/modal";
+import { useModalStore } from "../store/modalStore";
 import { scrollToTop } from "../utils/ScrollTop";
 
 export default function Search() {

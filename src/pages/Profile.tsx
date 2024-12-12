@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useProfile } from "../hooks/profiles/useProfile";
-import { useAuthStore } from "../store/user";
+import { useAuthStore } from "../store/userStore";
 import { scrollToTop } from "../utils/ScrollTop";
 import FilterAndSort from "../components/profile/FilterAndSort";
 import ProfileBanner from "../components/profile/ProfileBanner";

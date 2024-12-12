@@ -1,7 +1,7 @@
 import { PiSealCheckFill } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthGuard } from "../../utils/AuthGuard";
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 import { Listing } from "../../types/types";
 
 import { useMemo } from "react";

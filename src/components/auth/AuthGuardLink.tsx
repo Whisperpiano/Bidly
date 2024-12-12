@@ -1,6 +1,6 @@
 import { LinkProps } from "react-router-dom";
 import { AuthGuard } from "../../utils/AuthGuard";
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 import { Link } from "react-router-dom";
 
 interface AuthGuardLinkProps extends LinkProps {

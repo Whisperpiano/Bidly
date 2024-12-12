@@ -7,13 +7,13 @@ import {
   PiUserFill,
   PiUserPlusFill,
 } from "react-icons/pi";
-import { useThemeStore } from "../../store/theme";
+import { useThemeStore } from "../../store/themeStore";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthGuard } from "../../utils/AuthGuard";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 
 export default function UserMenu({ onLoginOpen }: { onLoginOpen: () => void }) {
   const [isOpen, setIsOpen] = useState(false);

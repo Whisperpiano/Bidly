@@ -1,5 +1,5 @@
 import { useLogin } from "../../../hooks/auth/useLogin";
-import { useAuthStore } from "../../../store/user";
+import { useAuthStore } from "../../../store/userStore";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { MdEmail } from "react-icons/md";
 import { PiLockFill } from "react-icons/pi";

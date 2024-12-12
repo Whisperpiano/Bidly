@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { PiXBold } from "react-icons/pi";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import Alert from "../elements/Alert";
 import ConfirmBid from "./ConfirmBid";
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 import useBodyOverflow from "../../hooks/modal/useBodyOverflow";
 
 interface ModalProps {

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useThemeStore } from "../store/theme";
+import { useThemeStore } from "../store/themeStore";
 import { applyThemePreference } from "../utils/applyThemePreference";
 import Header from "../components/layer/Header";
 import Footer from "../components/layer/Footer";
 import { Toaster } from "sonner";
 import ConfirmLogout from "../components/modal/ConfirmLogout";
-import { useModalStore } from "../store/modal";
+import { useModalStore } from "../store/modalStore";
 
 function Layout() {
   const theme = useThemeStore((state) => state.theme);

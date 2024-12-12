@@ -8,11 +8,11 @@ import {
   PiUserFill,
   PiUserPlusFill,
 } from "react-icons/pi";
-import { useThemeStore } from "../../store/theme";
+import { useThemeStore } from "../../store/themeStore";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import { AuthGuard } from "../../utils/AuthGuard";
-import { useModalStore } from "../../store/modal";
+import { useModalStore } from "../../store/modalStore";
 
 export default function HamburguerMenu({
   onLoginOpen,

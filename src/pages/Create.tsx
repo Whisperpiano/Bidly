@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { useModalStore } from "../store/modal";
+import { useModalStore } from "../store/modalStore";
 import { scrollToTop } from "../utils/ScrollTop";
 import { PiArrowLeftBold } from "react-icons/pi";
 

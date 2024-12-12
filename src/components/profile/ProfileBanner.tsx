@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUpdateProfile } from "../../hooks/imgur/useUpdateProfile";
 import { PiSealCheckFill } from "react-icons/pi";
-import { useAuthStore } from "../../store/user";
+import { useAuthStore } from "../../store/userStore";
 import { UserProfile } from "../../types/types";
 import ProfileStats from "./ProfileStats";
 import ProfileOptions from "./ProfileOptions";
