@@ -60,7 +60,9 @@ export const router = createBrowserRouter([
           },
           {
             path: "users/:query?",
-            element: <SearchUsers />,
+            element: (
+              <ProtectedRoute element={<SearchUsers />} redirectTo="/home" />
+            ),
           },
         ],
       },
