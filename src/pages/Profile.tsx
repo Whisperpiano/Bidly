@@ -1,45 +1,32 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useProfile } from "../hooks/profiles/useProfile";
+import { useAuthStore } from "../store/user";
+import { scrollToTop } from "../utils/ScrollTop";
 import FilterAndSort from "../components/profile/FilterAndSort";
 import ProfileBanner from "../components/profile/ProfileBanner";
 import ProfileNavigationHeader from "../components/profile/ProfileNavigationHeader";
 import ProfileItemCard from "../components/grid/ProfileItemCard";
 import Spinner from "../components/elements/Spinner";
 import GridItemSkeleton from "../components/skeletons/GridItemSkeleton";
-import { useEffect, useState } from "react";
-import { useAuthStore } from "../store/user";
-import { scrollToTop } from "../utils/ScrollTop";
-import { Link } from "react-router-dom";
+import useResponsiveProfileSkeletons from "../hooks/responsive/useResponsiveProfileSkeletons";
 
 export type ProfileButton = "items" | "wins";
 
 export default function Profile() {
+  const [selectedButton, setSelectedButton] = useState<ProfileButton>("items");
+
+  // Get the user profile
   const { profile, isLoading, selectedFilter, setSelectedFilter, listings } =
     useProfile();
-  const [skeletonsToShow, setSkeletonsToShow] = useState(10);
-  const [selectedButton, setSelectedButton] = useState<ProfileButton>("items");
+
+  // Get the username
   const username = useAuthStore((state) => state.username);
 
-  useEffect(() => {
-    const updateNumberOfItems = () => {
-      const width = window.innerWidth;
+  // Get the number of skeletons to show based on the screen width
+  const skeletonsToShow = useResponsiveProfileSkeletons();
 
-      if (width >= 1280) {
-        setSkeletonsToShow(10);
-      } else if (width >= 1024) {
-        setSkeletonsToShow(8);
-      } else if (width >= 768) {
-        setSkeletonsToShow(6);
-      } else {
-        setSkeletonsToShow(4);
-      }
-    };
-    updateNumberOfItems();
-    window.addEventListener("resize", updateNumberOfItems);
-    return () => {
-      window.removeEventListener("resize", updateNumberOfItems);
-    };
-  }, []);
-
+  // Scroll to top of the page when the profile is loaded
   useEffect(() => {
     scrollToTop();
   }, []);
@@ -53,6 +40,7 @@ export default function Profile() {
       ) : (
         <section className="mt-6 animate-reveal">
           <ProfileBanner profile={profile} />
+
           <div className="px-2 md:px-4 lg:px-6 -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-20">
             <ProfileNavigationHeader
               selectedButton={selectedButton}

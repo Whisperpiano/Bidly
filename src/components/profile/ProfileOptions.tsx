@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { PiDotsThreeBold } from "react-icons/pi";
-import { useModalStore } from "../../store/modal";
 
 interface ProfileOptionsProps {
   setAvatar: (picture: string) => void;
@@ -25,17 +24,9 @@ export default function ProfileOptions({
 }: ProfileOptionsProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const handleLogoutOpen = useModalStore(
-    (state) => state.handleConfirmLogoutOpen
-  );
 
   function handleClick() {
     setIsOpen(!isOpen);
-  }
-
-  function handleLogout() {
-    setIsOpen(false);
-    handleLogoutOpen();
   }
 
   useEffect(() => {
@@ -72,7 +63,7 @@ export default function ProfileOptions({
         </button>
 
         <div
-          className={`absolute top-[50px] right-0 z-20  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 bg-neutral-50 dark:divide-neutral-700/50 divide-neutral-200  transition-all duration-200 ${
+          className={`absolute top-[50px] right-0 z-30  text-left divide-y rounded-lg shadow w-44 dark:bg-neutral-900 bg-neutral-50 dark:divide-neutral-700/50 divide-neutral-200  transition-all duration-200 ${
             isOpen ? "opacity-100 " : "opacity-0 pointer-events-none"
           }`}
         >
@@ -106,14 +97,6 @@ export default function ProfileOptions({
               />
             </label>
           </form>
-          <div className="py-2 dark:text-red-400 text-red-600 cursor-pointer">
-            <span
-              className="block px-4 py-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-200/50   "
-              onClick={handleLogout}
-            >
-              Sign out
-            </span>
-          </div>
         </div>
       </div>
     </>

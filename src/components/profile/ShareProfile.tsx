@@ -1,25 +1,9 @@
 import { PiShareNetworkFill, PiCheckBold } from "react-icons/pi";
 import Button from "../elements/Button";
-import { useRef, useState } from "react";
-import { toast } from "sonner";
+import useCopyToClipboard from "../../hooks/general/useCopyToClipboard";
 
 export default function ShareProfile() {
-  const [isCopied, setIsCopied] = useState(false);
-  const timeoutRef = useRef<number | undefined>();
-
-  const copyToClipboard = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    navigator.clipboard.writeText(window.location.href);
-    setIsCopied(true);
-    toast.success("Link copied to clipboard!");
-
-    timeoutRef.current = setTimeout(() => {
-      setIsCopied(false);
-    }, 2000);
-  };
+  const { isCopied, copyToClipboard } = useCopyToClipboard(4000);
 
   return (
     <Button

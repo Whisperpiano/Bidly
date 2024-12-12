@@ -1,26 +1,33 @@
+import { useEffect, useState } from "react";
+import { useUpdateProfile } from "../../hooks/imgur/useUpdateProfile";
 import { PiSealCheckFill } from "react-icons/pi";
+import { useAuthStore } from "../../store/user";
+import { UserProfile } from "../../types/types";
 import ProfileStats from "./ProfileStats";
 import ProfileOptions from "./ProfileOptions";
 import ShareProfile from "./ShareProfile";
-import { UserProfile } from "../../types/types";
-import { useAuthStore } from "../../store/user";
-import { useEffect, useState } from "react";
-import { useUpdateProfile } from "../../hooks/imgur/useUpdateProfile";
 import Spinner from "../elements/Spinner";
 
 export default function ProfileBanner({ profile }: { profile: UserProfile }) {
-  const userName = useAuthStore((state) => state.username);
   const [avatar, setAvatar] = useState<string>("");
   const [banner, setBanner] = useState<string>("");
+
+  // Get the user name
+  const userName = useAuthStore((state) => state.username);
+
+  // Update avatar
   const {
     handleFileChangeAndUpload: handleAvatarChangeAndUpload,
     isUploading: avatarUploading,
   } = useUpdateProfile();
+
+  // Update banner
   const {
     handleFileChangeAndUpload: handleBannerChangeAndUpload,
     isUploading: bannerUploading,
   } = useUpdateProfile();
 
+  // Set the avatar and banner urls
   useEffect(() => {
     setAvatar(profile.avatar.url ?? "https://placehold.co/260x160");
     setBanner(profile.banner.url ?? "https://placehold.co/260x160");
