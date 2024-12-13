@@ -3,7 +3,7 @@ import { PiImageFill } from "react-icons/pi";
 export default function GridItemSkeleton() {
   return (
     <>
-      <div className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2">
+      <div className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2 h-fit">
         <div className="aspect-[16/10] w-full object-cover object-center rounded-lg bg-neutral-300 dark:bg-neutral-600 dark:bg-gr-neutral-700 flex items-center justify-center">
           <PiImageFill
             size={30}

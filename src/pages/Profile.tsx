@@ -10,17 +10,18 @@ import ProfileItemCard from "../components/grid/ProfileItemCard";
 import Spinner from "../components/elements/Spinner";
 import GridItemSkeleton from "../components/skeletons/GridItemSkeleton";
 import useResponsiveListingsSkeletons from "../hooks/responsive/useResponsiveListingsSkeletons";
-import { ProfileBid } from "../types/types";
-import getBids from "../api/listings/getBids";
 import ProfileBidCard from "../components/grid/ProfileBidCard";
+import { useActualProfileBids } from "../hooks/profiles/useActualProfileBids";
 
 export type ProfileButton = "items" | "wins" | "bids";
 
 export default function Profile() {
   const [selectedButton, setSelectedButton] = useState<ProfileButton>("items");
-  const [bids, setBids] = useState<ProfileBid[]>([]);
 
   const { username } = useParams();
+
+  // Get the actual bids of the user
+  const { bids } = useActualProfileBids(username);
 
   // Get the user profile
   const { profile, isLoading, selectedFilter, setSelectedFilter, listings } =
@@ -36,48 +37,6 @@ export default function Profile() {
   useEffect(() => {
     scrollToTop();
   }, []);
-
-  useEffect(() => {
-    async function fetchBids() {
-      if (!username) return;
-
-      const response = await getBids({ username });
-      if (!response) return;
-
-      if ("data" in response) {
-        console.log(response.data.length);
-        const uniqueBids = response.data.reduce(
-          (acc: ProfileBid[], bid: ProfileBid) => {
-            const listingEndsAt = new Date(bid.listing.endsAt);
-            const now = new Date();
-
-            if (listingEndsAt <= now) {
-              return acc;
-            }
-
-            const existingBidIndex = acc.findIndex(
-              (item) => item.listing.id === bid.listing.id
-            );
-
-            if (existingBidIndex === -1) {
-              acc.push(bid);
-            } else if (bid.amount > acc[existingBidIndex].amount) {
-              acc[existingBidIndex] = bid;
-            }
-
-            return acc;
-          },
-          []
-        );
-
-        setBids(uniqueBids);
-      }
-    }
-
-    fetchBids();
-  }, [username]);
-
-  console.log(bids);
 
   return (
     <>
