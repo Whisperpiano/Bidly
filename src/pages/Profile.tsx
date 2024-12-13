@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useProfile } from "../hooks/profiles/useProfile";
 import { useAuthStore } from "../store/userStore";
 import { scrollToTop } from "../utils/ScrollTop";
@@ -10,18 +10,24 @@ import ProfileItemCard from "../components/grid/ProfileItemCard";
 import Spinner from "../components/elements/Spinner";
 import GridItemSkeleton from "../components/skeletons/GridItemSkeleton";
 import useResponsiveListingsSkeletons from "../hooks/responsive/useResponsiveListingsSkeletons";
+import { ProfileBid } from "../types/types";
+import getBids from "../api/listings/getBids";
+import ProfileBidCard from "../components/grid/ProfileBidCard";
 
-export type ProfileButton = "items" | "wins";
+export type ProfileButton = "items" | "wins" | "bids";
 
 export default function Profile() {
   const [selectedButton, setSelectedButton] = useState<ProfileButton>("items");
+  const [bids, setBids] = useState<ProfileBid[]>([]);
+
+  const { username } = useParams();
 
   // Get the user profile
   const { profile, isLoading, selectedFilter, setSelectedFilter, listings } =
     useProfile();
 
   // Get the username
-  const username = useAuthStore((state) => state.username);
+  const userLogged = useAuthStore((state) => state.username);
 
   // Get the number of skeletons to show based on the screen width
   const skeletonsToShow = useResponsiveListingsSkeletons();
@@ -30,6 +36,48 @@ export default function Profile() {
   useEffect(() => {
     scrollToTop();
   }, []);
+
+  useEffect(() => {
+    async function fetchBids() {
+      if (!username) return;
+
+      const response = await getBids({ username });
+      if (!response) return;
+
+      if ("data" in response) {
+        console.log(response.data.length);
+        const uniqueBids = response.data.reduce(
+          (acc: ProfileBid[], bid: ProfileBid) => {
+            const listingEndsAt = new Date(bid.listing.endsAt);
+            const now = new Date();
+
+            if (listingEndsAt <= now) {
+              return acc;
+            }
+
+            const existingBidIndex = acc.findIndex(
+              (item) => item.listing.id === bid.listing.id
+            );
+
+            if (existingBidIndex === -1) {
+              acc.push(bid);
+            } else if (bid.amount > acc[existingBidIndex].amount) {
+              acc[existingBidIndex] = bid;
+            }
+
+            return acc;
+          },
+          []
+        );
+
+        setBids(uniqueBids);
+      }
+    }
+
+    fetchBids();
+  }, [username]);
+
+  console.log(bids);
 
   return (
     <>
@@ -47,6 +95,7 @@ export default function Profile() {
               setSelectedButton={setSelectedButton}
               winsNumber={profile.wins?.length || 0}
               itemsNumber={listings.length}
+              bidsNumber={bids.length}
             />
             {selectedButton === "items" && (
               <FilterAndSort
@@ -59,16 +108,16 @@ export default function Profile() {
               <div className="relative animate-fastreveal">
                 <div className="absolute z-20 w-full h-full max-h-screen flex flex-col items-center justify-center -translate-y-10">
                   <p className="text-center flex flex-col items-center justify-center text-xl font-semibold dark:text-neutral-50 text-neutral-900">
-                    {username === profile.name
+                    {userLogged === profile.name
                       ? "No listings created yet."
                       : "User has no listings yet."}
                     <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal mt-2">
-                      {username === profile.name
+                      {userLogged === profile.name
                         ? "Create your first listing to get started!"
                         : "Stay tuned for some cool stuff soon!"}
                     </span>
                   </p>
-                  {username === profile.name && (
+                  {userLogged === profile.name && (
                     <Link
                       to={"/create"}
                       className="mt-3 rounded-lg text-sm flex items-center gap-2 h-[36px] px-4 bg-primary-600 text-neutral-50 hover:bg-primary-700 justify-center font-semibold "
@@ -99,6 +148,14 @@ export default function Profile() {
                       key={listing.id}
                       item={listing}
                       isWin={true}
+                    />
+                  ))}
+                {selectedButton === "bids" &&
+                  bids.map((bid) => (
+                    <ProfileBidCard
+                      key={bid.id}
+                      item={bid}
+                      username={username || ""}
                     />
                   ))}
               </div>

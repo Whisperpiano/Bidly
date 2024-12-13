@@ -6,11 +6,13 @@ export default function ProfileNavigationHeader({
   setSelectedButton,
   winsNumber,
   itemsNumber,
+  bidsNumber,
 }: {
   selectedButton: ProfileButton;
   setSelectedButton: Dispatch<SetStateAction<ProfileButton>>;
   winsNumber: number;
   itemsNumber: number;
+  bidsNumber: number;
 }) {
   return (
     <header className="text-sm md:text-base">
@@ -22,9 +24,23 @@ export default function ProfileNavigationHeader({
         }`}
         onClick={() => setSelectedButton("items")}
       >
-        Items{" "}
+        Listings{" "}
         <span className="font-normal dark:text-neutral-400 text-neutral-500">
           ({itemsNumber})
+        </span>
+      </button>
+      <button
+        className={`ml-6 py-2 ${
+          selectedButton === "bids"
+            ? "border-b-2 dark:text-neutral-50 text-neutral-900 dark:border-neutral-50 border-neutral-950  font-semibold"
+            : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-300"
+        }`}
+        onClick={() => setSelectedButton("bids")}
+        disabled={bidsNumber === 0}
+      >
+        Bids{" "}
+        <span className="font-normal dark:text-neutral-400 text-neutral-500">
+          ({bidsNumber})
         </span>
       </button>
       <button
@@ -40,18 +56,6 @@ export default function ProfileNavigationHeader({
         <span className="font-normal dark:text-neutral-400 text-neutral-500">
           ({winsNumber})
         </span>
-      </button>
-      <button
-        className="ml-6 py-2 disabled:text-[#8f8f8f] dark:disabled:text-[#868686] disabled:pointer-events-none "
-        disabled
-      >
-        About
-      </button>
-      <button
-        className="ml-6 py-2 disabled:text-[#8f8f8f] dark:disabled:text-[#868686] disabled:pointer-events-none "
-        disabled
-      >
-        Activity
       </button>
     </header>
   );

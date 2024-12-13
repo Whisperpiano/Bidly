@@ -173,3 +173,40 @@ export interface ProfileUpdate {
   banner: Media;
   credits: number;
 }
+
+// Bids  by profile
+export interface SuccessBidsResponse {
+  data: ProfileBid[];
+  meta: Meta;
+}
+
+export interface ErrorBidsResponse {
+  errors: {
+    message: string;
+  }[];
+  status: string;
+  statusCode: number;
+}
+
+export interface ProfileBid {
+  id: string;
+  amount: number;
+  bidder: {
+    name: string;
+    email: string;
+    bio: string | null;
+    avatar: Media;
+    banner: Media;
+  };
+  created: string;
+  listing: {
+    id: string;
+    title: string;
+    description: string;
+    media: Media[];
+    tags: string[];
+    created: string;
+    updated: string;
+    endsAt: string;
+  };
+}

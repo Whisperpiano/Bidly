@@ -32,7 +32,12 @@ export default function ProfileItemCard({
       aria-label={`View details for the ${title} item`}
       viewTransition
     >
-      <article className="border dark:border-neutral-800 border-neutral-200 rounded-lg p-2 transition-all duration-300 hover:border-neutral-400 hover:dark:border-neutral-600 hover:-translate-y-2 ">
+      <article className="relative border dark:border-neutral-800 border-neutral-200 rounded-lg p-2 transition-all duration-300 hover:border-neutral-400 hover:dark:border-neutral-600 hover:-translate-y-2 animate-reveal">
+        {isWin && (
+          <span className="absolute top-4 right-2 bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+            Owned
+          </span>
+        )}
         <div>
           <img
             src={
