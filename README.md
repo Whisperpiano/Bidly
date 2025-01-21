@@ -22,9 +22,9 @@
   <p align="center">
     <a href="https://www.figma.com/design/nt0MH5obT13cPCzsMvu1zZ/Semester-Project-2?node-id=1-2&t=74LguUfaSPR6VYJV-1">Figma file</a>
     ·
-    <a href="https://github.com/Whisperpiano/semester-project-2/issues">Report Bug</a>
+    <a href="https://github.com/Whisperpiano/Bidly/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Whisperpiano/semester-project-2/issues">Request Feature</a>
+    <a href="https://github.com/Whisperpiano/Bidly/issues">Request Feature</a>
       ·
     <a href="https://bidlify.netlify.app/home">Preview</a>
     <br />
@@ -37,8 +37,8 @@ Bidlify is my Semester Project 2 for the second year of my Front-End Development
 
 The assignment was to build an auction house where users can add items for bidding. place bids on items, and earn credits by selling their items. Every registered user starts with 1,000 credits, which can be used to place bids on items. Additionally, users can increase their credits by successfully creating and selling items through the platform.
 
-![Desktop screenshot](https://github.com/Whisperpiano/semester-project-2/blob/main/public/presentation1.jpeg)
-![Mobile schreenshots](https://github.com/Whisperpiano/semester-project-2/blob/main/public/presentation2.jpeg)
+![Desktop screenshot](https://github.com/Whisperpiano/Bidly/blob/main/public/presentation1.jpeg)
+![Mobile schreenshots](https://github.com/Whisperpiano/Bidly/blob/main/public/presentation2.jpeg)
 
 ## Built With
 
@@ -84,13 +84,13 @@ Make sure you have Git installed on your local machine. You can download it from
 
 Clone the repo:
    ```sh
-   git clone https://github.com/Whisperpiano/semester-project-2.git
+   git clone https://github.com/Whisperpiano/Bidly.git
    ```
 ### Open the project
 
 Navigate to the project directory:
    ```sh
-   cd semester-project-2
+   cd Bidly
    ```
 
 Open the project with VSCode:
@@ -125,7 +125,7 @@ Contributions are what make the open source community such an amazing place to l
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
-1. [Fork](https://github.com/Whisperpiano/semester-project-2/fork) the Project.
+1. [Fork](https://github.com/Whisperpiano/Bidly/fork) the Project.
 2. Clone your fork ( `git clone <URL of your fork>` )
 3. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 4. Make your changes to the codebase.
