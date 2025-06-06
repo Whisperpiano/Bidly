@@ -12,7 +12,6 @@ Object.defineProperty(window, "localStorage", {
   writable: true,
 });
 
-// Basic configuration to silence console
 const originalConsoleError = console.error;
 const originalConsoleWarn = console.warn;
 
